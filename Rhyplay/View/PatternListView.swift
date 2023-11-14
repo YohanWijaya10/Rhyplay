@@ -76,20 +76,20 @@ struct PatternListView: View {
                                                 HStack{
                                                     Image(systemName: "star.fill")
                                                         .font(.system(size: 20))
-                                                        .foregroundColor(Color("BG"))
+                                                        .foregroundColor(Color("Maroon"))
                                                     Image(systemName: "star.fill")
                                                         .font(.system(size: 20))
-                                                        .foregroundColor(Color("BG"))
+                                                        .foregroundColor(Color("Maroon"))
                                                     Image(systemName: "star.fill")
                                                         .font(.system(size: 20))
-                                                        .foregroundColor(Color("BG"))
+                                                        .foregroundColor(Color("Maroon"))
                                                     
                                                     Spacer()
                                                 }
                                                 .padding(.bottom, 10)
                                             }
                                             .foregroundColor(.white)
-                                            .frame(width: 170, height: 210)
+                                            .frame(width: 160, height: 210)
                                         }
                                         .frame(width: 170, height: 220)
                                     }
@@ -117,19 +117,19 @@ struct PatternListView: View {
                                                 HStack{
                                                     Image(systemName: "star.fill")
                                                         .font(.system(size: 20))
-                                                        .foregroundColor(Color("BG"))
+                                                        .foregroundColor(Color("Maroon"))
                                                     Image(systemName: "star.fill")
                                                         .font(.system(size: 20))
-                                                        .foregroundColor(Color("BG"))
+                                                        .foregroundColor(Color("Maroon"))
                                                     Image(systemName: "star.fill")
                                                         .font(.system(size: 20))
-                                                        .foregroundColor(Color("BG"))
+                                                        .foregroundColor(Color("Maroon"))
                                                     
                                                     Spacer()
                                                 }
                                                 .padding(.bottom, 10)
                                             }
-                                            .frame(width: 170, height: 210)
+                                            .frame(width: 160, height: 210)
                                             .padding(.horizontal, 10)
                                         }
                                         .frame(width: 170, height: 220)
