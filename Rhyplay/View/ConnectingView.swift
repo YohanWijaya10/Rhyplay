@@ -608,9 +608,9 @@ struct ConnectingView: View {
             .onReceive(Just(service.SnareV)) { snareVal in
                 
                 if snareVal == 1{
-                    playSound(fileName: "snarenew", fileExtension: "mp3")
+                    playSound(fileName: "Snare", fileExtension: "mp3")
                 } else if snareVal == 4{
-                    playSound1(fileName: "bassnew", fileExtension: "mp3")
+                    playSound1(fileName: "Kick", fileExtension: "mp3")
                 } else{
                     
                 }
