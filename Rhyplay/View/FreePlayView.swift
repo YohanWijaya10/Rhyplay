@@ -14,6 +14,8 @@ struct FreePlayView: View {
     @State private var isHighlightingLeftKick = false
     @State private var isHighlightingRightKick = false
     
+    @Environment (\.dismiss) var dismiss
+    
     var body: some View {
         
         ZStack{
@@ -260,12 +262,13 @@ struct FreePlayView: View {
             //MARK: This is the most outer layer for button
             HStack {
                 VStack{
-                    NavigationLink{
-                        MainPageView() } label: {
-                            Image(systemName: "arrow.left")
-                                .font(.system(size: 25, weight: .bold, design: .rounded))
-                                .foregroundColor(.white)
-                        }
+                    Button(action: {
+                        dismiss()
+                    }) {
+                        Image(systemName: "arrow.left")
+                            .font(.system(size: 25, weight: .bold, design: .rounded))
+                            .foregroundColor(.white)
+                    }
                     Spacer()
                 }
                 .padding(.leading, 20)
