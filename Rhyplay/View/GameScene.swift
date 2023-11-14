@@ -23,6 +23,7 @@ class GameScene: SKScene {
     var worldNode:SKNode?
     var gameplay: SKAction!
     var pausenode: SKEmitterNode!
+    var test: SKAction!
 
     
     
@@ -58,10 +59,6 @@ class GameScene: SKScene {
         background.scale(to: CGSize(width: self.size.width, height: self.size.height))
         background.position = CGPoint(x: self.size.width / 2, y: self.size.height / 2)
             self.addChild(background)
-        
-        
-        
-        
         
         if let emitter = SKEmitterNode(fileNamed: "MyParticle.sks") {
             emitter.position = CGPoint(x: 345, y: 90)
