@@ -1,6 +1,6 @@
 //
 //  ConnectingView.swift
-//  MacroCoba3
+//  Rhyplay
 //
 //  Created by Brian Putrantio on 13/11/23.
 //
@@ -264,7 +264,7 @@ struct ConnectingView: View {
     @State private var buttonoutlineColor_right: Color = Color("Pink")
     @State private var isFlashing_left = true
     @State private var isFlashing_right = true
-    @State var kedip: CGFloat = 3
+    @State var kedip: CGFloat = 10
     @State var connectOK: Bool = false
     @State var blink: Double = 0.0
     @State private var audioPlayer: AVAudioPlayer?
@@ -292,13 +292,13 @@ struct ConnectingView: View {
     @State private var snare: String = "Snare1"
     @State private var kick: String = "Kick1"
     init(){
-            UINavigationBar.setAnimationsEnabled(false)
-        }
-
+        UINavigationBar.setAnimationsEnabled(false)
+    }
+    
     var body: some View {
         NavigationStack{
             ZStack{
-                Color("BG").edgesIgnoringSafeArea(.all)
+                Color("Maroon").edgesIgnoringSafeArea(.all)
                 
                 Group {
                     Circle()
@@ -306,7 +306,7 @@ struct ConnectingView: View {
                         .frame(width: 950, height: 950)
                     
                     Circle()
-                        .fill(Color("BG"))
+                        .fill(Color("Maroon"))
                         .frame(width: 945, height: 945)
                     
                     Circle()
@@ -314,7 +314,7 @@ struct ConnectingView: View {
                         .frame(width: 750, height: 750)
                     
                     Circle()
-                        .fill(Color("BG"))
+                        .fill(Color("Maroon"))
                         .frame(width: 745, height: 745)
                     
                     Circle()
@@ -322,7 +322,7 @@ struct ConnectingView: View {
                         .frame(width: 550, height: 550)
                     
                     Circle()
-                        .fill(Color("BG"))
+                        .fill(Color("Maroon"))
                         .frame(width: 545, height: 545)
                     
                     Circle()
@@ -330,7 +330,7 @@ struct ConnectingView: View {
                         .frame(width: 350, height: 350)
                     
                     Circle()
-                        .fill(Color("BG"))
+                        .fill(Color("Maroon"))
                         .frame(width: 345, height: 345)
                     
                     Circle()
@@ -338,10 +338,10 @@ struct ConnectingView: View {
                         .frame(width: 150, height: 150)
                     
                     Circle()
-                        .fill(Color("BG"))
+                        .fill(Color("Maroon"))
                         .frame(width: 145, height: 145)
                     
-                } //Tampilan Lingkaran2
+                } //Tampilan Lingkaran2 //Background
                 
                 VStack{
                     
@@ -361,11 +361,11 @@ struct ConnectingView: View {
                                 }
                                 else{
                                     print("Left Button DisConnected")
-                                    buttonoutlineColor_right = Color.red
+                                    buttonoutlineColor_left = Color.red
                                     
                                     
                                     
-                                    isFlashing_right.toggle()
+                                    isFlashing_left.toggle()
                                 }
                             }) {
                                 VStack{
@@ -380,18 +380,21 @@ struct ConnectingView: View {
                                                 .clipShape(Circle())
                                                 .overlay(
                                                     RoundedRectangle(cornerRadius: 115)
-                                                        .stroke(buttonoutlineColor_right, lineWidth: kedip)
+                                                        .stroke(Color("Pink"), lineWidth: kedip)
                                                         .opacity(blink)
-                                                        .animation(.easeOut(duration: 2) .repeatForever(autoreverses: true))
-                                                        .onAppear(){
+                                                        .task(){
+                                                            let baseAnimation = Animation.easeInOut(duration: 2)
+                                                                            let repeated = baseAnimation.repeatForever(autoreverses: true)
+
+                                                                            withAnimation(repeated) {
+                                                                                blink = 1
+                                                                            }
                                                             blink = 1
-                                                            print(isRightConnected)
                                                         }
-                                                    
-                                                    
                                                 )
                                             
                                         } else{
+                                            ///Connect jadi ijo
                                             Image("Left Hand Icon")
                                                 .resizable()
                                                 .frame(width: 65, height: 65) //size gambar tangan
@@ -399,19 +402,24 @@ struct ConnectingView: View {
                                                 .foregroundColor(Color.black)
                                                 .background(Color("Pink"))
                                                 .clipShape(Circle())
-                                            
                                                 .overlay(
                                                     RoundedRectangle(cornerRadius: 115)
-                                                        .stroke(Color.green, lineWidth: 6)
-                                                        .opacity(1)
-                                                        .animation(.easeOut(duration: 1))
-                                                    
+                                                        .stroke(Color.green, lineWidth: kedip)
+                                                        .opacity(blink)
+                                                        .task(){
+                                                            let baseAnimation = Animation.easeInOut(duration: 2)
+                                                                            let repeated = baseAnimation.repeatForever(autoreverses: true)
+
+                                                                            withAnimation(repeated) {
+                                                                                blink = 1
+                                                                            }
+                                                            blink = 1
+                                                        }
                                                 )
-                                                .animation(.easeOut(duration: 1))
                                         }
                                         
                                     }
-                                    .animation(.easeOut(duration: 1))
+                                    
                                     if service.peripheralStatus2 != .connected {
                                         if isLeftConnected == true{
                                             Text("Connecting...")
@@ -430,12 +438,6 @@ struct ConnectingView: View {
                                     }
                                     if service.peripheralStatus == .connected {
                                         
-                                    }
-                                    
-                                }
-                                .onAppear {
-                                    withAnimation(Animation.linear(duration: 1.0).repeatForever(autoreverses: true)) {
-                                        self.isFlashing_right.toggle()
                                     }
                                 }
                             }
@@ -495,15 +497,17 @@ struct ConnectingView: View {
                                                 .clipShape(Circle())
                                                 .overlay(
                                                     RoundedRectangle(cornerRadius: 115)
-                                                        .stroke(buttonoutlineColor_right, lineWidth: kedip)
+                                                        .stroke(Color("Pink"), lineWidth: kedip)
                                                         .opacity(blink)
-                                                        .animation(.easeOut(duration: 2) .repeatForever(autoreverses: true))
-                                                        .onAppear(){
+                                                        .task(){
+                                                            let baseAnimation = Animation.easeInOut(duration: 2)
+                                                                            let repeated = baseAnimation.repeatForever(autoreverses: true)
+
+                                                                            withAnimation(repeated) {
+                                                                                blink = 1
+                                                                            }
                                                             blink = 1
-                                                            print(isRightConnected)
                                                         }
-                                                    
-                                                    
                                                 )
                                             
                                         } else{
@@ -514,20 +518,25 @@ struct ConnectingView: View {
                                                 .foregroundColor(Color.black)
                                                 .background(Color("Pink"))
                                                 .clipShape(Circle())
-                                            
                                                 .overlay(
                                                     RoundedRectangle(cornerRadius: 115)
-                                                        .stroke(Color.green, lineWidth: 6)
-                                                        .opacity(1)
-                                                        .animation(.easeOut(duration: 1))
-                                                    
+                                                        .stroke(Color.green, lineWidth: kedip)
+                                                        .opacity(blink)
+                                                        .task(){
+                                                            let baseAnimation = Animation.easeInOut(duration: 2)
+                                                                            let repeated = baseAnimation.repeatForever(autoreverses: true)
+
+                                                                            withAnimation(repeated) {
+                                                                                blink = 1
+                                                                            }
+                                                            blink = 1
+                                                        }
                                                 )
-                                                .animation(.easeOut(duration: 1))
+                                                
                                         }
                                         
                                     }
-                                    .animation(.easeOut(duration: 1))
-                                    if service.peripheralStatus != .connected {
+                                                                        if service.peripheralStatus != .connected {
                                         if isRightConnected == true{
                                             Text("Connecting...")
                                                 .foregroundColor(.white)
@@ -548,11 +557,6 @@ struct ConnectingView: View {
                                     }
                                     
                                 }
-                                .onAppear {
-                                    withAnimation(Animation.linear(duration: 1.0).repeatForever(autoreverses: true)) {
-                                        self.isFlashing_right.toggle()
-                                    }
-                                }
                             }
                         }
                         else{
@@ -565,30 +569,28 @@ struct ConnectingView: View {
                 }
                 
                 VStack {
-                    Group{
-                        Spacer()
-                        Spacer()
-                    }
+                    Spacer()
+                        .frame(height: 820)
                     
-                    if isLeftConnected/*service.peripheralStatus*/ == false {//.connected {
-                        Button(action: {
-                            print("Done Button tapped")
-                            isMainPageView = true
-                            service.connectToPeripheral()
-                        }) {
-                            Text("Done")
-                                .font(.title)
-                                .foregroundColor(.black)
-                                .padding()
-                                .frame(width: 200, height: 40)
-                                .background(Color(UIColor(red: 0.9647, green: 0.9059, blue: 0.7647, alpha: 1.0)))
-                                .overlay(
-                                    RoundedRectangle(cornerRadius: 10)
-                                        .stroke(Color.black, lineWidth: 3)
-                                )
-                                .cornerRadius(10)
-                            
-                        } // button next buat ke halaman selanjutnya setelah connect
+                    
+                    // button next buat ke halaman selanjutnya setelah connect
+                    if service.peripheralStatus == .connected {
+                        //MARK: Button ke Pattern
+                        NavigationLink(destination: PatternListView().navigationBarHidden(true)) {
+                            ZStack{
+                                Text("Continue")
+                                    .font(.title)
+                                    .foregroundColor(.white)
+                                    .padding()
+                                    .frame(width: 350, height: 40)
+                                    .background(Color("Pink"))
+                                    .overlay(
+                                        RoundedRectangle(cornerRadius: 10)
+                                            .stroke(Color.black, lineWidth: 3)
+                                    )
+                                    .cornerRadius(10)
+                            }
+                        }
                         .padding()
                         .environmentObject(service)
                         
@@ -596,9 +598,6 @@ struct ConnectingView: View {
                     
                     Spacer()
                 }
-                .animation(.easeOut(duration: 0.3))
-                
-                
                 
                 
             }.onAppear(){
@@ -615,7 +614,7 @@ struct ConnectingView: View {
                     
                 }
             }
-        }.animation(nil)
+        }
     }
     
     func playSound(fileName: String, fileExtension: String) {

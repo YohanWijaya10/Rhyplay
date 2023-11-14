@@ -1,6 +1,6 @@
 //
 //  MainPageView.swift
-//  MacroCoba3
+//  Rhyplay
 //
 //  Created by Brian Putrantio on 10/11/23.
 //
