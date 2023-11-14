@@ -1,6 +1,6 @@
 //
 //  SongsListView.swift
-//  MacroCoba3
+//  Rhyplay
 //
 //  Created by Brian Putrantio on 10/11/23.
 //
@@ -34,7 +34,7 @@ struct SongListView: View {
         NavigationStack{
             ZStack{
                 //MARK: Wana backgrounds
-                Color("BG")
+                Color("Maroon")
                     .edgesIgnoringSafeArea(.all)
                 
                 ZStack{
@@ -250,16 +250,9 @@ struct SongListView: View {
                                             ForEach(0..<2, id: \.self) { index in
                                                 ///Button Songs
                                                 Button {
-                                                    if Allitems[index] == "Super Shy"{
-                                                        SongId = "Super Shy"
-                                                        SongImg = "dummy"
-                                                        ArtistId = "New Jeans"
-                                                    }
-                                                    else if Allitems[index] == "coba"{
-                                                        SongId = "Kontol"
-                                                        SongImg = "dummy"
-                                                        ArtistId = "New Jeans"
-                                                    }
+                                                    SongId = Allitems[index]
+                                                    SongImg = "dummy"
+                                                    ArtistId = "New Jeans"
                                                     
                                                     //showSongDescription = true
                                                     showingSheet.toggle()
@@ -314,16 +307,10 @@ struct SongListView: View {
                                                 }
                                                 
                                             }
-                                            
-//                                            VStack{
-//                                                Spacer()
-//                                            }
-//                                            .frame(width: 150, height: 250)
-//                                            .padding(.horizontal, 10)
                                         }
                                         .sheet(isPresented: $showingSheet) {
-                                            SongLevelPopUpView2(SongId: SongId, SongImg: SongImg, ArtistId: ArtistId)
-                                                .presentationDetents([.height(700)])
+                                            SongLevelPopUpView2(SongId: $SongId, SongImg: $SongImg, ArtistId: $ArtistId)
+                                                .presentationDetents([.height(800)])
                                         }
                                     }
                                     else if Allcount == 1{
@@ -331,13 +318,12 @@ struct SongListView: View {
                                             ForEach(0..<1, id: \.self) { index in
                                                 ///Button Songs
                                                 Button {
-                                                    SongId = "Super Shy"
+                                                    SongId = Allitems[index]
                                                     SongImg = "dummy"
                                                     ArtistId = "New Jeans"
-                                                    print("kontol")
+                                                    
                                                     //showSongDescription = true
                                                     showingSheet.toggle()
-                                                    //showingSheet = true
                                                 } label: {
                                                     VStack{
                                                         ZStack{
@@ -388,7 +374,7 @@ struct SongListView: View {
                                                     .padding(.bottom, 30)
                                                 }
                                                 .sheet(isPresented: $showingSheet) {
-                                                    SongLevelPopUpView2(SongId: SongId, SongImg: SongImg, ArtistId: ArtistId)
+                                                    SongLevelPopUpView2(SongId: $SongId, SongImg: $SongImg, ArtistId: $ArtistId)
                                                         .presentationDetents([.height(700)])
                                                 }
                                             }
@@ -991,21 +977,11 @@ struct SongListView: View {
                                             ForEach(0..<1, id: \.self) { index in
                                                 ///Button Songs
                                                 Button {
-                                                    if SongId == "Super Shy"{
-                                                        SongId = "Super Shy"
-                                                        SongImg = "dummy"
-                                                        ArtistId = "New Jeans"
-                                                        
-                                                        showingSheet.toggle()
-                                                    }
-                                                    else{
-                                                        SongId = "Super Shy"
-                                                    }
-//                                                    SongId = "Super Shy"
-//                                                    SongImg = "dummy"
-//                                                    ArtistId = "New Jeans"
+                                                    SongId = "Super Shy"
+                                                    SongImg = "dummy"
+                                                    ArtistId = "New Jeans"
                                                     
-                                                    //showingSheet.toggle()
+                                                    showingSheet.toggle()
                                                 } label: {
                                                     VStack{
                                                         ZStack{
@@ -1056,7 +1032,7 @@ struct SongListView: View {
                                                     .padding(.bottom, 30)
                                                 }
                                                 .sheet(isPresented: $showingSheet) {
-                                                    SongLevelPopUpView2(SongId: SongId, SongImg: SongImg, ArtistId: ArtistId)
+                                                    SongLevelPopUpView2(SongId: $SongId, SongImg: $SongImg, ArtistId: $ArtistId)
                                                         .presentationDetents([.height(700)])
                                                 }
                                             }
@@ -1074,72 +1050,9 @@ struct SongListView: View {
                     }
                 }
                 .navigationBarBackButtonHidden(true)
-                
-                //                if showSongDescription == true{
-                //
-                //                    popUpSongDescription()
-                //                }
             }
-            .onAppear{
-                kontolbiawak()
-            }
-            
-            
         }
     }
-    func kontolbiawak(){
-        
-            SongId = "Super Shy"
-            SongImg = "dummy"
-            ArtistId = "New Jeans"
-      
-        
-    }
-    //    func popUpSongDescription() -> some View {
-    //        ZStack{
-    //            SongLevelPopUpView(SongId: SongId, SongImg: SongImg, ArtistId: ArtistId)
-    //
-    //            //Button Cancel & Start
-    //            HStack{
-    //                ///Button Cancel
-    //                Button {
-    //                    showSongDescription = false
-    //                } label: {
-    //                    ZStack{
-    //                        RoundedRectangle(cornerRadius: 10)
-    //                            .overlay(
-    //                                RoundedRectangle(cornerRadius: 10)
-    //                                    .stroke(.gray)
-    //                            )
-    //
-    //                        Text("Cancel")
-    //                            .foregroundColor(.gray)
-    //                    }
-    //                    .frame(width: 120, height: 40)
-    //                    .foregroundColor(.white)
-    //                }
-    //
-    //                ///Button Start
-    //                Button {
-    //
-    //                } label: {
-    //                    ZStack{
-    //                        RoundedRectangle(cornerRadius: 10)
-    //                            .overlay(
-    //                                RoundedRectangle(cornerRadius: 10)
-    //                                    .stroke(.pink)
-    //                            )
-    //
-    //                        Text("Start")
-    //                            .foregroundColor(.white)
-    //                    }
-    //                    .frame(width: 160, height: 40)
-    //                    .foregroundColor(.pink)
-    //                }
-    //            }
-    //            .padding(.top, 260)
-    //        }
-    //    }
 }
 
 #Preview {

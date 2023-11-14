@@ -11,9 +11,9 @@ import SwiftUI
 struct SongLevelPopUpView2: View {
     @Environment(\.dismiss) private var dismiss
     
-    @State var SongId: String
-    @State var SongImg: String
-    @State var ArtistId: String
+    @Binding var SongId: String
+    @Binding var SongImg: String
+    @Binding var ArtistId: String
     @State var LevelId: String = "Easy"
     @State var SpeedId: String = "Normal"
     
@@ -21,7 +21,7 @@ struct SongLevelPopUpView2: View {
         NavigationStack{
             ZStack{
                 Rectangle()
-                    .foregroundColor(Color("BG"))
+                    .foregroundColor(Color("Maroon"))
                     .edgesIgnoringSafeArea(.bottom)
                 
                 VStack{
@@ -121,7 +121,7 @@ struct SongLevelPopUpView2: View {
                                             .foregroundColor(.gray)
                                     }
                                     .frame(width: 90, height: 30)
-                                    .foregroundColor(Color("BG"))
+                                    .foregroundColor(Color("Maroon"))
                                 }
                             }
                             
@@ -157,7 +157,7 @@ struct SongLevelPopUpView2: View {
                                             .foregroundColor(.gray)
                                     }
                                     .frame(width: 90, height: 30)
-                                    .foregroundColor(Color("BG"))
+                                    .foregroundColor(Color("Maroon"))
                                 }
                             }
                             
@@ -193,7 +193,7 @@ struct SongLevelPopUpView2: View {
                                             .foregroundColor(.gray)
                                     }
                                     .frame(width: 90, height: 30)
-                                    .foregroundColor(Color("BG"))
+                                    .foregroundColor(Color("Maroon"))
                                 }
                             }
                         }
@@ -242,7 +242,7 @@ struct SongLevelPopUpView2: View {
                                             .foregroundColor(.gray)
                                     }
                                     .frame(width: 90, height: 30)
-                                    .foregroundColor(Color("BG"))
+                                    .foregroundColor(Color("Maroon"))
                                 }
                             }
                             
@@ -278,7 +278,7 @@ struct SongLevelPopUpView2: View {
                                             .foregroundColor(.gray)
                                     }
                                     .frame(width: 90, height: 30)
-                                    .foregroundColor(Color("BG"))
+                                    .foregroundColor(Color("Maroon"))
                                 }
                             }
                             
@@ -314,7 +314,7 @@ struct SongLevelPopUpView2: View {
                                             .foregroundColor(.gray)
                                     }
                                     .frame(width: 90, height: 30)
-                                    .foregroundColor(Color("BG"))
+                                    .foregroundColor(Color("Maroon"))
                                 }
                             }
                         }
@@ -351,5 +351,5 @@ struct SongLevelPopUpView2: View {
 }
 
 #Preview{
-    SongLevelPopUpView2(SongId: "Super Shy", SongImg: "dummy", ArtistId: "New Jeans")
+    SongLevelPopUpView2(SongId: .constant("Super Shy"), SongImg: .constant("dummy"), ArtistId: .constant("New Jeans"))
 }

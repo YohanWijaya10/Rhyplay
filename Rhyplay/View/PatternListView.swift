@@ -16,7 +16,7 @@ struct PatternListView: View {
         NavigationStack{
             ZStack{
                 //MARK: Wana backgrounds
-                Color("BG")
+                Color("Maroon")
                     .edgesIgnoringSafeArea(.all)
                 
                 ZStack{
@@ -62,7 +62,7 @@ struct PatternListView: View {
                                     } label: {
                                         ZStack{
                                             RoundedRectangle(cornerRadius: 10)
-                                                .frame(width: 180, height: 220)
+                                                .frame(width: 170, height: 220)
                                                 .foregroundColor(Color("Pink"))
                                             
                                             Image("Pattern1Button")
@@ -91,7 +91,7 @@ struct PatternListView: View {
                                             .foregroundColor(.white)
                                             .frame(width: 170, height: 210)
                                         }
-                                        .frame(width: 180, height: 220)
+                                        .frame(width: 170, height: 220)
                                     }
                                     .padding(.bottom, 20)
                                     .padding(.horizontal, 10)
@@ -103,7 +103,7 @@ struct PatternListView: View {
                                     } label: {
                                         ZStack{
                                             RoundedRectangle(cornerRadius: 10)
-                                                .frame(width: 180, height: 220)
+                                                .frame(width: 170, height: 220)
                                                 .foregroundColor(Color("Pink"))
                                             
                                             Image("Pattern2Button")
@@ -132,7 +132,7 @@ struct PatternListView: View {
                                             .frame(width: 170, height: 210)
                                             .padding(.horizontal, 10)
                                         }
-                                        .frame(width: 180, height: 220)
+                                        .frame(width: 170, height: 220)
                                     }
                                     .padding(.bottom, 20)
                                     .padding(.horizontal, 10)
