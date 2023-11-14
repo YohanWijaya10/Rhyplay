@@ -1,8 +1,8 @@
 //
-//  FreePlayView.swift
-//  MacroCoba3
+//  FreePlayMain.swift
+//  Ragnaröcker
 //
-//  Created by Brian Putrantio on 10/11/23.
+//  Created by Timothyus Kevin Dewanto on 17/10/23.
 //
 
 import SwiftUI
@@ -15,84 +15,104 @@ struct FreePlayView: View {
     @State private var isHighlightingRightKick = false
     
     var body: some View {
-        NavigationStack{
-            ZStack{
-                //MARK: This is the background of the app
-                VStack(alignment: .center, spacing: .zero){
-                    
-                    HStack(spacing: .zero){
-                        VStack{
+        
+        ZStack{
+            //MARK: This is the background of this view
+            VStack(alignment: .center, spacing: .zero){
+                
+                HStack(spacing: .zero){
+                    VStack{
+                        Rectangle()
+                            .fill(Color("Maroon"))
+                            .frame(maxWidth: .infinity, maxHeight: .infinity)
+                    }
+                    VStack{
+                        Rectangle()
+                            .fill(Color("Maroon"))
+                            .frame(maxWidth: .infinity, maxHeight: .infinity)
+                    }
+                }
+                .frame(maxHeight: UIScreen.main.bounds.height * 0.10)
+                
+                HStack(spacing: .zero){
+                    VStack{
+                        Rectangle()
+                            .fill(Color("Maroon"))
+                            .frame(maxWidth: .infinity, maxHeight: .infinity)
+                    }
+                    VStack{
+                        Rectangle()
+                            .fill(Color("Maroon"))
+                            .frame(maxWidth: .infinity, maxHeight: .infinity)
+                    }
+                }
+                .frame(maxHeight: UIScreen.main.bounds.height * 0.05)
+                
+                HStack(spacing: .zero){
+                    VStack {
+                        ZStack {
                             Rectangle()
-                                .fill(Color("Yellow"))
+                                .fill(Color("White Gray"))
                                 .frame(maxWidth: .infinity, maxHeight: .infinity)
                         }
-                        VStack{
+                    }
+                    VStack {
+                        ZStack {
                             Rectangle()
-                                .fill(Color("Yellow"))
+                                .fill(Color("White Gray"))
                                 .frame(maxWidth: .infinity, maxHeight: .infinity)
                         }
                     }
-                    .frame(maxHeight: UIScreen.main.bounds.height * 0.15)
-                    
-                    HStack(spacing: .zero){
-                        VStack {
-                            ZStack {
-                                Rectangle()
-                                    .fill(Color("Papyrus"))
-                                    .frame(maxWidth: .infinity, maxHeight: .infinity)
-                            }
-                        }
-                        VStack {
-                            ZStack {
-                                Rectangle()
-                                    .fill(Color("Papyrus"))
-                                    .frame(maxWidth: .infinity, maxHeight: .infinity)
-                            }
+                }
+                .frame(maxHeight: UIScreen.main.bounds.height * 0.35)
+                
+                HStack(spacing: .zero){
+                    VStack {
+                        ZStack {
+                            Rectangle()
+                                .fill(Color("White Gray"))
+                                .frame(maxWidth: .infinity, maxHeight: .infinity)
                         }
                     }
-                    .frame(maxHeight: UIScreen.main.bounds.height * 0.3)
-                    
-                    HStack(spacing: .zero){
-                        VStack {
-                            ZStack {
-                                Rectangle()
-                                    .fill(Color("Papyrus"))
-                                    .frame(maxWidth: .infinity, maxHeight: .infinity)
-                            }
-                        }
-                        VStack {
-                            ZStack {
-                                Rectangle()
-                                    .fill(Color("Papyrus"))
-                                    .frame(maxWidth: .infinity, maxHeight: .infinity)
-                            }
+                    VStack {
+                        ZStack {
+                            Rectangle()
+                                .fill(Color("White Gray"))
+                                .frame(maxWidth: .infinity, maxHeight: .infinity)
                         }
                     }
-                    .frame(maxHeight: UIScreen.main.bounds.height * 0.55)
-                    
                 }
-                .ignoresSafeArea(.all)
+                .frame(maxHeight: UIScreen.main.bounds.height * 0.50)
                 
-                //MARK: This is the Cajon Image in the middle of the screen
-                GeometryReader { geometry in
-                    let imageWidth: CGFloat = 199
-                    let imageHeight: CGFloat = 276
-                    
-                    Image("Kajon")
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .frame(width: imageWidth, height: imageHeight)
-                        .position(x: geometry.size.width / 2, y: geometry.size.height / 1.65)
-                }
+            }
+            .ignoresSafeArea(.all)
+            
+            //MARK: This is the Cajon Image in the middle of the screen
+            GeometryReader { geometry in
+                let imageWidth: CGFloat = 199
+                let imageHeight: CGFloat = 276
                 
-                //MARK: This is the outer layer of the stack
-                VStack(alignment: .center, spacing: .zero){
-                    
+                Image("Cajon Pink")
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .frame(width: imageWidth, height: imageHeight)
+                    .position(x: geometry.size.width / 2, y: geometry.size.height / 2)
+            }
+            
+            //MARK: This is the outer layer of the stack
+            VStack(alignment: .center, spacing: .zero){
+                
+                VStack(spacing: .zero) {
+                    Spacer()
+                    Text("Free Play")
+                        .font(.system(size: 30, weight: .bold, design: .rounded))
+                        .foregroundColor(Color("White"))
+                        .padding(.top, 40)
+                    Spacer()
                     HStack(spacing: .zero){
-                        
                         VStack{
                             Rectangle()
-                                .fill(Color("Yellow")).opacity(0.1)
+                                .fill(Color("Transparent")).opacity(0.1)
                                 .frame(maxWidth: .infinity, maxHeight: .infinity)
                                 .overlay(
                                     HStack (spacing: .zero){
@@ -101,13 +121,13 @@ struct FreePlayView: View {
                                         Text("Hand")
                                     }
                                         .font(.system(size: 20, design: .rounded))
-                                        .foregroundColor(Color.black)
+                                        .foregroundColor(Color("Pink"))
                                 )
                         }
                         VStack{
                             
                             Rectangle()
-                                .fill(Color("Yellow")).opacity(0.1)
+                                .fill(Color("Transparent")).opacity(0.1)
                                 .frame(maxWidth: .infinity, maxHeight: .infinity)
                                 .overlay(
                                     
@@ -117,154 +137,146 @@ struct FreePlayView: View {
                                         Text("Hand")
                                     }
                                         .font(.system(size: 20, design: .rounded))
-                                        .foregroundColor(Color.black)
+                                        .foregroundColor(Color("Pink"))
                                 )
                             
                         }
                     }
-                    .frame(maxHeight: UIScreen.main.bounds.height * 0.15)
-                    
-                    HStack(spacing: .zero){
-                        VStack {
-                            ZStack {
-                                Rectangle()
-                                    .fill(Color("Transparent"))
-                                    .frame(maxWidth: .infinity, maxHeight: .infinity)
-                                
-                                Button(action: {
-                                    isHighlightingLeftSnare.toggle()
-                                    if isHighlightingLeftSnare {
-                                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.0) {
-                                            withAnimation {
-                                                isHighlightingLeftSnare = false
-                                            }
-                                        }
-                                    }
-                                }) {
-                                    Text("Snare")
-                                        .font(.system(size: 40, weight: .bold, design: .rounded))
-                                        .opacity(isHighlightingLeftSnare ? 1.0 : 0.3)
-                                        .foregroundColor(isHighlightingLeftSnare ? .black : .black)
-                                }
-                                
-                                ButtonAnimationModel(isHighlightingObject: $isHighlightingLeftSnare)
-                            }
-                        }
-                        VStack {
-                            ZStack {
-                                Rectangle()
-                                    .fill(Color("Transparent"))
-                                    .frame(maxWidth: .infinity, maxHeight: .infinity)
-                                
-                                Button(action: {
-                                    isHighlightingRightSnare.toggle()
-                                    if isHighlightingRightSnare {
-                                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.0) {
-                                            withAnimation {
-                                                isHighlightingRightSnare = false
-                                            }
-                                        }
-                                    }
-                                }) {
-                                    Text("Snare")
-                                        .font(.system(size: 40, weight: .bold, design: .rounded))
-                                        .opacity(isHighlightingRightSnare ? 1.0 : 0.3)
-                                        .foregroundColor(isHighlightingRightSnare ? .black : .black)
-                                }
-                                
-                                ButtonAnimationModel(isHighlightingObject: $isHighlightingRightSnare)
-                            }
-                        }
-                    }
-                    .frame(maxHeight: UIScreen.main.bounds.height * 0.3)
-                    
-                    HStack(spacing: .zero){
-                        VStack {
-                            ZStack {
-                                Rectangle()
-                                    .fill(Color("Transparent"))
-                                    .frame(maxWidth: .infinity, maxHeight: .infinity)
-                                
-                                Button(action: {
-                                    isHighlightingLeftKick.toggle()
-                                    if isHighlightingLeftKick {
-                                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.0) {
-                                            withAnimation {
-                                                isHighlightingLeftKick = false
-                                            }
-                                        }
-                                    }
-                                }) {
-                                    Text("Kick")
-                                        .font(.system(size: 40, weight: .bold, design: .rounded))
-                                        .opacity(isHighlightingLeftKick ? 1.0 : 0.3)
-                                        .foregroundColor(isHighlightingLeftKick ? .black : .black)
-                                }
-                                
-                                ButtonAnimationModel(isHighlightingObject: $isHighlightingLeftKick)
-                            }
-                        }
-                        VStack {
-                            ZStack {
-                                Rectangle()
-                                    .fill(Color("Transparent"))
-                                    .frame(maxWidth: .infinity, maxHeight: .infinity)
-                                
-                                Button(action: {
-                                    isHighlightingRightKick.toggle()
-                                    if isHighlightingRightKick {
-                                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.0) {
-                                            withAnimation {
-                                                isHighlightingRightKick = false
-                                            }
-                                        }
-                                    }
-                                }) {
-                                    Text("Kick")
-                                        .font(.system(size: 40, weight: .bold, design: .rounded))
-                                        .opacity(isHighlightingRightKick ? 1.0 : 0.3)
-                                        .foregroundColor(isHighlightingRightKick ? .black : .black)
-                                }
-                                
-                                ButtonAnimationModel(isHighlightingObject: $isHighlightingRightKick)
-                            }
-                        }
-                    }
-                    .frame(maxHeight: UIScreen.main.bounds.height * 0.55)
-                    
-                }
-                .ignoresSafeArea(.all)
-                
-                //MARK: This is the most outer layer for button
-                HStack {
-                    VStack{
-                        NavigationLink(destination: MainPageView().navigationBarHidden(true)) {
-                            ZStack{
-                                Rectangle()
-                                    .frame(width: 40, height: 40)
-                                    .background(Color("Navy"))
-                                    .roundedCorner(10, corners: .allCorners)
-                                Image(systemName: "arrow.uturn.backward")
-                                    .foregroundColor(.white).bold()
-                            }
-                        }
-                        .padding(10)
-            
-                        Spacer()
-                    }
                     Spacer()
                 }
+                .frame(maxHeight: UIScreen.main.bounds.height * 0.15)
+                
+                HStack(spacing: .zero){
+                    VStack {
+                        ZStack {
+                            Rectangle()
+                                .fill(Color("Transparent"))
+                                .frame(maxWidth: .infinity, maxHeight: .infinity)
+                            
+                            Button(action: {
+                                isHighlightingLeftSnare.toggle()
+                                if isHighlightingLeftSnare {
+                                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.0) {
+                                        withAnimation {
+                                            isHighlightingLeftSnare = false
+                                        }
+                                    }
+                                }
+                            }) {
+                                Text("Snare")
+                                    .font(.system(size: 40, weight: .bold, design: .rounded))
+                                    .opacity(isHighlightingLeftSnare ? 1.0 : 0.3)
+                                    .foregroundColor(isHighlightingLeftSnare ? .white : .black)
+                            }
+                            
+                            ButtonAnimationComponent(isHighlightingObject: $isHighlightingLeftSnare)
+                        }
+                    }
+                    VStack {
+                        ZStack {
+                            Rectangle()
+                                .fill(Color("Transparent"))
+                                .frame(maxWidth: .infinity, maxHeight: .infinity)
+                            
+                            Button(action: {
+                                isHighlightingRightSnare.toggle()
+                                if isHighlightingRightSnare {
+                                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.0) {
+                                        withAnimation {
+                                            isHighlightingRightSnare = false
+                                        }
+                                    }
+                                }
+                            }) {
+                                Text("Snare")
+                                    .font(.system(size: 40, weight: .bold, design: .rounded))
+                                    .opacity(isHighlightingRightSnare ? 1.0 : 0.3)
+                                    .foregroundColor(isHighlightingRightSnare ? .white : .black)
+                            }
+                            
+                            ButtonAnimationComponent(isHighlightingObject: $isHighlightingRightSnare)
+                        }
+                    }
+                }
+                .frame(maxHeight: UIScreen.main.bounds.height * 0.30)
+                
+                HStack(spacing: .zero){
+                    VStack {
+                        ZStack {
+                            Rectangle()
+                                .fill(Color("Transparent"))
+                                .frame(maxWidth: .infinity, maxHeight: .infinity)
+                            
+                            Button(action: {
+                                isHighlightingLeftKick.toggle()
+                                if isHighlightingLeftKick {
+                                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.0) {
+                                        withAnimation {
+                                            isHighlightingLeftKick = false
+                                        }
+                                    }
+                                }
+                            }) {
+                                Text("Kick")
+                                    .font(.system(size: 40, weight: .bold, design: .rounded))
+                                    .opacity(isHighlightingLeftKick ? 1.0 : 0.3)
+                                    .foregroundColor(isHighlightingLeftKick ? .white : .black)
+                            }
+                            
+                            ButtonAnimationComponent(isHighlightingObject: $isHighlightingLeftKick)
+                        }
+                    }
+                    VStack {
+                        ZStack {
+                            Rectangle()
+                                .fill(Color("Transparent"))
+                                .frame(maxWidth: .infinity, maxHeight: .infinity)
+                            
+                            Button(action: {
+                                isHighlightingRightKick.toggle()
+                                if isHighlightingRightKick {
+                                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.0) {
+                                        withAnimation {
+                                            isHighlightingRightKick = false
+                                        }
+                                    }
+                                }
+                            }) {
+                                Text("Kick")
+                                    .font(.system(size: 40, weight: .bold, design: .rounded))
+                                    .opacity(isHighlightingRightKick ? 1.0 : 0.3)
+                                    .foregroundColor(isHighlightingRightKick ? .white : .black)
+                            }
+                            
+                            ButtonAnimationComponent(isHighlightingObject: $isHighlightingRightKick)
+                        }
+                    }
+                }
+                .frame(maxHeight: UIScreen.main.bounds.height * 0.55)
+                
+            }
+            .ignoresSafeArea(.all)
+            
+            //MARK: This is the most outer layer for button
+            HStack {
+                VStack{
+                    NavigationLink{
+                        MainPageView() } label: {
+                            Image(systemName: "arrow.left")
+                                .font(.system(size: 25, weight: .bold, design: .rounded))
+                                .foregroundColor(.white)
+                        }
+                    Spacer()
+                }
+                .padding(.leading, 20)
+                Spacer()
             }
         }
-        .ignoresSafeArea(.all)
-        
     }
 }
-
 
 #Preview {
     FreePlayView()
 }
-
 
 

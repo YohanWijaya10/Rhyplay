@@ -13,10 +13,9 @@
 		606779452B035C2F009691D6 /* MainPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 606779402B035C2F009691D6 /* MainPageView.swift */; };
 		606779462B035C2F009691D6 /* SongsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 606779412B035C2F009691D6 /* SongsListView.swift */; };
 		606779492B035CBA009691D6 /* FreePlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 606779482B035CBA009691D6 /* FreePlayView.swift */; };
-		6067794D2B035CF4009691D6 /* RoundedCorner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6067794B2B035CF4009691D6 /* RoundedCorner.swift */; };
-		6067794E2B035CF4009691D6 /* ButtonAnimationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6067794C2B035CF4009691D6 /* ButtonAnimationModel.swift */; };
+		6067794D2B035CF4009691D6 /* RoundedCornerComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6067794B2B035CF4009691D6 /* RoundedCornerComponent.swift */; };
+		6067794E2B035CF4009691D6 /* ButtonAnimationComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6067794C2B035CF4009691D6 /* ButtonAnimationComponent.swift */; };
 		743E86292B03558F00FB81CE /* RhyplayApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 743E86282B03558F00FB81CE /* RhyplayApp.swift */; };
-		743E862B2B03558F00FB81CE /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 743E862A2B03558F00FB81CE /* ContentView.swift */; };
 		743E862D2B03558F00FB81CE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 743E862C2B03558F00FB81CE /* Assets.xcassets */; };
 		743E86302B03558F00FB81CE /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 743E862F2B03558F00FB81CE /* Preview Assets.xcassets */; };
 		743E863A2B03558F00FB81CE /* RhyplayTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 743E86392B03558F00FB81CE /* RhyplayTests.swift */; };
@@ -48,11 +47,10 @@
 		606779402B035C2F009691D6 /* MainPageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainPageView.swift; sourceTree = "<group>"; };
 		606779412B035C2F009691D6 /* SongsListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SongsListView.swift; sourceTree = "<group>"; };
 		606779482B035CBA009691D6 /* FreePlayView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FreePlayView.swift; sourceTree = "<group>"; };
-		6067794B2B035CF4009691D6 /* RoundedCorner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundedCorner.swift; sourceTree = "<group>"; };
-		6067794C2B035CF4009691D6 /* ButtonAnimationModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ButtonAnimationModel.swift; sourceTree = "<group>"; };
+		6067794B2B035CF4009691D6 /* RoundedCornerComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundedCornerComponent.swift; sourceTree = "<group>"; };
+		6067794C2B035CF4009691D6 /* ButtonAnimationComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ButtonAnimationComponent.swift; sourceTree = "<group>"; };
 		743E86252B03558F00FB81CE /* Rhyplay.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Rhyplay.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		743E86282B03558F00FB81CE /* RhyplayApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RhyplayApp.swift; sourceTree = "<group>"; };
-		743E862A2B03558F00FB81CE /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		743E862C2B03558F00FB81CE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		743E862F2B03558F00FB81CE /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		743E86352B03558F00FB81CE /* RhyplayTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RhyplayTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -108,15 +106,6 @@
 			path = PopUpView;
 			sourceTree = "<group>";
 		};
-		6067794A2B035CDB009691D6 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				6067794C2B035CF4009691D6 /* ButtonAnimationModel.swift */,
-				6067794B2B035CF4009691D6 /* RoundedCorner.swift */,
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
 		743E861C2B03558F00FB81CE = {
 			isa = PBXGroup;
 			children = (
@@ -141,9 +130,8 @@
 			isa = PBXGroup;
 			children = (
 				743E86282B03558F00FB81CE /* RhyplayApp.swift */,
-				743E862A2B03558F00FB81CE /* ContentView.swift */,
+				743E86522B03640E00FB81CE /* Component */,
 				606779362B035BEB009691D6 /* View */,
-				6067794A2B035CDB009691D6 /* Model */,
 				743E862C2B03558F00FB81CE /* Assets.xcassets */,
 				743E862E2B03558F00FB81CE /* Preview Content */,
 			);
@@ -173,6 +161,15 @@
 				743E86452B03558F00FB81CE /* RhyplayUITestsLaunchTests.swift */,
 			);
 			path = RhyplayUITests;
+			sourceTree = "<group>";
+		};
+		743E86522B03640E00FB81CE /* Component */ = {
+			isa = PBXGroup;
+			children = (
+				6067794C2B035CF4009691D6 /* ButtonAnimationComponent.swift */,
+				6067794B2B035CF4009691D6 /* RoundedCornerComponent.swift */,
+			);
+			path = Component;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -307,12 +304,11 @@
 			files = (
 				606779492B035CBA009691D6 /* FreePlayView.swift in Sources */,
 				6067793C2B035C1B009691D6 /* SongLevelPopUpView2.swift in Sources */,
-				6067794E2B035CF4009691D6 /* ButtonAnimationModel.swift in Sources */,
+				6067794E2B035CF4009691D6 /* ButtonAnimationComponent.swift in Sources */,
 				606779452B035C2F009691D6 /* MainPageView.swift in Sources */,
-				6067794D2B035CF4009691D6 /* RoundedCorner.swift in Sources */,
+				6067794D2B035CF4009691D6 /* RoundedCornerComponent.swift in Sources */,
 				606779462B035C2F009691D6 /* SongsListView.swift in Sources */,
 				606779432B035C2F009691D6 /* ConnectingView.swift in Sources */,
-				743E862B2B03558F00FB81CE /* ContentView.swift in Sources */,
 				743E86292B03558F00FB81CE /* RhyplayApp.swift in Sources */,
 				606779442B035C2F009691D6 /* PatternListView.swift in Sources */,
 			);

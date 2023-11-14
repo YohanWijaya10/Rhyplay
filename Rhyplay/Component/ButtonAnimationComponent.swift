@@ -1,13 +1,13 @@
 //
 //  ButtonAnimationModel.swift
-//  MacroCoba3
+//  MacroChallengeGroup4
 //
-//  Created by Brian Putrantio on 10/11/23.
+//  Created by Timothyus Kevin Dewanto on 18/10/23.
 //
 
 import SwiftUI
 
-struct ButtonAnimationModel: View {
+struct ButtonAnimationComponent: View {
     @Binding var isHighlightingObject: Bool
     
     var body: some View {
@@ -23,7 +23,7 @@ struct ButtonAnimationModel: View {
                 Rectangle()
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
                     .animation(Animation.easeInOut(duration: 1.0))
-                    .foregroundColor(Color("Blue OP50"))
+                    .foregroundColor(Color("Lead Scale50"))
                     .alignmentGuide(HorizontalAlignment.center) { a in
                         a[.leading] + (a[.trailing] - a[.leading]) / 2
                     }
@@ -34,3 +34,4 @@ struct ButtonAnimationModel: View {
         }
     }
 }
+

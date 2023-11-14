@@ -48,46 +48,6 @@ struct MainPageView: View{
                     //MARK: Button ke Songs
                     NavigationLink(destination: SongListView().navigationBarHidden(true)) {
                         ZStack{
-//                            RoundedRectangle(cornerRadius: 15)
-//                            
-//                            VStack{
-//                                ///Text Judul
-//                                HStack{
-//                                    Text("Songs")
-//                                        .font(.title)
-//                                        .bold()
-//                                        .foregroundColor(.white)
-//                                    Spacer()
-//                                }
-//                                Spacer()
-//                                
-//                                ///Description + Panah
-//                                ZStack{
-//                                    HStack{
-//                                        Text("Drum along with favorites or discover new beats across genres.")
-//                                            .font(.system(size: 9))
-//                                            .foregroundColor(.white)
-//                                            .multilineTextAlignment(.leading)
-//                                        
-//                                        Spacer()
-//                                            .frame(width: 80)
-//                                    }
-//                                    
-//                                    VStack{
-//                                        Spacer()
-//                                            .frame(height: 20)
-//                                        HStack{
-//                                            Spacer()
-//                                            Image(systemName: "arrow.right")
-//                                                .bold()
-//                                                .foregroundColor(.white)
-//                                            
-//                                        }
-//                                    }
-//                                }
-//                            }
-//                            .frame(width: 250, height: 120)
-                            
                             Image("SongsButton")
                                 .resizable()
                         }

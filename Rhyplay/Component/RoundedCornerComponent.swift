@@ -1,8 +1,8 @@
 //
 //  RoundedCorner.swift
-//  MacroCoba3
+//  MacroChallengeGroup4
 //
-//  Created by Brian Putrantio on 10/11/23.
+//  Created by Timothyus Kevin Dewanto on 30/10/23.
 //
 
 import SwiftUI
