@@ -16,6 +16,8 @@ struct SongLevelPopUpView2: View {
     @Binding var ArtistId: String
     @State var LevelId: String = "Easy"
     @State var SpeedId: String = "Normal"
+    @Binding var showingSheet: Bool
+    @Binding var playingGame: Bool
     
     var body: some View {
         NavigationStack{
@@ -324,26 +326,44 @@ struct SongLevelPopUpView2: View {
                     
                     //Button Start
                     HStack{
-                        ///Button Start
-                        Button {
+                        ZStack{
+                            RoundedRectangle(cornerRadius: 10)
+                                .overlay(
+                                    RoundedRectangle(cornerRadius: 10)
+                                        .stroke(.pink)
+                                )
                             
-                        } label: {
-                            ZStack{
-                                RoundedRectangle(cornerRadius: 10)
-                                    .overlay(
-                                        RoundedRectangle(cornerRadius: 10)
-                                            .stroke(.pink)
-                                    )
-                                
-                                Text("Start")
-                                    .foregroundColor(.white)
-                            }
-                            .frame(width: 350, height: 40)
-                            .foregroundColor(.pink)
+                            Text("Start")
+                                .foregroundColor(.white)
                         }
+                        .frame(width: 350, height: 40)
+                        .foregroundColor(.pink)
+                        .onTapGesture {
+                            showingSheet = false
+                            print("halo")
+                            playingGame = true
+                        }
+                        ///Button Start
+                        //                        Button {
+                        //
+                        //                        } label: {
+                        //                            ZStack{
+                        //                                RoundedRectangle(cornerRadius: 10)
+                        //                                    .overlay(
+                        //                                        RoundedRectangle(cornerRadius: 10)
+                        //                                            .stroke(.pink)
+                        //                                    )
+                        //
+                        //                                Text("Start")
+                        //                                    .foregroundColor(.white)
+                        //                            }
+                        //                            .frame(width: 350, height: 40)
+                        //                            .foregroundColor(.pink)
+                        //                        }
                     }
                 }
                 .frame(width: 350)
+                
             }
         }
         .navigationBarBackButtonHidden(true)
@@ -351,5 +371,5 @@ struct SongLevelPopUpView2: View {
 }
 
 #Preview{
-    SongLevelPopUpView2(SongId: .constant("Super Shy"), SongImg: .constant("dummy"), ArtistId: .constant("New Jeans"))
+    SongLevelPopUpView2(SongId: .constant("Super Shy"), SongImg: .constant("dummy"), ArtistId: .constant("New Jeans"),  showingSheet: .constant(true), playingGame: .constant(false))
 }

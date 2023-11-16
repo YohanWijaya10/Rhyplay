@@ -8,9 +8,11 @@
 import Foundation
 import SpriteKit
 import AVFoundation
+import SwiftUI
 
 
 class GameScene: SKScene {
+    
     
     var isGamePaused = false
     var pauseButton: SKSpriteNode!
@@ -23,13 +25,13 @@ class GameScene: SKScene {
     var worldNode:SKNode?
     var gameplay: SKAction!
     var pausenode: SKEmitterNode!
+    var btnclose: SKSpriteNode!
 
     
     
     override func didMove(to view: SKView) {
         
         backgroundColor = .black
-        scaleMode = .aspectFill
       
         worldNode = SKNode()
         self.addChild(self.worldNode!)
@@ -46,6 +48,8 @@ class GameScene: SKScene {
                 let delayAction = SKAction.wait(forDuration: 3.0)
                 let playMusicAction = SKAction.run {
                     self.backgroundMusic?.play()
+                    self.backgroundMusic?.volume = 0.1
+                    
                 }
                 let sequence = SKAction.sequence([delayAction, playMusicAction])
                 self.run(sequence)
@@ -79,6 +83,11 @@ class GameScene: SKScene {
             emitter3.position = CGPoint(x: 45, y: 90)
             self.addChild(emitter3)
         }
+            let skView = SKView()
+            skView.showsFPS = true
+            skView.ignoresSiblingOrder = true
+
+                    
         let confettiAction = SKAction.run {
             if let confeti = SKEmitterNode(fileNamed: "m.sks"){
                 confeti.position = CGPoint(x: 200, y: 890)
@@ -165,7 +174,7 @@ class GameScene: SKScene {
                     "bar1", "kosong", "kosong", "kosong", "kosong", "bar1", "kosong", "kosong",
                     "bar1", "kosong", "kosong", "kosong", "kosong", "bar1", "kosong", "kosong",
                     "bar1", "kosong", "kosong", "kosong", "kosong", "bar1", "kosong", "kosong",
-                    "bar1", "kosong", "kosong", "kosong", "kosong", "bar1", "kosong", "kosong",
+                    "bar1", "kosong", "kosong", "kosong", "kosong", "bar1", "kosong", "kosong",//32
                     
                     "bar1", "kosong", "bar1", "kosong", "bar1", "kosong", "bar1", "kosong",
                     "bar1", "kosong", "bar1", "kosong", "bar1", "kosong", "bar1", "kosong",
@@ -174,7 +183,7 @@ class GameScene: SKScene {
                     "bar1", "kosong", "bar1", "kosong", "bar1", "kosong", "bar1", "kosong",
                     "bar1", "kosong", "bar1", "kosong", "bar1", "kosong", "bar1", "kosong",
                     "bar1", "kosong", "bar1", "kosong", "bar1", "kosong", "bar1", "kosong",
-                    "bar1", "kosong", "bar1", "kosong", "bar1", "kosong", "bar1", "kosong",
+                    "bar1", "kosong", "bar1", "kosong", "bar1", "kosong", "bar1", "kosong",//36
                     
                     "bar1", "kosong", "kosong", "kosong", "kosong", "bar1", "kosong", "kosong",
                     "bar1", "kosong", "kosong", "kosong", "kosong", "bar1", "kosong", "kosong",
@@ -182,13 +191,13 @@ class GameScene: SKScene {
                     "bar1", "kosong", "kosong", "kosong", "kosong", "bar1", "kosong", "kosong",
                     "bar1", "kosong", "kosong", "kosong", "kosong", "bar1", "kosong", "kosong",
                     "bar1", "kosong", "kosong", "kosong", "kosong", "bar1", "kosong", "kosong",
-                    "bar1", "kosong", "kosong", "kosong", "kosong", "bar1", "kosong", "kosong",
+                    "bar1", "kosong", "kosong", "kosong", "kosong", "bar1", "kosong", "kosong",//16
                     "bar1", "kosong", "kosong", "kosong", "kosong", "bar1", "kosong", "kosong"] {
             let nodeKickRight = SKSpriteNode(imageNamed: imageKickRight)
             ArrayNodesKickRight.append(nodeKickRight)
             self.addChild(nodeKickRight)
         }
-        
+        print(ArrayNodesKickRight[2])
         let kickRightSequence = SKAction.sequence([
             SKAction.run {
                 for (index, nodeKickRight) in ArrayNodesKickRight.enumerated() {
@@ -237,7 +246,7 @@ class GameScene: SKScene {
             "kosong", "kosong", "bar2", "kosong", "kosong", "kosong", "bar2", "kosong",
             "kosong", "kosong", "bar2", "kosong", "kosong", "kosong", "bar2", "kosong",
             "kosong", "kosong", "bar2", "kosong", "kosong", "kosong", "bar2", "kosong",
-            "kosong", "kosong", "bar2", "kosong", "kosong", "kosong", "bar2", "kosong",
+            "kosong", "kosong", "bar2", "kosong", "kosong", "kosong", "bar2", "kosong", //32
             
             
             "kosong", "kosong", "kosong", "kosong", "kosong", "kosong", "kosong", "kosong",
@@ -256,7 +265,7 @@ class GameScene: SKScene {
             "kosong", "kosong", "bar2", "kosong", "kosong", "kosong", "bar2", "kosong",
             "kosong", "kosong", "bar2", "kosong", "kosong", "kosong", "bar2", "kosong",
             "kosong", "kosong", "bar2", "kosong", "kosong", "kosong", "bar2", "kosong",
-            "kosong", "kosong", "bar2", "kosong", "kosong", "kosong", "bar2", "kosong",
+            "kosong", "kosong", "bar2", "kosong", "kosong", "kosong", "bar2", "kosong",//16
             
         ] {
             let nodeSnareLeft = SKSpriteNode(imageNamed: imageSnareLeft)
@@ -413,8 +422,7 @@ class GameScene: SKScene {
         self.run(group4)
             self.pauseButton.run(group4)
         
-        
-        
+            
         let logo  = SKSpriteNode(imageNamed: "supershylogo")
         logo.setScale(CGFloat(0.5))
         logo.position = CGPoint(x: 95, y: 975)
@@ -462,6 +470,18 @@ class GameScene: SKScene {
         let seq1 = SKAction.sequence([delayOne, fadeInOne, fadeOutOne])
         one.run(seq1)
             self.addChild(one)
+            
+            
+            let score = SKSpriteNode(imageNamed: "Congrats")
+            score.scale(to: CGSize(width: self.size.width, height: self.size.height))
+            score.position = CGPoint(x: self.size.width / 2, y: self.size.height / 2)
+            score.alpha = 0  // Initially hidden
+            let delayScore = SKAction.wait(forDuration: 65)
+            let fadeInScore = SKAction.fadeIn(withDuration: 1)
+           
+            let seqScore = SKAction.sequence([delayScore, fadeInScore])
+            score.run(seqScore)
+            self.addChild(score)
         }
         ])
         self.run(gameplay)
@@ -481,6 +501,7 @@ class GameScene: SKScene {
             isGamePaused = false
             countresume = true
             isPaused = false
+            
             
             
             
@@ -535,7 +556,7 @@ class GameScene: SKScene {
         for touch in touches {
             let location = touch.location(in: self)
             
-            
+           
             if pauseButton.contains(location) {
                 // Ketika tombol pause ditekan, panggil fungsi pauseGame
                 pauseGame()

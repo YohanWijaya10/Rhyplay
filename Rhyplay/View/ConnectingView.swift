@@ -64,6 +64,7 @@ class BluetoothService: NSObject, ObservableObject {
     
     
     @Published var SnareV: Double = 0
+    @Published var Bass1: Double = 0
     @Published var KickV: Double = 0
     
     
@@ -200,6 +201,21 @@ extension BluetoothService: CBPeripheralDelegate {
                 return
             }
             guard let dataValue = try? JSONDecoder().decode(TestJSON.self, from: data) else { return }
+            //            let dataValue = String(decoding: data, as: UTF8.self)
+            //            let newData = TestJSON(accelX: dataValue.accelX)
+            //            guard let dataValue = String(data: data, encoding: String.Encoding) else { return }
+            //            let sensorData: Int = data.withUnsafeBytes { $0.pointee }
+            
+            //            XValue = sensorData
+            //            print(XValue)
+            //            print("Snare Y = \(dataValue.accelY)  X = \(dataValue.accelX) Z =  \(dataValue.accelZ)")
+            
+            //            AccelValueY = Double(dataValue.accelY) ?? 0
+            //            AccelValueX = Double(dataValue.accelX) ?? 0
+            //            AccelValueZ = Double(dataValue.accelZ) ?? 0
+            //            gyroValueY = Double(dataValue.gyroY) ?? 0
+            //            gyroValueX = Double(dataValue.gyroX) ?? 0
+            //            gyroValueZ = Double(dataValue.gyroZ) ?? 0
             
             AccelValueY = Double(dataValue.gyroY) ?? 0
             AccelValueX = Double(dataValue.gyroX) ?? 0
@@ -208,6 +224,7 @@ extension BluetoothService: CBPeripheralDelegate {
             gyroValueX = Double(dataValue.accelX) ?? 0
             gyroValueZ = Double(dataValue.accelZ) ?? 0
             SnareV = Double(dataValue.Snare1) ?? 0
+            Bass1 = Double(dataValue.Bass) ?? 0
             
             
             
@@ -217,6 +234,21 @@ extension BluetoothService: CBPeripheralDelegate {
                 return
             }
             guard let dataValue2 = try? JSONDecoder().decode(TestJSON2.self, from: data) else { return }
+            //            let dataValue = String(decoding: data, as: UTF8.self)
+            //            let newData = TestJSON(accelX: dataValue.accelX)
+            //            guard let dataValue = String(data: data, encoding: String.Encoding) else { return }
+            //            let sensorData: Int = data.withUnsafeBytes { $0.pointee }
+            
+            //            XValue = sensorData
+            //            print(XValue)
+            //            print("Bass Y = \(dataValue2.accelY2)  X = \(dataValue2.accelX2) Z =  \(dataValue2.accelZ2)")
+            //
+            //            AccelValueY2 = Double(dataValue2.accelY2) ?? 0
+            //            AccelValueX2 = Double(dataValue2.accelX2) ?? 0
+            //            AccelValueZ2 = Double(dataValue2.accelZ2) ?? 0
+            //            gyroValueY2 = Double(dataValue2.gyroY2) ?? 0
+            //            gyroValueX2 = Double(dataValue2.gyroX2) ?? 0
+            //            gyroValueZ2 = Double(dataValue2.gyroZ2) ?? 0
             
             AccelValueY2 = Double(dataValue2.gyroZ2) ?? 0
             AccelValueX2 = Double(dataValue2.gyroX2) ?? 0
@@ -241,6 +273,7 @@ struct TestJSON: Codable {
     var gyroX: String
     var gyroZ: String
     var Snare1: String
+    var Bass: String
     
 }
 
@@ -257,6 +290,7 @@ struct TestJSON2: Codable {
     
 }
 
+
 struct ConnectingView: View {
     @StateObject var service = BluetoothService()
     @State private var isButtonHidden = false
@@ -269,6 +303,8 @@ struct ConnectingView: View {
     @State var blink: Double = 0.0
     @State private var audioPlayer: AVAudioPlayer?
     
+    
+    @State var bunyi = false
     @State private var isLeftConnected = false
     @State private var isRightConnected = false
     
@@ -278,6 +314,8 @@ struct ConnectingView: View {
     
     // Properti AVAudioPlayer
     @State private var audioPlayer1: AVAudioPlayer?
+    @State private var audioPlayer2: AVAudioPlayer?
+    @State private var audioPlayer3: AVAudioPlayer?
     
     @State private var snareMinY: Double = 0.0
     @State private var snareMaxY: Double = 0.0
@@ -346,6 +384,8 @@ struct ConnectingView: View {
                 VStack{
                     
                     Spacer()
+                        .frame(height: 240)
+                    
                     // Button Tangan Kiri
                     HStack{
                         if !isButtonHidden{
@@ -384,11 +424,11 @@ struct ConnectingView: View {
                                                         .opacity(blink)
                                                         .task(){
                                                             let baseAnimation = Animation.easeInOut(duration: 2)
-                                                                            let repeated = baseAnimation.repeatForever(autoreverses: true)
-
-                                                                            withAnimation(repeated) {
-                                                                                blink = 1
-                                                                            }
+                                                            let repeated = baseAnimation.repeatForever(autoreverses: true)
+                                                            
+                                                            withAnimation(repeated) {
+                                                                blink = 1
+                                                            }
                                                             blink = 1
                                                         }
                                                 )
@@ -404,15 +444,15 @@ struct ConnectingView: View {
                                                 .clipShape(Circle())
                                                 .overlay(
                                                     RoundedRectangle(cornerRadius: 115)
-                                                        .stroke(Color.green, lineWidth: kedip)
+                                                        .stroke(Color.green, lineWidth: 10)
                                                         .opacity(blink)
                                                         .task(){
                                                             let baseAnimation = Animation.easeInOut(duration: 2)
-                                                                            let repeated = baseAnimation.repeatForever(autoreverses: true)
-
-                                                                            withAnimation(repeated) {
-                                                                                blink = 1
-                                                                            }
+                                                            let repeated = baseAnimation.repeatForever(autoreverses: true)
+                                                            
+                                                            withAnimation(repeated) {
+                                                                blink = 1
+                                                            }
                                                             blink = 1
                                                         }
                                                 )
@@ -501,11 +541,11 @@ struct ConnectingView: View {
                                                         .opacity(blink)
                                                         .task(){
                                                             let baseAnimation = Animation.easeInOut(duration: 2)
-                                                                            let repeated = baseAnimation.repeatForever(autoreverses: true)
-
-                                                                            withAnimation(repeated) {
-                                                                                blink = 1
-                                                                            }
+                                                            let repeated = baseAnimation.repeatForever(autoreverses: true)
+                                                            
+                                                            withAnimation(repeated) {
+                                                                blink = 1
+                                                            }
                                                             blink = 1
                                                         }
                                                 )
@@ -520,23 +560,23 @@ struct ConnectingView: View {
                                                 .clipShape(Circle())
                                                 .overlay(
                                                     RoundedRectangle(cornerRadius: 115)
-                                                        .stroke(Color.green, lineWidth: kedip)
+                                                        .stroke(Color.green, lineWidth: 10)
                                                         .opacity(blink)
                                                         .task(){
                                                             let baseAnimation = Animation.easeInOut(duration: 2)
-                                                                            let repeated = baseAnimation.repeatForever(autoreverses: true)
-
-                                                                            withAnimation(repeated) {
-                                                                                blink = 1
-                                                                            }
+                                                            let repeated = baseAnimation.repeatForever(autoreverses: true)
+                                                            
+                                                            withAnimation(repeated) {
+                                                                blink = 1
+                                                            }
                                                             blink = 1
                                                         }
                                                 )
-                                                
+                                            
                                         }
                                         
                                     }
-                                                                        if service.peripheralStatus != .connected {
+                                    if service.peripheralStatus != .connected {
                                         if isRightConnected == true{
                                             Text("Connecting...")
                                                 .foregroundColor(.white)
@@ -565,18 +605,19 @@ struct ConnectingView: View {
                     }
                     
                     Spacer()
+                        .frame(height: 240)
                     
                 }
                 
                 VStack {
                     Spacer()
-                        .frame(height: 820)
+                        .frame(height: 785)
                     
                     
                     // button next buat ke halaman selanjutnya setelah connect
                     if service.peripheralStatus == .connected {
                         //MARK: Button ke Pattern
-                        NavigationLink(destination: PatternListView().navigationBarHidden(true)) {
+                        NavigationLink(destination: MainPageView(bunyi: $bunyi).navigationBarHidden(true)) {
                             ZStack{
                                 Text("Continue")
                                     .font(.title)
@@ -591,8 +632,9 @@ struct ConnectingView: View {
                                     .cornerRadius(10)
                             }
                         }
+                        
                         .padding()
-                        .environmentObject(service)
+                        
                         
                     }
                     
@@ -606,12 +648,25 @@ struct ConnectingView: View {
             }
             .onReceive(Just(service.SnareV)) { snareVal in
                 
-                if snareVal == 1{
-                    playSound(fileName: "Snare", fileExtension: "mp3")
-                } else if snareVal == 4{
-                    playSound1(fileName: "Kick", fileExtension: "mp3")
-                } else{
-                    
+                if bunyi ==  true {
+                    if snareVal == 1{
+                        playSound(fileName: "CajoonSnare", fileExtension: "mp3")
+                    } else if snareVal == 2{
+                        playSound1(fileName: "CajoonKick", fileExtension: "mp3")
+                    } else{
+                        
+                    }
+                }
+            }
+            .onReceive(Just(service.Bass1)) { snare in
+                if bunyi == true{
+                    if snare == 1{
+                        playSound2(fileName: "CajoonSnare", fileExtension: "mp3")
+                    } else if snare == 2{
+                        playSound3(fileName: "CajoonKick", fileExtension: "mp3")
+                    } else{
+                        
+                    }
                 }
             }
         }
@@ -633,6 +688,28 @@ struct ConnectingView: View {
                 audioPlayer1 = try AVAudioPlayer(contentsOf: soundURL)
                 audioPlayer1?.volume = 1
                 audioPlayer1?.play()
+            } catch {
+                print("Error playing sound: \(error.localizedDescription)")
+            }
+        }
+    }
+    func playSound2(fileName: String, fileExtension: String) {
+        if let soundURL = Bundle.main.url(forResource: fileName, withExtension: fileExtension) {
+            do {
+                audioPlayer2 = try AVAudioPlayer(contentsOf: soundURL)
+                audioPlayer2?.volume = 1
+                audioPlayer2?.play()
+            } catch {
+                print("Error playing sound: \(error.localizedDescription)")
+            }
+        }
+    }
+    func playSound3(fileName: String, fileExtension: String) {
+        if let soundURL = Bundle.main.url(forResource: fileName, withExtension: fileExtension) {
+            do {
+                audioPlayer3 = try AVAudioPlayer(contentsOf: soundURL)
+                audioPlayer3?.volume = 1
+                audioPlayer3?.play()
             } catch {
                 print("Error playing sound: \(error.localizedDescription)")
             }

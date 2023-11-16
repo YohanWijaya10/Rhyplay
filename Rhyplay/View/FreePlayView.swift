@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct FreePlayView: View {
-    
+    @Binding var bunyi : Bool
     @State private var isHighlightingLeftSnare = false
     @State private var isHighlightingRightSnare = false
     @State private var isHighlightingLeftKick = false
@@ -264,6 +264,8 @@ struct FreePlayView: View {
                 VStack{
                     Button(action: {
                         dismiss()
+                        bunyi = false
+                        
                     }) {
                         Image(systemName: "arrow.left")
                             .font(.system(size: 25, weight: .bold, design: .rounded))
@@ -275,11 +277,14 @@ struct FreePlayView: View {
                 Spacer()
             }
         }
+        .onAppear(){
+            bunyi = true
+        }
     }
 }
 
 #Preview {
-    FreePlayView()
+    FreePlayView(bunyi: .constant(false))
 }
 
 

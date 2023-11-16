@@ -9,8 +9,9 @@ import Foundation
 import SwiftUI
 
 struct MainPageView: View{
-    
+    @Binding var bunyi : Bool
     var body: some View{
+        
         NavigationStack{
             ZStack{
                 //MARK: Wana backgrounds
@@ -46,7 +47,7 @@ struct MainPageView: View{
                         .frame(height: 20)
                     
                     //MARK: Button ke Songs
-                    NavigationLink(destination: SongListView().navigationBarHidden(true)) {
+                    NavigationLink(destination: SongListView(bunyi: $bunyi).navigationBarHidden(true)) {
                         ZStack{
                             Image("SongsButton")
                                 .resizable()
@@ -59,7 +60,7 @@ struct MainPageView: View{
                         .frame(height: 20)
                     
                     //MARK: Button ke FreePlay
-                    NavigationLink(destination: FreePlayView().navigationBarHidden(true)) {
+                    NavigationLink(destination: FreePlayView(bunyi: $bunyi).navigationBarHidden(true)) {
                         ZStack{
                             Image("FreePlayButton")
                                 .resizable()
@@ -67,11 +68,16 @@ struct MainPageView: View{
                         .frame(maxWidth: UIScreen.main.bounds.width * 0.76, maxHeight: UIScreen.main.bounds.height * 0.2)
                     }
                 }
+                
+                HStack{
+                    
+                }
+               
             }
         }
     }
 }
 
 #Preview {
-    MainPageView()
+    MainPageView(bunyi: .constant(false))
 }

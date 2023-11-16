@@ -11,25 +11,9 @@ import AVFoundation
 
 
 
-class AudioPlayerViewModel: ObservableObject {
-    private var audioPlayer: AVAudioPlayer?
-    
-    func playAudio() {
-        guard let path = Bundle.main.path(forResource: "supershydrum", ofType: "mp3") else {
-            return
-        }
-        
-        do {
-            audioPlayer = try AVAudioPlayer(contentsOf: URL(fileURLWithPath: path))
-//            audioPlayer?.play()
-        } catch {
-            print("Gagal memutar audio: \(error.localizedDescription)")
-        }
-    }
-}
-
 struct ContentView: View {
-    @StateObject var audioPlayerViewModel = AudioPlayerViewModel()
+    @Binding var bunyi : Bool
+
     @State private var timeRemaining: Double = 10.0
     @State private var touch: Bool = false
     @State private var touch2: Bool = false
@@ -38,6 +22,9 @@ struct ContentView: View {
     @State var noteArray: [SKSpriteNode] = []
     @State var ArrayNodesKickRight: [SKSpriteNode] = []
     @State private var offsetY: CGFloat = -100
+    @State private var closedd = false
+    @State private var nyoba = "scene"
+    @State private var gameScore: Int = 0
     
     var scene: SKScene {
         let scene = GameScene()
@@ -47,21 +34,47 @@ struct ContentView: View {
     }
     
     var body: some View {
-        ZStack{
-            VStack{
-                SpriteView(scene: scene)
-                    .edgesIgnoringSafeArea(.all)
+        NavigationView {
+            ZStack{
+                Text("hai brian")
+                if closedd == false {
+                    SpriteView(scene: scene)
+                        .edgesIgnoringSafeArea(.all)
+                }else{
+                   
+                    
+                }
                 
                 
+                VStack{
+//                    HStack{
+//                        Spacer()
+//                        Text("X")
+//                            .font(.title)
+//                            .fontWeight(.bold)
+//                            .foregroundColor(Color.white)
+//                            .padding()
+//                            .onTapGesture {
+//                                closedd = true
+//                            }
+//                        
+//                    }
+                    Spacer()
+                }
+                
+                
+                
+                
+                
+                
+            }.onAppear(){
+                bunyi = true
             }
-
-        }.onAppear(){
-//                        audioPlayerViewModel.playAudio()
         }
     }
 }
 
 
 #Preview {
-    ContentView()
+    ContentView(bunyi: .constant(false))
 }

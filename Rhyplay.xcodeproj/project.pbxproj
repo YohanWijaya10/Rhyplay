@@ -25,6 +25,10 @@
 		7006C6892B03DF1D0033A04B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7006C6872B03DF1D0033A04B /* Assets.xcassets */; };
 		7006C68C2B03E03A0033A04B /* SuperShy.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 7006C68A2B03E0390033A04B /* SuperShy.mp3 */; };
 		7006C68D2B03E03A0033A04B /* supershydrum.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 7006C68B2B03E03A0033A04B /* supershydrum.mp3 */; };
+		70237C042B05E09100078153 /* CajoonKick.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 70237C022B05E09100078153 /* CajoonKick.mp3 */; };
+		70237C052B05E09100078153 /* CajoonSnare.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 70237C032B05E09100078153 /* CajoonSnare.mp3 */; };
+		708B68CA2B03F31F002408CE /* bassnew.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 708B68C82B03F31F002408CE /* bassnew.mp3 */; };
+		708B68CB2B03F31F002408CE /* snarenew.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 708B68C92B03F31F002408CE /* snarenew.mp3 */; };
 		743E86292B03558F00FB81CE /* RhyplayApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 743E86282B03558F00FB81CE /* RhyplayApp.swift */; };
 		743E862D2B03558F00FB81CE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 743E862C2B03558F00FB81CE /* Assets.xcassets */; };
 		743E86302B03558F00FB81CE /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 743E862F2B03558F00FB81CE /* Preview Assets.xcassets */; };
@@ -69,6 +73,12 @@
 		7006C6872B03DF1D0033A04B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7006C68A2B03E0390033A04B /* SuperShy.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = SuperShy.mp3; sourceTree = "<group>"; };
 		7006C68B2B03E03A0033A04B /* supershydrum.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = supershydrum.mp3; sourceTree = "<group>"; };
+		70237C002B05DE6800078153 /* KickCajoon.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = KickCajoon.m4a; sourceTree = "<group>"; };
+		70237C012B05DE8100078153 /* SnareCajoon.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = SnareCajoon.m4a; sourceTree = "<group>"; };
+		70237C022B05E09100078153 /* CajoonKick.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = CajoonKick.mp3; sourceTree = "<group>"; };
+		70237C032B05E09100078153 /* CajoonSnare.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = CajoonSnare.mp3; sourceTree = "<group>"; };
+		708B68C82B03F31F002408CE /* bassnew.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = bassnew.mp3; sourceTree = "<group>"; };
+		708B68C92B03F31F002408CE /* snarenew.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = snarenew.mp3; sourceTree = "<group>"; };
 		743E86252B03558F00FB81CE /* Rhyplay.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Rhyplay.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		743E86282B03558F00FB81CE /* RhyplayApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RhyplayApp.swift; sourceTree = "<group>"; };
 		743E862C2B03558F00FB81CE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -108,7 +118,13 @@
 		600673F32B03731D002D65EF /* Sound Assets */ = {
 			isa = PBXGroup;
 			children = (
+				708B68C82B03F31F002408CE /* bassnew.mp3 */,
+				70237C002B05DE6800078153 /* KickCajoon.m4a */,
+				708B68C92B03F31F002408CE /* snarenew.mp3 */,
 				7006C68A2B03E0390033A04B /* SuperShy.mp3 */,
+				70237C012B05DE8100078153 /* SnareCajoon.m4a */,
+				70237C022B05E09100078153 /* CajoonKick.mp3 */,
+				70237C032B05E09100078153 /* CajoonSnare.mp3 */,
 				7006C68B2B03E03A0033A04B /* supershydrum.mp3 */,
 				600673F42B03731D002D65EF /* Kick.mp3 */,
 				600673F52B03731D002D65EF /* Snare.mp3 */,
@@ -122,8 +138,8 @@
 				7006C67D2B03DDEB0033A04B /* gameSceneParticle */,
 				6067793E2B035C2F009691D6 /* ConnectingView.swift */,
 				606779402B035C2F009691D6 /* MainPageView.swift */,
-				7006C6842B03DE610033A04B /* ContentView.swift */,
 				6067793F2B035C2F009691D6 /* PatternListView.swift */,
+				7006C6842B03DE610033A04B /* ContentView.swift */,
 				7006C6822B03DE500033A04B /* GameScene.swift */,
 				606779412B035C2F009691D6 /* SongsListView.swift */,
 				606779482B035CBA009691D6 /* FreePlayView.swift */,
@@ -323,12 +339,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				600673F72B03731D002D65EF /* Snare.mp3 in Resources */,
+				708B68CB2B03F31F002408CE /* snarenew.mp3 in Resources */,
 				7006C68D2B03E03A0033A04B /* supershydrum.mp3 in Resources */,
 				600673F62B03731D002D65EF /* Kick.mp3 in Resources */,
 				7006C68C2B03E03A0033A04B /* SuperShy.mp3 in Resources */,
+				70237C052B05E09100078153 /* CajoonSnare.mp3 in Resources */,
+				708B68CA2B03F31F002408CE /* bassnew.mp3 in Resources */,
 				743E86302B03558F00FB81CE /* Preview Assets.xcassets in Resources */,
 				7006C6882B03DF1D0033A04B /* fire.sks in Resources */,
 				7006C6812B03DE330033A04B /* m.sks in Resources */,
+				70237C042B05E09100078153 /* CajoonKick.mp3 in Resources */,
 				743E862D2B03558F00FB81CE /* Assets.xcassets in Resources */,
 				7006C6892B03DF1D0033A04B /* Assets.xcassets in Resources */,
 				7006C6802B03DE330033A04B /* MyParticle.sks in Resources */,
@@ -530,9 +550,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Rhyplay/Preview Content\"";
-				DEVELOPMENT_TEAM = MTGV8S7M8J;
+				DEVELOPMENT_TEAM = 22JP9U997Z;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription = "";
+				INFOPLIST_KEY_NSBluetoothPeripheralUsageDescription = "$(PRODUCT_NAME)";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -559,9 +581,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Rhyplay/Preview Content\"";
-				DEVELOPMENT_TEAM = MTGV8S7M8J;
+				DEVELOPMENT_TEAM = 22JP9U997Z;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription = "";
+				INFOPLIST_KEY_NSBluetoothPeripheralUsageDescription = "$(PRODUCT_NAME)";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
