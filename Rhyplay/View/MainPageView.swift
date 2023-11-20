@@ -9,7 +9,13 @@ import Foundation
 import SwiftUI
 
 struct MainPageView: View{
-    @Binding var bunyi : Bool
+    @Binding var bunyi: Bool // Assuming bunyi is used in MainPageView
+    @EnvironmentObject var service: BluetoothService
+
+
+        
+       
+    
     var body: some View{
         
         NavigationStack{
@@ -47,7 +53,7 @@ struct MainPageView: View{
                         .frame(height: 20)
                     
                     //MARK: Button ke Songs
-                    NavigationLink(destination: SongListView(bunyi: $bunyi).navigationBarHidden(true)) {
+                    NavigationLink(destination: SongListView(bunyi: $bunyi).environmentObject(service).navigationBarHidden(true)) {
                         ZStack{
                             Image("SongsButton")
                                 .resizable()
@@ -67,10 +73,12 @@ struct MainPageView: View{
                         }
                         .frame(maxWidth: UIScreen.main.bounds.width * 0.76, maxHeight: UIScreen.main.bounds.height * 0.2)
                     }
+                    
                 }
                 
                 HStack{
-                    
+                    Text("\(service.SnareV)")
+                    Text("\(service.Bass1)")
                 }
                
             }
@@ -79,5 +87,6 @@ struct MainPageView: View{
 }
 
 #Preview {
+    
     MainPageView(bunyi: .constant(false))
 }

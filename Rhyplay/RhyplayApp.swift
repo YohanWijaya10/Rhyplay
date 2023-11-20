@@ -12,6 +12,7 @@ struct RhyplayApp: App {
     var body: some Scene {
         WindowGroup {
             ConnectingView()
+            
         }
     }
 }

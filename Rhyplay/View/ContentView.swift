@@ -9,72 +9,55 @@ import SwiftUI
 import SpriteKit
 import AVFoundation
 
-
+import Combine
 
 struct ContentView: View {
-    @Binding var bunyi : Bool
-
-    @State private var timeRemaining: Double = 10.0
-    @State private var touch: Bool = false
-    @State private var touch2: Bool = false
-    @State private var isAnimating = false
-    @State private var note1Alpha: Double = 1.0
-    @State var noteArray: [SKSpriteNode] = []
-    @State var ArrayNodesKickRight: [SKSpriteNode] = []
-    @State private var offsetY: CGFloat = -100
+    @Binding var bunyi: Bool
+    @State var shouldNavigate: Bool = false
+    @State var kotak: Bool = false
     @State private var closedd = false
     @State private var nyoba = "scene"
     @State private var gameScore: Int = 0
-    
-    var scene: SKScene {
-        let scene = GameScene()
-        scene.size = CGSize(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
-        scene.scaleMode = .fill
-        return scene
-    }
-    
+    @EnvironmentObject var service: BluetoothService
+
     var body: some View {
         NavigationView {
-            ZStack{
-                Text("hai brian")
-                if closedd == false {
-                    SpriteView(scene: scene)
-                        .edgesIgnoringSafeArea(.all)
-                }else{
-                   
-                    
+            ZStack {
+                SpriteView(scene: makeGameScene())
+                    .edgesIgnoringSafeArea(.all)
+
+                HStack {
+                    Text("\(service.SnareV)")
+                    Text("\(service.Bass1)")
                 }
-                
-                
-                VStack{
-//                    HStack{
-//                        Spacer()
-//                        Text("X")
-//                            .font(.title)
-//                            .fontWeight(.bold)
-//                            .foregroundColor(Color.white)
-//                            .padding()
-//                            .onTapGesture {
-//                                closedd = true
-//                            }
-//                        
-//                    }
-                    Spacer()
+
+                if kotak {
+                    Rectangle()
                 }
-                
-                
-                
-                
-                
-                
-            }.onAppear(){
-                bunyi = true
             }
         }
+        .onAppear {
+            bunyi = true
+        }
+    }
+
+    private func makeGameScene() -> GameScene {
+        let scene = GameScene()
+
+        scene.snarev = service.SnareV
+        scene.closeds = kotak // Assign the value instead of modifying state
+        scene.size = CGSize(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
+        scene.scaleMode = .fill
+
+        return scene
     }
 }
 
-
-#Preview {
-    ContentView(bunyi: .constant(false))
+#if DEBUG
+struct ContentView_Previews: PreviewProvider {
+    static var previews: some View {
+        ContentView(bunyi: .constant(false))
+    }
 }
+#endif
+

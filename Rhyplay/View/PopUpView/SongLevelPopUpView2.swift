@@ -18,6 +18,8 @@ struct SongLevelPopUpView2: View {
     @State var SpeedId: String = "Normal"
     @Binding var showingSheet: Bool
     @Binding var playingGame: Bool
+    @StateObject var service = BluetoothService()
+
     
     var body: some View {
         NavigationStack{

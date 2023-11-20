@@ -15,12 +15,12 @@ struct SongListView: View {
     @State var showingSheet = false
     @State var playingGame = false
     @Binding var bunyi : Bool
-
+    
     @State var SongId: String = ""
     @State var SongImg: String = ""
     @State var ArtistId: String = ""
     @State var nyoba: String = "coba"
-    
+    @EnvironmentObject var service: BluetoothService
     var Allitems = ["Super Shy","coba"]
     var Pop = [String]()
     let Rock = [String]()
@@ -254,59 +254,59 @@ struct SongListView: View {
                                                 ///Button Songs
                                                 Button {
                                                     SongId = Allitems[index]
-                                                                                                        SongImg = Allitems[index]
-                                                                                                        ArtistId = "New Jeans"
+                                                    SongImg = Allitems[index]
+                                                    ArtistId = "New Jeans"
                                                     
                                                     //showSongDescription = true
                                                     showingSheet.toggle()
                                                 } label: {
                                                     VStack{
-                                                                                                            ZStack{
-                                                                                                                RoundedRectangle(cornerRadius: 10)
-                                                                                                                
-                                                                                                                Image(Allitems[index])
-                                                                                                                    .resizable()
-                                                                                                                    .scaledToFill()
-                                                                                                                    .clipShape(RoundedRectangle(cornerRadius: 10))
-                                                                                                            }
-                                                                                                            .frame(width: 150, height: 150)
-                                                                                                            
-                                                                                                            Spacer()
-                                                                                                                .frame(height: 10)
-                                                                                                            
-                                                                                                            ZStack{
-                                                                                                                VStack(spacing: .zero){
-                                                                                                                    HStack{
-                                                                                                                        Text(Allitems[index])
-                                                                                                                            .font(.system(size: 15))
-                                                                                                                            .bold()
-                                                                                                                        Spacer()
-                                                                                                                    }
-                                                                                                                    HStack{
-                                                                                                                        Text(Artist)
-                                                                                                                            .font(.system(size: 12))
-                                                                                                                        Spacer()
-                                                                                                                    }
-                                                                                                                }
-                                                                                                                .foregroundColor(.white)
-                                                                                                                
-                                                                                                                HStack{
-                                                                                                                    Spacer()
-                                                                                                                    ZStack{
-                                                                                                                        Circle()
-                                                                                                                            .foregroundColor(.pink)
-                                                                                                                        Image(systemName: "play.fill")
-                                                                                                                            .foregroundColor(.white)
-                                                                                                                        
-                                                                                                                    }
-                                                                                                                    .frame(width: 35)
-                                                                                                                }
-                                                                                                            }
-                                                                                                            .frame(width: 150, height: 30)
-                                                                                                        }
-                                                                                                        .frame(width: 150, height: 250)
-                                                                                                        .padding(.horizontal, 10)
-                                                                                                        .padding(.bottom, 30)
+                                                        ZStack{
+                                                            RoundedRectangle(cornerRadius: 10)
+                                                            
+                                                            Image(Allitems[index])
+                                                                .resizable()
+                                                                .scaledToFill()
+                                                                .clipShape(RoundedRectangle(cornerRadius: 10))
+                                                        }
+                                                        .frame(width: 150, height: 150)
+                                                        
+                                                        Spacer()
+                                                            .frame(height: 10)
+                                                        
+                                                        ZStack{
+                                                            VStack(spacing: .zero){
+                                                                HStack{
+                                                                    Text(Allitems[index])
+                                                                        .font(.system(size: 15))
+                                                                        .bold()
+                                                                    Spacer()
+                                                                }
+                                                                HStack{
+                                                                    Text(Artist)
+                                                                        .font(.system(size: 12))
+                                                                    Spacer()
+                                                                }
+                                                            }
+                                                            .foregroundColor(.white)
+                                                            
+                                                            HStack{
+                                                                Spacer()
+                                                                ZStack{
+                                                                    Circle()
+                                                                        .foregroundColor(.pink)
+                                                                    Image(systemName: "play.fill")
+                                                                        .foregroundColor(.white)
+                                                                    
+                                                                }
+                                                                .frame(width: 35)
+                                                            }
+                                                        }
+                                                        .frame(width: 150, height: 30)
+                                                    }
+                                                    .frame(width: 150, height: 250)
+                                                    .padding(.horizontal, 10)
+                                                    .padding(.bottom, 30)
                                                 }
                                                 
                                             }
@@ -314,10 +314,12 @@ struct SongListView: View {
                                         .sheet(isPresented: $showingSheet) {
                                             SongLevelPopUpView2(SongId: $SongId, SongImg: $SongImg, ArtistId: $ArtistId, showingSheet: $showingSheet, playingGame: $playingGame )
                                                 .presentationDetents([.height(800)])
+                                                .environmentObject(service)
                                         }
                                         
-                                        NavigationLink(destination: ContentView(bunyi: $bunyi).navigationBarBackButtonHidden(true), isActive: $playingGame) {
+                                        NavigationLink(destination: ContentView(bunyi: $bunyi).environmentObject(service).navigationBarBackButtonHidden(true), isActive: $playingGame) {
                                             EmptyView()
+                                            
                                         }
                                         
                                     }
@@ -327,59 +329,59 @@ struct SongListView: View {
                                                 ///Button Songs
                                                 Button {
                                                     SongId = Allitems[index]
-                                                                                                        SongImg = Allitems[index]
-                                                                                                        ArtistId = "New Jeans"
+                                                    SongImg = Allitems[index]
+                                                    ArtistId = "New Jeans"
                                                     
                                                     //showSongDescription = true
                                                     showingSheet.toggle()
                                                 } label: {
                                                     VStack{
-                                                                                                            ZStack{
-                                                                                                                RoundedRectangle(cornerRadius: 10)
-                                                                                                                
-                                                                                                                Image(Allitems[index])
-                                                                                                                    .resizable()
-                                                                                                                    .scaledToFill()
-                                                                                                                    .clipShape(RoundedRectangle(cornerRadius: 10))
-                                                                                                            }
-                                                                                                            .frame(width: 150, height: 150)
-                                                                                                            
-                                                                                                            Spacer()
-                                                                                                                .frame(height: 10)
-                                                                                                            
-                                                                                                            ZStack{
-                                                                                                                VStack(spacing: .zero){
-                                                                                                                    HStack{
-                                                                                                                        Text(Allitems[index])
-                                                                                                                            .font(.system(size: 15))
-                                                                                                                            .bold()
-                                                                                                                        Spacer()
-                                                                                                                    }
-                                                                                                                    HStack{
-                                                                                                                        Text(Artist)
-                                                                                                                            .font(.system(size: 12))
-                                                                                                                        Spacer()
-                                                                                                                    }
-                                                                                                                }
-                                                                                                                .foregroundColor(.white)
-                                                                                                                
-                                                                                                                HStack{
-                                                                                                                    Spacer()
-                                                                                                                    ZStack{
-                                                                                                                        Circle()
-                                                                                                                            .foregroundColor(.pink)
-                                                                                                                        Image(systemName: "play.fill")
-                                                                                                                            .foregroundColor(.white)
-                                                                                                                        
-                                                                                                                    }
-                                                                                                                    .frame(width: 35)
-                                                                                                                }
-                                                                                                            }
-                                                                                                            .frame(width: 150, height: 30)
-                                                                                                        }
-                                                                                                        .frame(width: 150, height: 250)
-                                                                                                        .padding(.horizontal, 10)
-                                                                                                        .padding(.bottom, 30)
+                                                        ZStack{
+                                                            RoundedRectangle(cornerRadius: 10)
+                                                            
+                                                            Image(Allitems[index])
+                                                                .resizable()
+                                                                .scaledToFill()
+                                                                .clipShape(RoundedRectangle(cornerRadius: 10))
+                                                        }
+                                                        .frame(width: 150, height: 150)
+                                                        
+                                                        Spacer()
+                                                            .frame(height: 10)
+                                                        
+                                                        ZStack{
+                                                            VStack(spacing: .zero){
+                                                                HStack{
+                                                                    Text(Allitems[index])
+                                                                        .font(.system(size: 15))
+                                                                        .bold()
+                                                                    Spacer()
+                                                                }
+                                                                HStack{
+                                                                    Text(Artist)
+                                                                        .font(.system(size: 12))
+                                                                    Spacer()
+                                                                }
+                                                            }
+                                                            .foregroundColor(.white)
+                                                            
+                                                            HStack{
+                                                                Spacer()
+                                                                ZStack{
+                                                                    Circle()
+                                                                        .foregroundColor(.pink)
+                                                                    Image(systemName: "play.fill")
+                                                                        .foregroundColor(.white)
+                                                                    
+                                                                }
+                                                                .frame(width: 35)
+                                                            }
+                                                        }
+                                                        .frame(width: 150, height: 30)
+                                                    }
+                                                    .frame(width: 150, height: 250)
+                                                    .padding(.horizontal, 10)
+                                                    .padding(.bottom, 30)
                                                 }
                                                 
                                             }
@@ -933,56 +935,56 @@ struct SongListView: View {
                                                 ///Button Songs
                                                 Button {
                                                     SongId = Allitems[index]
-                                                                                                        SongImg = Allitems[index]
-                                                                                                        ArtistId = "New Jeans"
+                                                    SongImg = Allitems[index]
+                                                    ArtistId = "New Jeans"
                                                 } label: {
                                                     VStack{
-                                                                                                            ZStack{
-                                                                                                                RoundedRectangle(cornerRadius: 10)
-                                                                                                                
-                                                                                                                Image(Allitems[index])
-                                                                                                                    .resizable()
-                                                                                                                    .scaledToFill()
-                                                                                                                    .clipShape(RoundedRectangle(cornerRadius: 10))
-                                                                                                            }
-                                                                                                            .frame(width: 150, height: 150)
-                                                                                                            
-                                                                                                            Spacer()
-                                                                                                                .frame(height: 10)
-                                                                                                            
-                                                                                                            ZStack{
-                                                                                                                VStack(spacing: .zero){
-                                                                                                                    HStack{
-                                                                                                                        Text(Allitems[index])
-                                                                                                                            .font(.system(size: 15))
-                                                                                                                            .bold()
-                                                                                                                        Spacer()
-                                                                                                                    }
-                                                                                                                    HStack{
-                                                                                                                        Text(Artist)
-                                                                                                                            .font(.system(size: 12))
-                                                                                                                        Spacer()
-                                                                                                                    }
-                                                                                                                }
-                                                                                                                .foregroundColor(.white)
-                                                                                                                
-                                                                                                                HStack{
-                                                                                                                    Spacer()
-                                                                                                                    ZStack{
-                                                                                                                        Circle()
-                                                                                                                            .foregroundColor(.pink)
-                                                                                                                        Image(systemName: "play.fill")
-                                                                                                                            .foregroundColor(.white)
-                                                                                                                        
-                                                                                                                    }
-                                                                                                                    .frame(width: 35)
-                                                                                                                }
-                                                                                                            }
-                                                                                                            .frame(width: 150, height: 30)
-                                                                                                        }
-                                                                                                        .frame(width: 150, height: 250)
-                                                                                                        .padding(.horizontal, 10)
-                                                                                                        .padding(.bottom, 30)
+                                                        ZStack{
+                                                            RoundedRectangle(cornerRadius: 10)
+                                                            
+                                                            Image(Allitems[index])
+                                                                .resizable()
+                                                                .scaledToFill()
+                                                                .clipShape(RoundedRectangle(cornerRadius: 10))
+                                                        }
+                                                        .frame(width: 150, height: 150)
+                                                        
+                                                        Spacer()
+                                                            .frame(height: 10)
+                                                        
+                                                        ZStack{
+                                                            VStack(spacing: .zero){
+                                                                HStack{
+                                                                    Text(Allitems[index])
+                                                                        .font(.system(size: 15))
+                                                                        .bold()
+                                                                    Spacer()
+                                                                }
+                                                                HStack{
+                                                                    Text(Artist)
+                                                                        .font(.system(size: 12))
+                                                                    Spacer()
+                                                                }
+                                                            }
+                                                            .foregroundColor(.white)
+                                                            
+                                                            HStack{
+                                                                Spacer()
+                                                                ZStack{
+                                                                    Circle()
+                                                                        .foregroundColor(.pink)
+                                                                    Image(systemName: "play.fill")
+                                                                        .foregroundColor(.white)
+                                                                    
+                                                                }
+                                                                .frame(width: 35)
+                                                            }
+                                                        }
+                                                        .frame(width: 150, height: 30)
+                                                    }
+                                                    .frame(width: 150, height: 250)
+                                                    .padding(.horizontal, 10)
+                                                    .padding(.bottom, 30)
                                                 }
                                             }
                                         }
@@ -1001,58 +1003,58 @@ struct SongListView: View {
                                                 ///Button Songs
                                                 Button {
                                                     SongId = Allitems[index]
-                                                                                                        SongImg = Allitems[index]
-                                                                                                        ArtistId = "New Jeans"
+                                                    SongImg = Allitems[index]
+                                                    ArtistId = "New Jeans"
                                                     
                                                     showingSheet.toggle()
                                                 } label: {
                                                     VStack{
-                                                                                                            ZStack{
-                                                                                                                RoundedRectangle(cornerRadius: 10)
-                                                                                                                
-                                                                                                                Image(Allitems[index])
-                                                                                                                    .resizable()
-                                                                                                                    .scaledToFill()
-                                                                                                                    .clipShape(RoundedRectangle(cornerRadius: 10))
-                                                                                                            }
-                                                                                                            .frame(width: 150, height: 150)
-                                                                                                            
-                                                                                                            Spacer()
-                                                                                                                .frame(height: 10)
-                                                                                                            
-                                                                                                            ZStack{
-                                                                                                                VStack(spacing: .zero){
-                                                                                                                    HStack{
-                                                                                                                        Text(Allitems[index])
-                                                                                                                            .font(.system(size: 15))
-                                                                                                                            .bold()
-                                                                                                                        Spacer()
-                                                                                                                    }
-                                                                                                                    HStack{
-                                                                                                                        Text(Artist)
-                                                                                                                            .font(.system(size: 12))
-                                                                                                                        Spacer()
-                                                                                                                    }
-                                                                                                                }
-                                                                                                                .foregroundColor(.white)
-                                                                                                                
-                                                                                                                HStack{
-                                                                                                                    Spacer()
-                                                                                                                    ZStack{
-                                                                                                                        Circle()
-                                                                                                                            .foregroundColor(.pink)
-                                                                                                                        Image(systemName: "play.fill")
-                                                                                                                            .foregroundColor(.white)
-                                                                                                                        
-                                                                                                                    }
-                                                                                                                    .frame(width: 35)
-                                                                                                                }
-                                                                                                            }
-                                                                                                            .frame(width: 150, height: 30)
-                                                                                                        }
-                                                                                                        .frame(width: 150, height: 250)
-                                                                                                        .padding(.horizontal, 10)
-                                                                                                        .padding(.bottom, 30)
+                                                        ZStack{
+                                                            RoundedRectangle(cornerRadius: 10)
+                                                            
+                                                            Image(Allitems[index])
+                                                                .resizable()
+                                                                .scaledToFill()
+                                                                .clipShape(RoundedRectangle(cornerRadius: 10))
+                                                        }
+                                                        .frame(width: 150, height: 150)
+                                                        
+                                                        Spacer()
+                                                            .frame(height: 10)
+                                                        
+                                                        ZStack{
+                                                            VStack(spacing: .zero){
+                                                                HStack{
+                                                                    Text(Allitems[index])
+                                                                        .font(.system(size: 15))
+                                                                        .bold()
+                                                                    Spacer()
+                                                                }
+                                                                HStack{
+                                                                    Text(Artist)
+                                                                        .font(.system(size: 12))
+                                                                    Spacer()
+                                                                }
+                                                            }
+                                                            .foregroundColor(.white)
+                                                            
+                                                            HStack{
+                                                                Spacer()
+                                                                ZStack{
+                                                                    Circle()
+                                                                        .foregroundColor(.pink)
+                                                                    Image(systemName: "play.fill")
+                                                                        .foregroundColor(.white)
+                                                                    
+                                                                }
+                                                                .frame(width: 35)
+                                                            }
+                                                        }
+                                                        .frame(width: 150, height: 30)
+                                                    }
+                                                    .frame(width: 150, height: 250)
+                                                    .padding(.horizontal, 10)
+                                                    .padding(.bottom, 30)
                                                 }
                                                 
                                                 

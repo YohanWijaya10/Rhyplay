@@ -35,8 +35,6 @@ let hallSensorService2: CBUUID = CBUUID(string: "439a61ce-9270-48dd-8ab5-9ef92c3
 let hallSensorCharacteristic2: CBUUID = CBUUID(string: "ab90b28e-c31e-4bbe-b0a8-5673ab1c898d")
 
 
-
-
 class BluetoothService: NSObject, ObservableObject {
     @Published var characteristicValue: String = "Waiting for data..."
     private var centralManager: CBCentralManager!
@@ -49,16 +47,21 @@ class BluetoothService: NSObject, ObservableObject {
     
     @Published var XValue: Int = 0
     @Published var AccelValueY: Double = 0
+    
     @Published var AccelValueX: Double = 0
     @Published var AccelValueZ: Double = 0
+    
     @Published var gyroValueY: Double = 0
     @Published var gyroValueX: Double = 0
+    
     @Published var gyroValueZ: Double = 0
     
     @Published var AccelValueY2: Double = 0
     @Published var AccelValueX2: Double = 0
+    
     @Published var AccelValueZ2: Double = 0
     @Published var gyroValueY2: Double = 0
+    
     @Published var gyroValueX2: Double = 0
     @Published var gyroValueZ2: Double = 0
     
@@ -617,7 +620,7 @@ struct ConnectingView: View {
                     // button next buat ke halaman selanjutnya setelah connect
                     if service.peripheralStatus == .connected {
                         //MARK: Button ke Pattern
-                        NavigationLink(destination: MainPageView(bunyi: $bunyi).navigationBarHidden(true)) {
+                        NavigationLink(destination: MainPageView(bunyi: $bunyi).environmentObject(service).navigationBarHidden(true)) {
                             ZStack{
                                 Text("Continue")
                                     .font(.title)
@@ -642,6 +645,9 @@ struct ConnectingView: View {
                 }
                 
                 
+                
+                Text("\(service.SnareV)")
+                Text("\(service.Bass1)")
             }.onAppear(){
                 service.isScanning = true
                 service.isScanning2 = true
