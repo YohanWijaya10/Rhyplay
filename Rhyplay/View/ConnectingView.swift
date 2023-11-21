@@ -646,8 +646,6 @@ struct ConnectingView: View {
                 
                 
                 
-                Text("\(service.SnareV)")
-                Text("\(service.Bass1)")
             }.onAppear(){
                 service.isScanning = true
                 service.isScanning2 = true

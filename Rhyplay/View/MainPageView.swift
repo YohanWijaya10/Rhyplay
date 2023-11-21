@@ -76,10 +76,7 @@ struct MainPageView: View{
                     
                 }
                 
-                HStack{
-                    Text("\(service.SnareV)")
-                    Text("\(service.Bass1)")
-                }
+                
                
             }
         }

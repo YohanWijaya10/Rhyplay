@@ -23,18 +23,21 @@ class GameScene: SKScene {
     }
     
     var myLabel: SKLabelNode!
-    
+    var closeButton: SKSpriteNode!
     var snar = ContentView(bunyi: .constant(true))
     var closeds: Bool =  false
     var isGamePaused = false
     var pauseButton: SKSpriteNode!
     var btnRetryEnding: SKSpriteNode!
+    var logosementara: SKSpriteNode!
     var backgroundMusic: AVAudioPlayer?
     var resumeButton: SKSpriteNode!
     var menuButton: SKSpriteNode!
+    var BacktoSongButton: SKSpriteNode!
     
     var isGameResume = false
     var resetgameButton: SKSpriteNode!
+    var resetgameButton1: SKSpriteNode!
     var countresume = false
     var worldNode:SKNode?
     var gameplay: SKAction!
@@ -193,10 +196,89 @@ class GameScene: SKScene {
             let sequenceAction3 = SKAction.sequence([delayAction3, fadeInAction3])
             kickright.run(sequenceAction3)
             
+            var ArrayNodesKickRightVisual: [SKSpriteNode] = []
+            for imageKickRightVisual in[
+                "kosong", "kosong", "kosong", "kosong", "kosong", "kosong", "kosong", "kosong",
+                "kosong", "kosong", "kosong", "kosong", "kosong", "kosong", "kosong", "kosong",
+                "kosong", "kosong", "kosong", "kosong", "kosong", "kosong", "kosong", "kosong",
+                "kosong", "kosong", "kosong", "kosong", "kosong", "kosong", "kosong", "kosong",
+                "kosong", "kosong", "kosong", "kosong", "kosong", "kosong", "kosong", "kosong",
+                "kosong", "kosong", "kosong", "kosong", "kosong", "kosong", "kosong", "kosong",
+                "kosong", "kosong", "kosong", "kosong", "kosong", "kosong", "kosong", "kosong",
+                
+                "bar1", "kosong", "kosong", "kosong", "kosong", "bar1", "kosong", "kosong",
+                "bar1", "kosong", "kosong", "kosong", "kosong", "bar1", "kosong", "kosong",
+                "bar1", "kosong", "kosong", "kosong", "kosong", "bar1", "kosong", "kosong",
+                "bar1", "kosong", "kosong", "kosong", "kosong", "bar1", "kosong", "kosong",
+                "bar1", "kosong", "kosong", "kosong", "kosong", "bar1", "kosong", "kosong",
+                "bar1", "kosong", "kosong", "kosong", "kosong", "bar1", "kosong", "kosong",
+                "bar1", "kosong", "kosong", "kosong", "kosong", "bar1", "kosong", "kosong",
+                "bar1", "kosong", "kosong", "kosong", "kosong", "bar1", "kosong", "kosong",
+                "bar1", "kosong", "kosong", "kosong", "kosong", "bar1", "kosong", "kosong",
+                "bar1", "kosong", "kosong", "kosong", "kosong", "bar1", "kosong", "kosong",
+                "bar1", "kosong", "kosong", "kosong", "kosong", "bar1", "kosong", "kosong",
+                "bar1", "kosong", "kosong", "kosong", "kosong", "bar1", "kosong", "kosong",
+                "bar1", "kosong", "kosong", "kosong", "kosong", "bar1", "kosong", "kosong",
+                "bar1", "kosong", "kosong", "kosong", "kosong", "bar1", "kosong", "kosong",
+                "bar1", "kosong", "kosong", "kosong", "kosong", "bar1", "kosong", "kosong",
+                "bar1", "kosong", "kosong", "kosong", "kosong", "bar1", "kosong", "kosong",//32
+                
+                "bar1", "kosong", "bar1", "kosong", "bar1", "kosong", "bar1", "kosong",
+                "bar1", "kosong", "bar1", "kosong", "bar1", "kosong", "bar1", "kosong",
+                "bar1", "kosong", "bar1", "kosong", "bar1", "kosong", "bar1", "kosong",
+                "bar1", "kosong", "bar1", "kosong", "bar1", "kosong", "bar1", "kosong",
+                "bar1", "kosong", "bar1", "kosong", "bar1", "kosong", "bar1", "kosong",
+                "bar1", "kosong", "bar1", "kosong", "bar1", "kosong", "bar1", "kosong",
+                "bar1", "kosong", "bar1", "kosong", "bar1", "kosong", "bar1", "kosong",
+                "bar1", "kosong", "bar1", "kosong", "bar1", "kosong", "bar1", "kosong",//36
+                
+                "bar1", "kosong", "kosong", "kosong", "kosong", "bar1", "kosong", "kosong",
+                "bar1", "kosong", "kosong", "kosong", "kosong", "bar1", "kosong", "kosong",
+                "bar1", "kosong", "kosong", "kosong", "kosong", "bar1", "kosong", "kosong",
+                "bar1", "kosong", "kosong", "kosong", "kosong", "bar1", "kosong", "kosong",
+                "bar1", "kosong", "kosong", "kosong", "kosong", "bar1", "kosong", "kosong",
+                "bar1", "kosong", "kosong", "kosong", "kosong", "bar1", "kosong", "kosong",
+                "bar1", "kosong", "kosong", "kosong", "kosong", "bar1", "kosong", "kosong",//16
+                "bar1", "kosong", "kosong", "kosong", "kosong", "bar1", "kosong", "kosong"
+            ] {
+                let nodeKickRight = SKSpriteNode(imageNamed: imageKickRightVisual)
+                ArrayNodesKickRightVisual.append(nodeKickRight)
+                self.addChild(nodeKickRight)
+            }
             
+            let kickRightSequenceVisual = SKAction.sequence([
+                SKAction.run {
+                    for (index, nodeKickRight) in ArrayNodesKickRightVisual.enumerated() {
+                        let waitAction = SKAction.wait(forDuration: 0.2 * Double(index))
+                        
+                       
+                        
+                        let xStartPosition = 345
+                        let yStartPosition = 890
+                        
+                        nodeKickRight.position = CGPoint(x: xStartPosition, y: yStartPosition)
+                        nodeKickRight.setScale(CGFloat(1.1))
+                        let moveAction = SKAction.move(to: CGPoint(x: 345, y: 100), duration: 1.6)
+                        let resetPositionAction = SKAction.move(to: CGPoint(x: xStartPosition, y: yStartPosition), duration: 0)
+                        let fadeInAction = SKAction.fadeIn(withDuration: 0)
+                        
+                        let kickRightSequence = SKAction.sequence([waitAction, fadeInAction, moveAction, resetPositionAction])
+                        
+                        nodeKickRight.run(kickRightSequence)
+                    }
+                },
+                SKAction.wait(forDuration: 63.4)
+            ])
+            
+            let delay0Visual = SKAction.wait(forDuration: 3)
+            let group0Visual = SKAction.sequence([delay0Visual, kickRightSequenceVisual])
+            self.run(group0Visual)
+            
+                    
             var ArrayNodesKickRight: [SKSpriteNode] = []
             for imageKickRight in
                     [
+                        "kosong", "kosong", "kosong", "kosong", "kosong", "kosong", "kosong", "kosong",
                         "kosong", "kosong", "kosong", "kosong", "kosong", "kosong", "kosong", "kosong",
                         "kosong", "kosong", "kosong", "kosong", "kosong", "kosong", "kosong", "kosong",
                         "kosong", "kosong", "kosong", "kosong", "kosong", "kosong", "kosong", "kosong",
@@ -278,9 +360,10 @@ class GameScene: SKScene {
                         let moveAction = SKAction.move(to: CGPoint(x: 345, y: 100), duration: 1.6)
                         let resetPositionAction = SKAction.move(to: CGPoint(x: xStartPosition, y: yStartPosition), duration: 0)
                         let fadeInAction = SKAction.fadeIn(withDuration: 0)
-                        
-                        let kickRightSequence = SKAction.sequence([waitAction, printAction, fadeInAction, moveAction, resetPositionAction])
-                        
+                        let opacityAction = SKAction.fadeAlpha(to: 0.0, duration: 0) // Add this line
+
+                        let kickRightSequence = SKAction.sequence([waitAction, printAction, fadeInAction, opacityAction, moveAction, resetPositionAction]) // Modify this line
+
                         nodeKickRight.run(kickRightSequence)
                     }
                 },
@@ -292,9 +375,100 @@ class GameScene: SKScene {
             self.run(group0)
             
             
+            
+            //=========
+            var ArrayNodesSnareLeftVisual: [SKSpriteNode] = []
+            
+            for imageSnareLeftVisual in [
+                "kosong", "kosong", "kosong", "kosong", "kosong", "kosong", "kosong", "kosong",
+                "kosong", "kosong", "kosong", "kosong", "kosong", "kosong", "kosong", "kosong",
+                "kosong", "kosong", "kosong", "kosong", "kosong", "kosong", "kosong", "kosong",
+                "kosong", "kosong", "kosong", "kosong", "kosong", "kosong", "kosong", "kosong",
+                "kosong", "kosong", "kosong", "kosong", "kosong", "kosong", "kosong", "kosong",
+                "kosong", "kosong", "kosong", "kosong", "kosong", "kosong", "kosong", "kosong",
+                "kosong", "kosong", "kosong", "kosong", "kosong", "kosong", "kosong", "kosong",
+                
+                "kosong", "kosong", "bar2", "kosong", "kosong", "kosong", "bar2", "kosong",
+                "kosong", "kosong", "bar2", "kosong", "kosong", "kosong", "bar2", "kosong",
+                "kosong", "kosong", "bar2", "kosong", "kosong", "kosong", "bar2", "kosong",
+                "kosong", "kosong", "bar2", "kosong", "kosong", "kosong", "bar2", "kosong",
+                "kosong", "kosong", "bar2", "kosong", "kosong", "kosong", "bar2", "kosong",
+                "kosong", "kosong", "bar2", "kosong", "kosong", "kosong", "bar2", "kosong",
+                "kosong", "kosong", "bar2", "kosong", "kosong", "kosong", "bar2", "kosong",
+                "kosong", "kosong", "bar2", "kosong", "kosong", "kosong", "bar2", "kosong",
+                "kosong", "kosong", "bar2", "kosong", "kosong", "kosong", "bar2", "kosong",
+                "kosong", "kosong", "bar2", "kosong", "kosong", "kosong", "bar2", "kosong",
+                "kosong", "kosong", "bar2", "kosong", "kosong", "kosong", "bar2", "kosong",
+                "kosong", "kosong", "bar2", "kosong", "kosong", "kosong", "bar2", "kosong",
+                "kosong", "kosong", "bar2", "kosong", "kosong", "kosong", "bar2", "kosong",
+                "kosong", "kosong", "bar2", "kosong", "kosong", "kosong", "bar2", "kosong",
+                "kosong", "kosong", "bar2", "kosong", "kosong", "kosong", "bar2", "kosong",
+                "kosong", "kosong", "bar2", "kosong", "kosong", "kosong", "bar2", "kosong", //32
+                
+                
+                "kosong", "kosong", "kosong", "kosong", "kosong", "kosong", "kosong", "kosong",
+                "kosong", "kosong", "kosong", "kosong", "kosong", "kosong", "kosong", "kosong",
+                "kosong", "kosong", "kosong", "kosong", "kosong", "kosong", "kosong", "kosong",
+                "kosong", "kosong", "kosong", "kosong", "kosong", "kosong", "kosong", "kosong",
+                "kosong", "kosong", "kosong", "kosong", "kosong", "kosong", "kosong", "kosong",
+                "kosong", "kosong", "kosong", "kosong", "kosong", "kosong", "kosong", "kosong",
+                "kosong", "kosong", "kosong", "kosong", "kosong", "kosong", "kosong", "kosong",
+                "kosong", "kosong", "kosong", "kosong", "kosong", "kosong", "kosong", "kosong",
+                
+                "kosong", "kosong", "bar2", "kosong", "kosong", "kosong", "bar2", "kosong",
+                "kosong", "kosong", "bar2", "kosong", "kosong", "kosong", "bar2", "kosong",
+                "kosong", "kosong", "bar2", "kosong", "kosong", "kosong", "bar2", "kosong",
+                "kosong", "kosong", "bar2", "kosong", "kosong", "kosong", "bar2", "kosong",
+                "kosong", "kosong", "bar2", "kosong", "kosong", "kosong", "bar2", "kosong",
+                "kosong", "kosong", "bar2", "kosong", "kosong", "kosong", "bar2", "kosong",
+                "kosong", "kosong", "bar2", "kosong", "kosong", "kosong", "bar2", "kosong",
+                "kosong", "kosong", "bar2", "kosong", "kosong", "kosong", "bar2", "kosong",//16
+                
+            ] {
+                let nodeSnareLeft = SKSpriteNode(imageNamed: imageSnareLeftVisual)
+                ArrayNodesSnareLeftVisual.append(nodeSnareLeft)
+                self.addChild(nodeSnareLeft)
+                
+            }
+            
+            let SnareLeftSequenceVisual = SKAction.sequence([
+                SKAction.run {
+                    for (index, nodeSnareLeft) in ArrayNodesSnareLeftVisual.enumerated() {
+                        // Adjust the initial x and y values as needed
+                        let waitAction = SKAction.wait(forDuration: 0.2 * Double(index))
+                        
+                        
+                        let xStartPosition = 145
+                        let yStartPosition = 890
+                        nodeSnareLeft.position = CGPoint(x: xStartPosition, y: yStartPosition)
+                        nodeSnareLeft.setScale(CGFloat(1.1))
+                        
+                        // Create an action to change the x position of the image node to 200 over a duration of 1.6 seconds
+                        let moveAction = SKAction.move(to: CGPoint(x: 145, y: 100), duration: 1.6)
+                        
+                        // Create an action to move the image back to the initial position
+                        let resetPositionAction = SKAction.move(to: CGPoint(x: xStartPosition, y: yStartPosition), duration: 0)
+                        
+                        // Create a sequence to run actions one by one with a delay
+                        let fadeInAction = SKAction.fadeIn(withDuration: 0) //
+                        let SnareLeftSequence = SKAction.sequence([waitAction, fadeInAction, moveAction, resetPositionAction])
+                        
+                        // Run the sequence action on the image node
+                        nodeSnareLeft.run(SnareLeftSequence)
+                    }
+                },
+                SKAction.wait(forDuration: 63.4) // Wait for 2 seconds before repeating
+            ])
+            let delay1Visual = SKAction.wait(forDuration: 3)
+            let group1Visual = SKAction.sequence([delay1Visual, SnareLeftSequenceVisual])
+            self.run(group1Visual)
+            
+            
+            //=========
             var ArrayNodesSnareLeft: [SKSpriteNode] = []
             
             for imageSnareLeft in [
+                "kosong", "kosong", "kosong", "kosong", "kosong", "kosong", "kosong", "kosong",
                 "kosong", "kosong", "kosong", "kosong", "kosong", "kosong", "kosong", "kosong",
                 "kosong", "kosong", "kosong", "kosong", "kosong", "kosong", "kosong", "kosong",
                 "kosong", "kosong", "kosong", "kosong", "kosong", "kosong", "kosong", "kosong",
@@ -348,12 +522,33 @@ class GameScene: SKScene {
             
             let SnareLeftSequence = SKAction.sequence([
                 SKAction.run {
-                    for (index, ArrayNodesSnareLeft) in ArrayNodesSnareLeft.enumerated() {
+                    for (index, nodeSnareLeft) in ArrayNodesSnareLeft.enumerated() {
                         // Adjust the initial x and y values as needed
+                        let waitAction = SKAction.wait(forDuration: 0.2 * Double(index))
+                        
+                        let printAction = SKAction.run {
+                            if let textureName = nodeSnareLeft.texture?.description {
+                                let components = textureName.components(separatedBy: "'")
+                                if components.count > 1 {
+                                    self.logOutput = components[1]
+                                    if !components[1].contains("kosong") {
+                                        // Increment point only if the texture name does not contain "kosong"
+                                        self.point += 1
+                                    }
+                                    print(self.point)
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    
+                                }
+                            }
+                        }
                         let xStartPosition = 145
                         let yStartPosition = 890
-                        ArrayNodesSnareLeft.position = CGPoint(x: xStartPosition, y: yStartPosition)
-                        ArrayNodesSnareLeft.setScale(CGFloat(1.1))
+                        nodeSnareLeft.position = CGPoint(x: xStartPosition, y: yStartPosition)
+                        nodeSnareLeft.setScale(CGFloat(1.1))
                         
                         // Create an action to change the x position of the image node to 200 over a duration of 1.6 seconds
                         let moveAction = SKAction.move(to: CGPoint(x: 145, y: 100), duration: 1.6)
@@ -362,12 +557,12 @@ class GameScene: SKScene {
                         let resetPositionAction = SKAction.move(to: CGPoint(x: xStartPosition, y: yStartPosition), duration: 0)
                         
                         // Create a sequence to run actions one by one with a delay
-                        let fadeInAction = SKAction.fadeIn(withDuration: 0) // Add this line
-                        
-                        let SnareLeftSequence = SKAction.sequence([SKAction.wait(forDuration: 0.2 * Double(index)), fadeInAction, moveAction, resetPositionAction])
+                        let fadeInAction = SKAction.fadeIn(withDuration: 0) //
+                        let opacityAction = SKAction.fadeAlpha(to: 0.0, duration: 0)
+                        let SnareLeftSequence = SKAction.sequence([waitAction, printAction, fadeInAction, opacityAction, moveAction, resetPositionAction])
                         
                         // Run the sequence action on the image node
-                        ArrayNodesSnareLeft.run(SnareLeftSequence)
+                        nodeSnareLeft.run(SnareLeftSequence)
                     }
                 },
                 SKAction.wait(forDuration: 63.4) // Wait for 2 seconds before repeating
@@ -385,7 +580,7 @@ class GameScene: SKScene {
             var ArrayNodesSnareLeft1: [SKSpriteNode] = []
             
             for imageSnareLeft1 in [
-                
+                "kosong", "kosong", "kosong", "kosong", "kosong", "kosong", "kosong", "kosong",
                 "kosong", "kosong", "kosong", "kosong", "kosong", "kosong", "kosong", "line",
                 "kosong", "kosong", "kosong", "kosong", "kosong", "kosong", "kosong", "line",
                 "kosong", "kosong", "kosong", "kosong", "kosong", "kosong", "kosong", "line",
@@ -463,9 +658,9 @@ class GameScene: SKScene {
                         ArrayNodesSnareLeft1.run(SnareLeftSequence1)
                     }
                 },
-                SKAction.wait(forDuration: 63.4)
+                SKAction.wait(forDuration: 65)
             ])
-            let delay2 = SKAction.wait(forDuration: 3)
+            let delay2 = SKAction.wait(forDuration: 1.4)
             let group2 = SKAction.sequence([delay2, SnareLeftSequence1])
             self.run(group2)
             
@@ -484,16 +679,15 @@ class GameScene: SKScene {
             
             self.pauseButton = SKSpriteNode(imageNamed: "pause")
             self.pauseButton.setScale(CGFloat(0.5))
-            self.pauseButton.position = CGPoint(x: 345, y: 1000)
-            let movepause = SKAction.move(to: CGPoint(x: 345, y: 775), duration: 2)
+            self.pauseButton.position = CGPoint(x: 300, y: 1000)
+            let movepause = SKAction.move(to: CGPoint(x: 300, y: 775), duration: 2)
             self.addChild(self.pauseButton)
             
-            
-            
-           
-
-            
-            
+            self.closeButton = SKSpriteNode(imageNamed: "end")
+            self.closeButton.setScale(CGFloat(1))
+            self.closeButton.position = CGPoint(x: 345, y: 1000)
+            let moveclose = SKAction.move(to: CGPoint(x: 345, y: 775), duration: 2)
+            self.addChild(self.closeButton)
             
             
             let delay4 = SKAction.wait(forDuration: 3)
@@ -501,6 +695,10 @@ class GameScene: SKScene {
             self.run(group4)
             self.pauseButton.run(group4)
             
+            let delayclose = SKAction.wait(forDuration: 3)
+            let groupclose = SKAction.sequence([delayclose, moveclose])
+            self.run(groupclose)
+            self.closeButton.run(groupclose)
             
             let logo  = SKSpriteNode(imageNamed: "supershylogo")
             logo.setScale(CGFloat(0.5))
@@ -577,58 +775,91 @@ class GameScene: SKScene {
             
             
             
+            
+            
+            
             let waitAction10 = SKAction.wait(forDuration: 1)
             let addLabelAction10 = SKAction.run {
-            self.addLabelToScene()
+                self.addLabelToScene()
             }
-            let sequenceAction10 = SKAction.sequence([waitAction10, addLabelAction10])
+            let sequenceAction10 = SKAction.sequence([waitAction10, fadeInScore1 , addLabelAction10])
             self.run(sequenceAction10)
             
             
+            self.logosementara = SKSpriteNode(imageNamed: "logosementara")
+            self.logosementara.setScale(CGFloat(0.9))
+            self.logosementara.position =  CGPoint(x: 190, y: 620)
+            self.logosementara.alpha = 0  // Initially hidden
+            let delaylogosementara = SKAction.wait(forDuration: 69)
+            let fadelogosementara = SKAction.fadeIn(withDuration: 2)
             
-            self.btnRetryEnding = SKSpriteNode(imageNamed: "pause")
-            self.btnRetryEnding.setScale(CGFloat(0.4))
-            self.btnRetryEnding.position =  CGPoint(x: 260, y: 440)
-            self.btnRetryEnding.alpha = 0  // Initially hidden
-            let delaybtnRetryEnding = SKAction.wait(forDuration: 1)
-            let fadeInbtnRetryEnding = SKAction.fadeIn(withDuration: 2)
+            let seqlogosementara = SKAction.sequence([delaylogosementara, fadelogosementara])
+            self.logosementara.run(seqlogosementara)
+            self.addChild(self.logosementara)
             
-            let seqbtnRetryEnding = SKAction.sequence([delaybtnRetryEnding, fadeInbtnRetryEnding])
-            self.btnRetryEnding.run(seqbtnRetryEnding)
-            self.addChild(self.btnRetryEnding)
+            
+            self.resetgameButton1 = SKSpriteNode(imageNamed: "retry")
+            self.resetgameButton1.setScale(CGFloat(0.33))
+            self.resetgameButton1.position = CGPoint(x: 115, y: 70)
+            self.resetgameButton1.alpha = 0
+            let delayreset = SKAction.wait(forDuration: 69)
+            let fadeDelay = SKAction.fadeIn(withDuration: 2)
+            
+            let seqreset = SKAction.sequence([delayreset, fadeDelay])
+            self.resetgameButton1.run(seqlogosementara)
+            self.addChild(self.resetgameButton1)
+            
+            
+            
+            self.BacktoSongButton = SKSpriteNode(imageNamed: "BackSongs")
+            self.BacktoSongButton.setScale(CGFloat(0.33))
+            self.BacktoSongButton.position = CGPoint(x: 280, y: 70)
+            self.BacktoSongButton.alpha = 0
+            let delayBacktoSongs = SKAction.wait(forDuration: 69)
+            let fadeInBacktoSongs = SKAction.fadeIn(withDuration: 2)
+            let groupBacktoSongs = SKAction.sequence([delayBacktoSongs, fadeInBacktoSongs])
+            self.BacktoSongButton.run(groupBacktoSongs)
+            self.addChild(self.BacktoSongButton)
             
             
         }
                                       ])
         self.run(gameplay)
     }
+    func closeGame() {
+        isHidden = true
+        backgroundMusic?.stop()
+        GameScene().inputViewController?.dismiss(animated: true)
+        // Dismiss the scene
+        view?.window?.rootViewController?.dismiss(animated: true, completion: nil)
+    }
     func updateLabel() {
-            // Check if myLabel is not nil before updating its text
-            if let myLabel = myLabel {
-                myLabel.text = "Perfect Beat : \(self.point) / 80"
-                print("Point updated: \(self.point)")
-            } else {
-                print("myLabel is nil. Make sure it is properly initialized.")
-            }
+        // Check if myLabel is not nil before updating its text
+        if let myLabel = myLabel {
+            myLabel.text = "Perfect Beat : \(self.point) / 128"
+            print("Point updated: \(self.point)")
+        } else {
+            print("myLabel is nil. Make sure it is properly initialized.")
+        }
     }
     
     func addLabelToScene() {
         
         
         self.myLabel = SKLabelNode(fontNamed: "Arial")
-        self.myLabel.text = "Perfect Beat : \(self.point) / 80"
+        self.myLabel.text = "Perfect Beat : \(self.point) / 128"
         self.myLabel.fontSize = 25
         self.myLabel.fontColor = SKColor.white
         self.myLabel.position = CGPoint(x: self.size.width / 2, y: self.size.height / 2)
         self.addChild(self.myLabel)
-
-        }
+        
+    }
     
     func star() {
         // Buat SKSpriteNode untuk menampilkan gambar
         let imageNode = SKSpriteNode()
-
-        if self.point == 80 {
+        
+        if self.point > 80 {
             // Tampilkan gambar 1
             imageNode.texture = SKTexture(imageNamed: "star")
         } else if self.point > 50 {
@@ -638,37 +869,35 @@ class GameScene: SKScene {
             // Tampilkan gambar 3
             imageNode.texture = SKTexture(imageNamed: "star")
         }
-
+        
         // Atur posisi gambar
-        imageNode.setScale(0.4)
-            imageNode.position = CGPoint(x: 260, y: 440)
-
-            // Tambahkan gambar ke scene dengan skala dan posisi awal
-            self.addChild(imageNode)
-            
-            // Setelah 70 detik, jalankan aksi untuk mengubah skala dan posisi gambar
-            let waitAction = SKAction.wait(forDuration: 70)
-            let scaleAction = SKAction.scale(to: 1.0, duration: 0.5)  // Ganti 1.0 dengan skala yang diinginkan setelah 70 detik
-            let moveAction = SKAction.move(to: CGPoint(x: 400, y: 300), duration: 0.5)  // Ganti posisi dengan yang diinginkan setelah 70 detik
-            
-            let sequenceAction = SKAction.sequence([waitAction, SKAction.group([scaleAction, moveAction])])
-            
-            imageNode.run(sequenceAction)
+        imageNode.setScale(1.0)
+        imageNode.position = CGPoint(x: 260, y: 440)
+        
+        // Tambahkan gambar ke scene dengan skala dan posisi awal
+        self.addChild(imageNode)
+        
+        // Setelah 70 detik, jalankan aksi untuk mengubah skala dan posisi gambar
+        let waitAction = SKAction.wait(forDuration: 70)
+        let scaleAction = SKAction.scale(to: 1.0, duration: 0.5)  // Ganti 1.0 dengan skala yang diinginkan setelah 70 detik
+        let moveAction = SKAction.move(to: CGPoint(x: 400, y: 300), duration: 0.5)  // Ganti posisi dengan yang diinginkan setelah 70 detik
+        
+        let sequenceAction = SKAction.sequence([waitAction, SKAction.group([scaleAction, moveAction])])
+        
+        imageNode.run(sequenceAction)
     }
-
+    
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         
         
-       
+        
         func pauseGame() {
             isGamePaused = true
             isPaused = true
             closeds =  true
             // Add any other logic needed when the game is paused, like showing a pause menu.
         }
-        func asu() {
-            closeds = true
-        }
+        
         func resume() {
             isGameResume =  true
             isGamePaused = false
@@ -724,7 +953,15 @@ class GameScene: SKScene {
             restartScene.scaleMode = .fill
             self.view?.presentScene(restartScene)
         }
-        
+
+        func restart1() -> Void
+        {
+            //let transition = SKTransition.fade(with: .purple, duration: 15)
+            let restartScene = GameScene()
+            restartScene.size = CGSize(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
+            restartScene.scaleMode = .fill
+            self.view?.presentScene(restartScene)
+        }
         
         for touch in touches {
             let location = touch.location(in: self)
@@ -777,6 +1014,13 @@ class GameScene: SKScene {
                 backgroundMusic?.stop()
             }
             
+            if let resetgameButton1 = resetgameButton1, resetgameButton1.contains(location){
+                restart1()
+                resetgameButton1.removeFromParent()
+                
+                backgroundMusic?.stop()
+            }
+            
             if let btnRetryEnding = btnRetryEnding, btnRetryEnding.contains(location){
                 
                 
@@ -794,6 +1038,74 @@ class GameScene: SKScene {
     
     
     
+}
+
+struct GameView: UIViewControllerRepresentable {
+    typealias UIViewControllerType = UIViewController
+    
+    class Coordinator: NSObject {
+        var parent: GameView
+        var isPresented: Binding<Bool>
+        
+        init(parent: GameView, isPresented: Binding<Bool>) {
+            self.parent = parent
+            self.isPresented = isPresented
+        }
+        
+        @objc func endGame() {
+            // Handle any clean-up or game-ending logic here
+            isPresented.wrappedValue = false
+            if let gameScene = parent.scene as? GameScene {
+                gameScene.closeGame()
+            }
+        }
+    }
+    
+    var scene: SKScene
+    @Binding var isPresented: Bool
+    
+    func makeUIViewController(context: Context) -> UIViewController {
+        let viewController = UIViewController()
+        let skView = SKView()
+        viewController.view = skView
+        //        if let gameScene = scene as? GameScene {
+        //            skView.presentScene(gameScene)
+        //            gameScene.closeGame()
+        //        }
+        skView.presentScene(scene)
+        
+        // Create a button to end the game
+        let endButton = UIButton(type: .system)
+        endButton.setImage(UIImage(named: "end"), for: .normal)
+        endButton.contentMode = .scaleAspectFit
+        endButton.tintColor = .white
+        endButton.isHidden = true
+        endButton.addTarget(context.coordinator, action: #selector(Coordinator.endGame), for: .touchUpInside)
+        viewController.view.addSubview(endButton)
+        
+        // Layout button (you may want to customize this based on your needs)
+        endButton.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            endButton.centerXAnchor.constraint(equalTo: viewController.view.centerXAnchor, constant: 149),
+            endButton.centerYAnchor.constraint(equalTo: viewController.view.centerYAnchor, constant: -349),
+            endButton.widthAnchor.constraint(equalToConstant: 15), // Adjust the width as needed
+            endButton.heightAnchor.constraint(equalToConstant: 18)
+        ])
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 5) { // Adjust the delay duration as needed
+            endButton.isHidden = false
+        }
+        
+        return viewController
+    }
+    
+    func updateUIViewController(_ uiViewController: UIViewController, context: Context) {
+        // Update the view controller if needed
+    }
+    
+    func makeCoordinator() -> Coordinator {
+        Coordinator(parent: self, isPresented: $isPresented)
+    }
 }
 
 
