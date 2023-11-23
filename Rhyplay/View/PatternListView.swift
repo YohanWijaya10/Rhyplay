@@ -57,50 +57,46 @@ struct PatternListView: View {
                             VStack(){
                                 HStack{
                                     ///Button Pattern 1
-                                    Button {
-                                        
-                                    } label: {
-                                        ZStack{
-                                            RoundedRectangle(cornerRadius: 10)
-                                                .frame(width: 170, height: 220)
-                                                .foregroundColor(Color("Pink"))
-                                            
-                                            Image("Pattern1Button")
-                                                .resizable()
-                                                .scaledToFit()
-                                            
-                                            VStack{
-                                                Spacer()
-                                                
-                                                ///Star + Play
-                                                HStack{
-                                                    Image(systemName: "star.fill")
-                                                        .font(.system(size: 20))
-                                                        .foregroundColor(Color("Maroon"))
-                                                    Image(systemName: "star.fill")
-                                                        .font(.system(size: 20))
-                                                        .foregroundColor(Color("Maroon"))
-                                                    Image(systemName: "star.fill")
-                                                        .font(.system(size: 20))
-                                                        .foregroundColor(Color("Maroon"))
-                                                    
-                                                    Spacer()
-                                                }
-                                                .padding(.bottom, 10)
-                                            }
-                                            .foregroundColor(.white)
-                                            .frame(width: 160, height: 210)
-                                        }
-                                        .frame(width: 170, height: 220)
-                                    }
-                                    .padding(.bottom, 20)
-                                    .padding(.horizontal, 10)
+                                    NavigationLink(destination: GamePatternView().navigationBarHidden(true)) {
+                                     ZStack{
+                                         RoundedRectangle(cornerRadius: 10)
+                                             .frame(width: 170, height: 220)
+                                             .foregroundColor(Color("Pink"))
+                                         
+                                         Image("Pattern1Button")
+                                             .resizable()
+                                             .scaledToFit()
+                                         
+                                         VStack{
+                                             Spacer()
+                                             
+                                             ///Star + Play
+                                             HStack{
+                                                 Image(systemName: "star.fill")
+                                                     .font(.system(size: 20))
+                                                     .foregroundColor(Color("Maroon"))
+                                                 Image(systemName: "star.fill")
+                                                     .font(.system(size: 20))
+                                                     .foregroundColor(Color("Maroon"))
+                                                 Image(systemName: "star.fill")
+                                                     .font(.system(size: 20))
+                                                     .foregroundColor(Color("Maroon"))
+                                                 
+                                                 Spacer()
+                                             }
+                                             .padding(.bottom, 10)
+                                         }
+                                         .foregroundColor(.white)
+                                         .frame(width: 160, height: 210)
+                                     }
+                                     .frame(width: 170, height: 220)
+                                     }
+                                     .padding(.bottom, 20)
+                                     .padding(.horizontal, 10)
                                     
                                     
                                     ///Button Pattern 2
-                                    Button {
-                                        
-                                    } label: {
+                                    NavigationLink(destination: GamePatternView2().navigationBarHidden(true)) {
                                         ZStack{
                                             RoundedRectangle(cornerRadius: 10)
                                                 .frame(width: 170, height: 220)
@@ -133,9 +129,10 @@ struct PatternListView: View {
                                             .padding(.horizontal, 10)
                                         }
                                         .frame(width: 170, height: 220)
-                                    }
-                                    .padding(.bottom, 20)
-                                    .padding(.horizontal, 10)
+                                     }
+                                     .padding(.bottom, 20)
+                                     .padding(.horizontal, 10)
+                                    
                                 }
                             }
                         }
