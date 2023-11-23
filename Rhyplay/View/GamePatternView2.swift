@@ -1,8 +1,8 @@
 //
-//  GamePatternView.swift
-//  Rhyplay
+//  GamePatternView2.swift
+//  MacroCoba3
 //
-//  Created by Yohan Wijaya on 23/11/23.
+//  Created by Brian Putrantio on 23/11/23.
 //
 
 import SwiftUI
@@ -10,13 +10,13 @@ import SpriteKit
 import AVFoundation
  
 
-struct GamePatternView: View{
+struct GamePatternView2: View{
     
     @Environment (\.dismiss) var dismiss
     @State private var isGameScenePresented = true
     
     var scene: SKScene {
-        let scene = GameScenePattern1()
+        let scene = GameScenePattern2()
         scene.size = CGSize(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
         scene.scaleMode = .fill
         return scene
@@ -32,5 +32,5 @@ struct GamePatternView: View{
 }
 
 #Preview {
-    GamePatternView()
+    GamePatternView2()
 }

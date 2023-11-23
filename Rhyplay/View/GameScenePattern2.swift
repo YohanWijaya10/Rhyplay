@@ -1,8 +1,8 @@
 //
-//  GameScenePattern1.swift
-//  Rhyplay
+//  GameScenePattern2.swift
+//  MacroCoba3
 //
-//  Created by Brian Putrantio on 22/11/23.
+//  Created by Brian Putrantio on 23/11/23.
 //
 
 import Foundation
@@ -10,7 +10,7 @@ import SpriteKit
 import AVFoundation
 import SwiftUI
 
-class GameScenePattern1: SKScene {
+class GameScenePattern2: SKScene {
     
     var isGamePaused = false
     var pauseButton: SKSpriteNode!
@@ -38,7 +38,7 @@ class GameScenePattern1: SKScene {
         
         gameplay = SKAction.sequence([SKAction.run {
             //MARK: Music Player
-            if let musicURL = Bundle.main.url(forResource: "Basic first beats with cajon sounds", withExtension: "mp3") {
+            if let musicURL = Bundle.main.url(forResource: "on the floor with cajon sound", withExtension: "mp3") {
                 do {
                     self.backgroundMusic = try AVAudioPlayer(contentsOf: musicURL)
                     
@@ -97,7 +97,7 @@ class GameScenePattern1: SKScene {
                 }
             }
             
-            let waitAction = SKAction.wait(forDuration: 41)
+            let waitAction = SKAction.wait(forDuration: 30)
             let confettiSequence = SKAction.sequence([waitAction, confettiAction])
             self.run(confettiSequence)
             
@@ -146,23 +146,20 @@ class GameScenePattern1: SKScene {
             var ArrayNodesSnareLeft: [SKSpriteNode] = []
             
             for imageSnareLeft in [
-                "kosong", "kosong", "kosong", "kosong", "kosong", "kosong", "kosong", "kosong",
-                "kosong", "kosong", "kosong", "kosong", "kosong", "kosong", "kosong", "kosong",
-                "kosong", "kosong", "kosong", "kosong", "kosong", "kosong", "kosong", "kosong",
+                "kosong", "kosong", "kosong", "kosong",
+                "kosong", "kosong", "kosong", "kosong",
+                "kosong", "kosong", "kosong", "kosong",
                 
+                "kosong", "kosong", "kosong", "kosong",
+                "kosong", "kosong", "kosong", "kosong",
+                "kosong", "kosong", "kosong", "kosong",
+                "kosong", "kosong", "kosong", "kosong",
                 
-                "kosong", "kosong", "kosong", "kosong", "kosong", "kosong", "kosong", "kosong",
-                "kosong", "kosong", "kosong", "kosong", "kosong", "kosong", "kosong", "kosong",
-                "kosong", "kosong", "kosong", "kosong", "kosong", "kosong", "kosong", "kosong",
-                "kosong", "kosong", "kosong", "kosong", "kosong", "kosong", "kosong", "kosong",
                
-               
-                
-                "kosong", "kosong", "kosong", "kosong", "kosong", "kosong", "bar2", "kosong",
-                "kosong", "kosong", "bar2", "kosong", "kosong", "kosong", "bar2", "kosong",
-                "kosong", "kosong", "bar2", "kosong", "kosong", "kosong", "bar2", "kosong",
-                "kosong", "kosong", "bar2", "kosong", "kosong", "kosong", "bar2", "kosong",
-                "kosong", "kosong", "bar2", "kosong", "kosong", "kosong", "kosong", "kosong",
+                "kosong", "bar2", "kosong", "bar2",
+                "kosong", "bar2", "kosong", "bar2",
+                "kosong", "bar2", "kosong", "bar2",
+                "kosong", "bar2", "kosong", "bar2"
 
 
                 
@@ -184,7 +181,7 @@ class GameScenePattern1: SKScene {
                         ArrayNodesSnareLeft.setScale(CGFloat(1.1))
                         
                         // Create an action to change the x position of the image node to 200 over a duration of 1.6 seconds
-                        let moveAction = SKAction.move(to: CGPoint(x: 145, y: 100), duration: 1.46)
+                        let moveAction = SKAction.move(to: CGPoint(x: 145, y: 100), duration: 1.856)
                         
                         // Create an action to move the image back to the initial position
                         let resetPositionAction = SKAction.move(to: CGPoint(x: xStartPosition, y: yStartPosition), duration: 0)
@@ -192,15 +189,15 @@ class GameScenePattern1: SKScene {
                         // Create a sequence to run actions one by one with a delay
                         let fadeInAction = SKAction.fadeIn(withDuration: 0) // Add this line
                         
-                        let SnareLeftSequence = SKAction.sequence([SKAction.wait(forDuration: 0.365 * Double(index)), fadeInAction, moveAction, resetPositionAction])
+                        let SnareLeftSequence = SKAction.sequence([SKAction.wait(forDuration: 0.464 * Double(index)), fadeInAction, moveAction, resetPositionAction])
                         
                         // Run the sequence action on the image node
                         ArrayNodesSnareLeft.run(SnareLeftSequence)
                     }
                 },
-                SKAction.wait(forDuration: 35.1) // Wait for 2 seconds before repeating
+                SKAction.wait(forDuration: 22.152) // Wait for 2 seconds before repeating
             ])
-            let delay1 = SKAction.wait(forDuration: 3.15)
+            let delay1 = SKAction.wait(forDuration: 3)
             let group1 = SKAction.sequence([delay1, SnareLeftSequence])
             self.run(group1)
             
@@ -208,21 +205,21 @@ class GameScenePattern1: SKScene {
             var ArrayNodesKickRight: [SKSpriteNode] = []
             for imageKickRight in
                     [
-                        "kosong", "kosong", "kosong", "kosong", "kosong", "kosong", "kosong", "kosong",
-                        "kosong", "kosong", "kosong", "kosong", "kosong", "kosong", "kosong", "kosong",
-                        "kosong", "kosong", "kosong", "kosong", "kosong", "kosong", "kosong", "kosong",
-                        "kosong", "kosong", "kosong", "kosong", "bar1", "kosong", "kosong", "kosong",
+                        "kosong", "kosong", "kosong", "kosong",
+                        "kosong", "kosong", "kosong", "kosong",
+                        "kosong", "kosong", "kosong", "kosong",
+                        "bar1", "bar1", "bar1", "bar1",
                         
                         
-                        "bar1", "bar1", "kosong", "kosong", "bar1", "kosong", "kosong", "kosong",
-                        "bar1", "bar1", "kosong", "kosong", "bar1", "kosong", "kosong", "kosong",
-                        "bar1", "bar1", "kosong", "kosong", "bar1", "kosong", "kosong", "kosong",
-                        "bar1", "bar1", "kosong", "kosong", "bar1", "kosong", "kosong", "kosong",
+                        "bar1", "bar1", "bar1", "bar1",
+                        "bar1", "bar1", "bar1", "bar1",
+                        "bar1", "bar1", "bar1", "bar1",
+                        "bar1", "bar1", "bar1", "bar1",
                         
-                        "bar1", "bar1", "kosong", "kosong", "bar1", "kosong", "kosong", "kosong",
-                        "bar1", "bar1", "kosong", "kosong", "bar1", "kosong", "kosong", "kosong",
-                        "bar1", "bar1", "kosong", "kosong", "bar1", "kosong", "kosong", "kosong",
-                        "bar1", "bar1", "kosong", "kosong", "bar1", "kosong", "kosong", "kosong",
+                        "bar1", "bar1", "bar1", "bar1",
+                        "bar1", "bar1", "bar1", "bar1",
+                        "bar1", "bar1", "bar1", "bar1",
+                        "kosong", "kosong", "kosong", "kosong",
                         
                         ] {
                 let nodeKickRight = SKSpriteNode(imageNamed: imageKickRight)
@@ -238,16 +235,16 @@ class GameScenePattern1: SKScene {
                         
                         nodeKickRight.position = CGPoint(x: xStartPosition, y: yStartPosition)
                         nodeKickRight.setScale(CGFloat(1.1))
-                        let moveAction = SKAction.move(to: CGPoint(x: 345, y: 100), duration: 1.46)
+                        let moveAction = SKAction.move(to: CGPoint(x: 345, y: 100), duration: 1.856)
                         let resetPositionAction = SKAction.move(to: CGPoint(x: xStartPosition, y: yStartPosition), duration: 0)
                         let fadeInAction = SKAction.fadeIn(withDuration: 0)
-                        let kickRightSequence = SKAction.sequence([SKAction.wait(forDuration: 0.365 * Double(index)), fadeInAction, moveAction, resetPositionAction])
+                        let kickRightSequence = SKAction.sequence([SKAction.wait(forDuration: 0.464 * Double(index)), fadeInAction, moveAction, resetPositionAction])
                         nodeKickRight.run(kickRightSequence)
                     }
                 },
-                SKAction.wait(forDuration: 35.1)
+                SKAction.wait(forDuration: 22.152)
             ])
-            let delay0 = SKAction.wait(forDuration: 3.15)
+            let delay0 = SKAction.wait(forDuration: 3)
             let group0 = SKAction.sequence([delay0, kickRightSequence])
             self.run(group0)
             
@@ -288,7 +285,7 @@ class GameScenePattern1: SKScene {
             self.run(groupclose)
             self.closeButton.run(groupclose)
             
-            let logo  = SKSpriteNode(imageNamed: "PatternTitle1")
+            let logo  = SKSpriteNode(imageNamed: "PatternTitle2")
             logo.setScale(CGFloat(0.35))
             logo.position = CGPoint(x: 100, y: 975)
             self.addChild(logo)
@@ -346,7 +343,7 @@ class GameScenePattern1: SKScene {
     func closeGame() {
         isHidden = true
         backgroundMusic?.stop()
-        GameScenePattern1().inputViewController?.dismiss(animated: true)
+        GameScenePattern2().inputViewController?.dismiss(animated: true)
         // Add any other logic needed when the game is paused, like showing a pause menu.
         
         // Dismiss the scene
@@ -361,7 +358,7 @@ class GameScenePattern1: SKScene {
         func closeGame() {
             isHidden = true
             backgroundMusic?.stop()
-            GameScenePattern1().inputViewController?.dismiss(animated: true)
+            GameScenePattern2().inputViewController?.dismiss(animated: true)
             // Dismiss the scene
             view?.window?.rootViewController?.dismiss(animated: true, completion: nil)
         }
@@ -421,7 +418,7 @@ class GameScenePattern1: SKScene {
         func restart() -> Void
         {
             //let transition = SKTransition.fade(with: .purple, duration: 15)
-            let restartScene = GameScenePattern1()
+            let restartScene = GameScenePattern2()
             restartScene.size = CGSize(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
             restartScene.scaleMode = .fill
             self.view?.presentScene(restartScene)
@@ -489,14 +486,14 @@ class GameScenePattern1: SKScene {
 }
 
 // UIViewControllerRepresentable for SpriteKit integration
-struct GameViewPattern1: UIViewControllerRepresentable {
+struct GameViewPattern2: UIViewControllerRepresentable {
     typealias UIViewControllerType = UIViewController
     
     class Coordinator: NSObject {
-        var parent: GameViewPattern1
+        var parent: GameViewPattern2
         var isPresented: Binding<Bool>
         
-        init(parent: GameViewPattern1, isPresented: Binding<Bool>) {
+        init(parent: GameViewPattern2, isPresented: Binding<Bool>) {
             self.parent = parent
             self.isPresented = isPresented
         }
@@ -504,7 +501,7 @@ struct GameViewPattern1: UIViewControllerRepresentable {
         @objc func endGame() {
             // Handle any clean-up or game-ending logic here
             isPresented.wrappedValue = false
-            if let gameScene = parent.scene as? GameScenePattern1 {
+            if let gameScene = parent.scene as? GameScenePattern2 {
                 gameScene.closeGame()
             }
         }
@@ -553,3 +550,4 @@ struct GameViewPattern1: UIViewControllerRepresentable {
         Coordinator(parent: self, isPresented: $isPresented)
     }
 }
+

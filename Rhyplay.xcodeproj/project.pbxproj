@@ -17,6 +17,10 @@
 		606779492B035CBA009691D6 /* FreePlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 606779482B035CBA009691D6 /* FreePlayView.swift */; };
 		6067794D2B035CF4009691D6 /* RoundedCornerComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6067794B2B035CF4009691D6 /* RoundedCornerComponent.swift */; };
 		6067794E2B035CF4009691D6 /* ButtonAnimationComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6067794C2B035CF4009691D6 /* ButtonAnimationComponent.swift */; };
+		606A5C8A2B0F99FD0023071D /* on the floor with cajon sound.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 606A5C882B0F99FD0023071D /* on the floor with cajon sound.mp3 */; };
+		606A5C8B2B0F99FD0023071D /* Basic first beats with cajon sounds.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 606A5C892B0F99FD0023071D /* Basic first beats with cajon sounds.mp3 */; };
+		606A5C8E2B0F9A750023071D /* GameScenePattern2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 606A5C8C2B0F9A750023071D /* GameScenePattern2.swift */; };
+		606A5C8F2B0F9A750023071D /* GamePatternView2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 606A5C8D2B0F9A750023071D /* GamePatternView2.swift */; };
 		7006C6802B03DE330033A04B /* MyParticle.sks in Resources */ = {isa = PBXBuildFile; fileRef = 7006C67E2B03DE330033A04B /* MyParticle.sks */; };
 		7006C6812B03DE330033A04B /* m.sks in Resources */ = {isa = PBXBuildFile; fileRef = 7006C67F2B03DE330033A04B /* m.sks */; };
 		7006C6832B03DE500033A04B /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7006C6822B03DE500033A04B /* GameScene.swift */; };
@@ -69,6 +73,10 @@
 		606779482B035CBA009691D6 /* FreePlayView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FreePlayView.swift; sourceTree = "<group>"; };
 		6067794B2B035CF4009691D6 /* RoundedCornerComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundedCornerComponent.swift; sourceTree = "<group>"; };
 		6067794C2B035CF4009691D6 /* ButtonAnimationComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ButtonAnimationComponent.swift; sourceTree = "<group>"; };
+		606A5C882B0F99FD0023071D /* on the floor with cajon sound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "on the floor with cajon sound.mp3"; sourceTree = "<group>"; };
+		606A5C892B0F99FD0023071D /* Basic first beats with cajon sounds.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Basic first beats with cajon sounds.mp3"; sourceTree = "<group>"; };
+		606A5C8C2B0F9A750023071D /* GameScenePattern2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameScenePattern2.swift; sourceTree = "<group>"; };
+		606A5C8D2B0F9A750023071D /* GamePatternView2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GamePatternView2.swift; sourceTree = "<group>"; };
 		7006C67E2B03DE330033A04B /* MyParticle.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = MyParticle.sks; sourceTree = "<group>"; };
 		7006C67F2B03DE330033A04B /* m.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = m.sks; sourceTree = "<group>"; };
 		7006C6822B03DE500033A04B /* GameScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
@@ -129,6 +137,8 @@
 				708B68C82B03F31F002408CE /* bassnew.mp3 */,
 				70237C002B05DE6800078153 /* KickCajoon.m4a */,
 				708B68C92B03F31F002408CE /* snarenew.mp3 */,
+				606A5C892B0F99FD0023071D /* Basic first beats with cajon sounds.mp3 */,
+				606A5C882B0F99FD0023071D /* on the floor with cajon sound.mp3 */,
 				7006C68A2B03E0390033A04B /* SuperShy.mp3 */,
 				70237C012B05DE8100078153 /* SnareCajoon.m4a */,
 				70237C022B05E09100078153 /* CajoonKick.mp3 */,
@@ -146,6 +156,8 @@
 				7006C67D2B03DDEB0033A04B /* gameSceneParticle */,
 				6067793E2B035C2F009691D6 /* ConnectingView.swift */,
 				70A19DA22B0F689500A9F6AC /* GamePatternView.swift */,
+				606A5C8D2B0F9A750023071D /* GamePatternView2.swift */,
+				606A5C8C2B0F9A750023071D /* GameScenePattern2.swift */,
 				70A19DA02B0F688100A9F6AC /* GameScenePattern1.swift */,
 				709DA4272B0DE34E004F9AD1 /* BluetoothService.swift */,
 				606779402B035C2F009691D6 /* MainPageView.swift */,
@@ -351,6 +363,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				600673F72B03731D002D65EF /* Snare.mp3 in Resources */,
+				606A5C8B2B0F99FD0023071D /* Basic first beats with cajon sounds.mp3 in Resources */,
 				708B68CB2B03F31F002408CE /* snarenew.mp3 in Resources */,
 				7006C68D2B03E03A0033A04B /* supershydrum.mp3 in Resources */,
 				600673F62B03731D002D65EF /* Kick.mp3 in Resources */,
@@ -362,6 +375,7 @@
 				7006C6812B03DE330033A04B /* m.sks in Resources */,
 				70237C042B05E09100078153 /* CajoonKick.mp3 in Resources */,
 				743E862D2B03558F00FB81CE /* Assets.xcassets in Resources */,
+				606A5C8A2B0F99FD0023071D /* on the floor with cajon sound.mp3 in Resources */,
 				7006C6892B03DF1D0033A04B /* Assets.xcassets in Resources */,
 				7006C6802B03DE330033A04B /* MyParticle.sks in Resources */,
 			);
@@ -396,8 +410,10 @@
 				709DA4282B0DE34E004F9AD1 /* BluetoothService.swift in Sources */,
 				6067794E2B035CF4009691D6 /* ButtonAnimationComponent.swift in Sources */,
 				606779452B035C2F009691D6 /* MainPageView.swift in Sources */,
+				606A5C8F2B0F9A750023071D /* GamePatternView2.swift in Sources */,
 				6067794D2B035CF4009691D6 /* RoundedCornerComponent.swift in Sources */,
 				606779462B035C2F009691D6 /* SongsListView.swift in Sources */,
+				606A5C8E2B0F9A750023071D /* GameScenePattern2.swift in Sources */,
 				606779432B035C2F009691D6 /* ConnectingView.swift in Sources */,
 				70A19DA32B0F689500A9F6AC /* GamePatternView.swift in Sources */,
 				743E86292B03558F00FB81CE /* RhyplayApp.swift in Sources */,
