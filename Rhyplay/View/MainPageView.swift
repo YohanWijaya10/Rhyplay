@@ -66,7 +66,7 @@ struct MainPageView: View{
                         .frame(height: 20)
                     
                     //MARK: Button ke FreePlay
-                    NavigationLink(destination: FreePlayView(bunyi: $bunyi).navigationBarHidden(true)) {
+                    NavigationLink(destination: FreePlayView(bunyi: $bunyi).environmentObject(service).navigationBarHidden(true)) {
                         ZStack{
                             Image("FreePlayButton")
                                 .resizable()

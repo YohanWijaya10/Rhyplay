@@ -11,18 +11,31 @@ import AVFoundation
 import SwiftUI
 
 
-class GameScene: SKScene {
+class GameScene: SKScene, GameDelegate {
+    
+    
+    
+    
+    
     var snarev1: Double = 0.0
     var snarev: Double = 0.0{
         didSet {
             
-            snarev1 = snarev
             
             
         }
     }
     
+    func onSnareChange() {
+        
+    }
+    
+    
+    var timer: Timer?
+    var timerValue: Double = 0.0
+    
     var myLabel: SKLabelNode!
+    var myLabel2: SKLabelNode!
     var closeButton: SKSpriteNode!
     var snar = ContentView(bunyi: .constant(true))
     var closeds: Bool =  false
@@ -46,6 +59,8 @@ class GameScene: SKScene {
     var btnclose: SKSpriteNode!
     var ArrayNodesKickRight: [SKSpriteNode] = []
     
+    var bluetoothService: BluetoothService
+    
     var logOutput: String = "" {
         didSet {
             // Setelah logOutput diubah, update variabel copy
@@ -54,6 +69,7 @@ class GameScene: SKScene {
         }
     }
     
+    var point1 : Int = 0
     
     
     var copy: String = ""
@@ -68,15 +84,48 @@ class GameScene: SKScene {
             star()
         }
     }
+    func onSnareChange(snareV: Double) {
+            if snareV == 1.0 {
+                point1 += 1
+                print("\(snareV)    --> Point \(point1)     --> Timer: \(self.timerValue) ")
+            }
+            
+            startTimer()
+        }
+
+        func startTimer() {
+            if timer == nil {
+                timer = Timer.scheduledTimer(timeInterval: 0.02, target: self, selector: #selector(timerAction), userInfo: nil, repeats: true)
+            }
+        }
+
+        @objc func timerAction() {
+    
+            timerValue += 0.02
+
+            // Print nilai timerValue
+        }
+
+
     
     
+    
+    init(bluetoothService: BluetoothService, size: CGSize) {
+        self.bluetoothService = bluetoothService
+        super.init(size: size)
+    }
+        
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     
     
     var press: SKSpriteNode!
     
     override func didMove(to view: SKView) {
-        print(snarev1)
+        
+        bluetoothService.delegate = self
         
         backgroundColor = .black
         worldNode = SKNode()
@@ -341,13 +390,7 @@ class GameScene: SKScene {
                                         // Increment point only if the texture name does not contain "kosong"
                                         self.point += 1
                                     }
-                                    print(self.point)
-                                    
-                                    
-                                    
-                                    
-                                    
-                                    
+                                  
                                 }
                             }
                         }
@@ -535,7 +578,6 @@ class GameScene: SKScene {
                                         // Increment point only if the texture name does not contain "kosong"
                                         self.point += 1
                                     }
-                                    print(self.point)
                                     
                                     
                                     
@@ -782,7 +824,10 @@ class GameScene: SKScene {
             let addLabelAction10 = SKAction.run {
                 self.addLabelToScene()
             }
-            let sequenceAction10 = SKAction.sequence([waitAction10, fadeInScore1 , addLabelAction10])
+            let addSnare = SKAction.run {
+                self.righthand()
+            }
+            let sequenceAction10 = SKAction.sequence([waitAction10, fadeInScore1 , addLabelAction10, addSnare])
             self.run(sequenceAction10)
             
             
@@ -829,7 +874,7 @@ class GameScene: SKScene {
     func closeGame() {
         isHidden = true
         backgroundMusic?.stop()
-        GameScene().inputViewController?.dismiss(animated: true)
+        self.inputViewController?.dismiss(animated: true)
         // Dismiss the scene
         view?.window?.rootViewController?.dismiss(animated: true, completion: nil)
     }
@@ -837,11 +882,28 @@ class GameScene: SKScene {
         // Check if myLabel is not nil before updating its text
         if let myLabel = myLabel {
             myLabel.text = "Perfect Beat : \(self.point) / 128"
-            print("Point updated: \(self.point)")
         } else {
             print("myLabel is nil. Make sure it is properly initialized.")
         }
     }
+    
+    func righthand(){
+            
+            self.myLabel2 = SKLabelNode(fontNamed: "Arial")
+            self.myLabel2.text = "\(self.snarev)"
+            self.myLabel2.fontSize = 25
+            self.myLabel2.fontColor = SKColor.white
+            self.myLabel2.position = CGPoint(x:100, y: 100)
+            self.addChild(self.myLabel2)
+            
+    }
+//    func updateval() {
+//            if let myLabel2 = myLabel2 {
+//                myLabel2.text = "\(self.snarev)"
+//            } else{
+//                print("myLabel is nil. Make sure it is properly initialized.")
+//            }
+//    }
     
     func addLabelToScene() {
         
@@ -948,8 +1010,7 @@ class GameScene: SKScene {
         func restart() -> Void
         {
             //let transition = SKTransition.fade(with: .purple, duration: 15)
-            let restartScene = GameScene()
-            restartScene.size = CGSize(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
+            let restartScene = GameScene(bluetoothService: bluetoothService, size: CGSize(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height))
             restartScene.scaleMode = .fill
             self.view?.presentScene(restartScene)
         }
@@ -957,8 +1018,7 @@ class GameScene: SKScene {
         func restart1() -> Void
         {
             //let transition = SKTransition.fade(with: .purple, duration: 15)
-            let restartScene = GameScene()
-            restartScene.size = CGSize(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
+            let restartScene = GameScene(bluetoothService: bluetoothService, size: CGSize(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height))
             restartScene.scaleMode = .fill
             self.view?.presentScene(restartScene)
         }
@@ -1024,13 +1084,8 @@ class GameScene: SKScene {
             if let btnRetryEnding = btnRetryEnding, btnRetryEnding.contains(location){
                 
                 
-                
-                
+        
             }
-            
-            
-            
-            
             
         }
     }

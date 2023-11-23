@@ -7,13 +7,17 @@
 
 import SwiftUI
 
-struct FreePlayView: View {
+struct FreePlayNewView: View {
+    
     @Binding var bunyi : Bool
+    @EnvironmentObject var service: BluetoothService
+
     @State private var isHighlightingLeftSnare = false
     @State private var isHighlightingRightSnare = false
     @State private var isHighlightingLeftKick = false
     @State private var isHighlightingRightKick = false
-    @EnvironmentObject var service: BluetoothService
+    @State private var ColorSnareLeft: Color = .black
+    @State private var OpacitySnareLeft: Double = 0
     
     @Environment (\.dismiss) var dismiss
     
@@ -153,46 +157,21 @@ struct FreePlayView: View {
                     VStack {
                         ZStack {
                             Rectangle()
-                                .fill(Color("Transparent"))
+                                .fill(Color(ColorSnareLeft))
                                 .frame(maxWidth: .infinity, maxHeight: .infinity)
+                                .opacity(OpacitySnareLeft)
+                                .animation(.easeInOut(duration: 1))
                             
-                            Button(action: {
-                                if service.SnareV == 1.0 {
-                                    isHighlightingLeftSnare.toggle()
-                                    if isHighlightingLeftSnare {
-                                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.0) {
-                                            withAnimation {
-                                                isHighlightingLeftSnare = false
-                                            }
-                                        }
-                                    }
-                                }
-                            }) {
-                                if service.SnareV ==  1.0 {
-                                    Text("Snare")
-                                        .font(.system(size: 40, weight: .bold, design: .rounded))
-                                        .animation(.easeInOut(duration: 1))
-                                        .opacity(1)
-                                        .foregroundColor(.white)
-                                        
-                                        .frame(maxWidth: .infinity, maxHeight: .infinity)
-                                        .background(Color("Lead Scale50"))
-                                        
-                                        
-                                    
-                                }
-                                else if service.SnareV != 1.0 {
-                                    Text("Snare")
-                                        .font(.system(size: 40, weight: .bold, design: .rounded))
-                                        .animation(.easeInOut(duration: 1))
-                                        .opacity(0.3)
-                                        .foregroundColor(.black)
-                                    
-                                }
-                            }
+                            Text("Snare")
+                                .font(.system(size: 40, weight: .bold, design: .rounded))
+                                .foregroundStyle(Color.gray)
                             
-                          
+                            
+                            
+                            
+                            
                         }
+                        
                     }
                     VStack {
                         ZStack {
@@ -210,27 +189,10 @@ struct FreePlayView: View {
                                     }
                                 }
                             }) {
-                                if service.Bass1 ==  1.0 {
-                                    Text("Snare")
-                                        .font(.system(size: 40, weight: .bold, design: .rounded))
-                                        .animation(.easeInOut(duration: 1))
-                                        .opacity(1)
-                                        .foregroundColor(.white)
-                                        
-                                        .frame(maxWidth: .infinity, maxHeight: .infinity)
-                                        .background(Color("Lead Scale50"))
-                                        
-                                        
-                                    
-                                }
-                                else if service.Bass1 != 1.0 {
-                                    Text("Snare")
-                                        .font(.system(size: 40, weight: .bold, design: .rounded))
-                                        .animation(.easeInOut(duration: 1))
-                                        .opacity(0.3)
-                                        .foregroundColor(.black)
-                                    
-                                }
+                                Text("Snare")
+                                    .font(.system(size: 40, weight: .bold, design: .rounded))
+                                    .opacity(isHighlightingRightSnare ? 1.0 : 0.3)
+                                    .foregroundColor(isHighlightingRightSnare ? .white : .black)
                             }
                             
                             ButtonAnimationComponent(isHighlightingObject: $isHighlightingRightSnare)
@@ -256,24 +218,10 @@ struct FreePlayView: View {
                                     }
                                 }
                             }) {
-                                if service.SnareV == 2.0 {
-                                    Text("Kick")
-                                        .font(.system(size: 40, weight: .bold, design: .rounded))
-                                        .animation(.easeInOut(duration: 1))
-                                        .opacity(1)
-                                        .foregroundColor(.white)
-                                        
-                                        .frame(maxWidth: .infinity, maxHeight: .infinity)
-                                        .background(Color("Lead Scale50"))
-                                } else if service.SnareV != 2.0 {
-                                    
-                                    Text("kick")
-                                        .font(.system(size: 40, weight: .bold, design: .rounded))
-                                        .animation(.easeInOut(duration: 1))
-                                        .opacity(0.3)
-                                        .foregroundColor(.black)
-                                    
-                                }
+                                Text("Kick")
+                                    .font(.system(size: 40, weight: .bold, design: .rounded))
+                                    .opacity(isHighlightingLeftKick ? 1.0 : 0.3)
+                                    .foregroundColor(isHighlightingLeftKick ? .white : .black)
                             }
                             
                             ButtonAnimationComponent(isHighlightingObject: $isHighlightingLeftKick)
@@ -295,24 +243,10 @@ struct FreePlayView: View {
                                     }
                                 }
                             }) {
-                                if service.Bass1 == 2.0 {
-                                    Text("Kick")
-                                        .font(.system(size: 40, weight: .bold, design: .rounded))
-                                        .animation(.easeInOut(duration: 1))
-                                        .opacity(1)
-                                        .foregroundColor(.white)
-                                        
-                                        .frame(maxWidth: .infinity, maxHeight: .infinity)
-                                        .background(Color("Lead Scale50"))
-                                } else if service.Bass1 != 2.0 {
-                                    
-                                    Text("kick")
-                                        .font(.system(size: 40, weight: .bold, design: .rounded))
-                                        .animation(.easeInOut(duration: 1))
-                                        .opacity(0.3)
-                                        .foregroundColor(.black)
-                                    
-                                }
+                                Text("Kick")
+                                    .font(.system(size: 40, weight: .bold, design: .rounded))
+                                    .opacity(isHighlightingRightKick ? 1.0 : 0.3)
+                                    .foregroundColor(isHighlightingRightKick ? .white : .black)
                             }
                             
                             ButtonAnimationComponent(isHighlightingObject: $isHighlightingRightKick)
@@ -349,7 +283,7 @@ struct FreePlayView: View {
 }
 
 #Preview {
-    FreePlayView(bunyi: .constant(false))
+    FreePlayNewView(bunyi: .constant(false))
 }
 
 

@@ -25,10 +25,9 @@ struct ContentView: View {
         @State private var isGameScenePresented = false
 
     var scene: SKScene {
-        let scene = GameScene()
+        let scene = GameScene(bluetoothService: service, size: CGSize(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height))
         scene.snarev = service.SnareV
         scene.closeds = kotak // Assign the value instead of modifying state
-        scene.size = CGSize(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
         scene.scaleMode = .fill
 
         return scene
@@ -37,7 +36,6 @@ struct ContentView: View {
       var body: some View {
           NavigationView {
               ZStack{
-                  Text("hai brian")
                   if isGameScenePresented == true {
                       //                    SpriteView(scene: scene)
                       //                        .edgesIgnoringSafeArea(.all)
