@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-
+import Combine
 struct FreePlayView: View {
     @Binding var bunyi : Bool
     @State private var isHighlightingLeftSnare = false
@@ -14,13 +14,15 @@ struct FreePlayView: View {
     @State private var isHighlightingLeftKick = false
     @State private var isHighlightingRightKick = false
     @EnvironmentObject var service: BluetoothService
+    @State private var pointku = 0
+    @State private var pointku1 = 0
     
     @Environment (\.dismiss) var dismiss
     
     var body: some View {
         
         ZStack{
-            //MARK: This is the background of this view
+                //MARK: This is the background of this view
             VStack(alignment: .center, spacing: .zero){
                 
                 HStack(spacing: .zero){
@@ -344,7 +346,21 @@ struct FreePlayView: View {
         }
         .onAppear(){
             bunyi = true
+            print(service.SnareV)
+
         }
+        .onReceive(Just(service.SnareV)) { snareVal in
+            
+            
+            if snareVal == 1.0 {
+                pointku += 1
+                print(pointku)
+            } else if  snareVal == 2.0{
+                pointku1 += 1
+                print(pointku1)
+            }
+        }
+        
     }
 }
 

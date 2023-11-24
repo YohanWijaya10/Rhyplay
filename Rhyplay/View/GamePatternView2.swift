@@ -10,10 +10,12 @@ import SpriteKit
 import AVFoundation
  
 
+
 struct GamePatternView2: View{
     
     @Environment (\.dismiss) var dismiss
     @State private var isGameScenePresented = true
+    
     
     var scene: SKScene {
         let scene = GameScenePattern2()
@@ -34,3 +36,4 @@ struct GamePatternView2: View{
 #Preview {
     GamePatternView2()
 }
+                                                        

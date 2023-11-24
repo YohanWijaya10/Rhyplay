@@ -35,6 +35,8 @@ class GameScene: SKScene, GameDelegate {
     var timerValue: Double = 0.0
     
     var myLabel: SKLabelNode!
+    var failLabel: SKLabelNode!
+
     var myLabel2: SKLabelNode!
     var closeButton: SKSpriteNode!
     var snar = ContentView(bunyi: .constant(true))
@@ -133,7 +135,7 @@ class GameScene: SKScene, GameDelegate {
         gameplay  = SKAction.sequence([SKAction.run {
             
             
-            if let musicURL = Bundle.main.url(forResource: "SuperShy", withExtension: "mp3") {
+            if let musicURL = Bundle.main.url(forResource: "supershydrum", withExtension: "mp3") {
                 do {
                     self.backgroundMusic = try AVAudioPlayer(contentsOf: musicURL)
                     
@@ -820,14 +822,12 @@ class GameScene: SKScene, GameDelegate {
             
             
             
-            let waitAction10 = SKAction.wait(forDuration: 1)
+            let waitAction10 = SKAction.wait(forDuration: 69)
             let addLabelAction10 = SKAction.run {
                 self.addLabelToScene()
             }
-            let addSnare = SKAction.run {
-                self.righthand()
-            }
-            let sequenceAction10 = SKAction.sequence([waitAction10, fadeInScore1 , addLabelAction10, addSnare])
+            
+            let sequenceAction10 = SKAction.sequence([waitAction10, fadeInScore1 , addLabelAction10])
             self.run(sequenceAction10)
             
             
@@ -880,8 +880,10 @@ class GameScene: SKScene, GameDelegate {
     }
     func updateLabel() {
         // Check if myLabel is not nil before updating its text
+        let miss = "3"
         if let myLabel = myLabel {
             myLabel.text = "Perfect Beat : \(self.point) / 128"
+            
         } else {
             print("myLabel is nil. Make sure it is properly initialized.")
         }
@@ -914,6 +916,19 @@ class GameScene: SKScene, GameDelegate {
         self.myLabel.fontColor = SKColor.white
         self.myLabel.position = CGPoint(x: self.size.width / 2, y: self.size.height / 2)
         self.addChild(self.myLabel)
+        
+        self.failLabel = SKLabelNode(fontNamed: "Arial")
+        self.failLabel.text = "Miss Beat : 3"
+        self.failLabel.fontSize = 25
+        self.failLabel.fontColor = SKColor.white
+        self.failLabel.position = CGPoint(x: 200, y:  380)
+        self.addChild(self.failLabel)
+        
+    }
+    
+    func addlabelfail(){
+        
+        
         
     }
     
