@@ -21,6 +21,7 @@ struct MainPageView: View{
         NavigationStack{
             ZStack{
                 //MARK: Wana backgrounds
+                ///COBA AJA DEH
                 Color("Maroon")
                     .edgesIgnoringSafeArea(.all)
                 
