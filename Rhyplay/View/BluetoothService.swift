@@ -71,6 +71,8 @@ class BluetoothService: NSObject, ObservableObject {
     
     var delegate: GameDelegate?
     
+    private var audioPlayer: AVAudioPlayer?
+    
     
     override init() {
         super.init()
@@ -169,6 +171,7 @@ extension BluetoothService: CBCentralManagerDelegate {
 
 extension BluetoothService: CBPeripheralDelegate {
     
+
     func peripheral(_ peripheral: CBPeripheral, didDiscoverServices error: Error?) {
         for service in peripheral.services ?? [] {
             if service.uuid == hallSensorService {
@@ -205,21 +208,6 @@ extension BluetoothService: CBPeripheralDelegate {
                 return
             }
             guard let dataValue = try? JSONDecoder().decode(TestJSON.self, from: data) else { return }
-            //            let dataValue = String(decoding: data, as: UTF8.self)
-            //            let newData = TestJSON(accelX: dataValue.accelX)
-            //            guard let dataValue = String(data: data, encoding: String.Encoding) else { return }
-            //            let sensorData: Int = data.withUnsafeBytes { $0.pointee }
-            
-            //            XValue = sensorData
-            //            print(XValue)
-            //            print("Snare Y = \(dataValue.accelY)  X = \(dataValue.accelX) Z =  \(dataValue.accelZ)")
-            
-            //            AccelValueY = Double(dataValue.accelY) ?? 0
-            //            AccelValueX = Double(dataValue.accelX) ?? 0
-            //            AccelValueZ = Double(dataValue.accelZ) ?? 0
-            //            gyroValueY = Double(dataValue.gyroY) ?? 0
-            //            gyroValueX = Double(dataValue.gyroX) ?? 0
-            //            gyroValueZ = Double(dataValue.gyroZ) ?? 0
             
             AccelValueY = Double(dataValue.gyroY) ?? 0
             AccelValueX = Double(dataValue.gyroX) ?? 0
@@ -232,7 +220,17 @@ extension BluetoothService: CBPeripheralDelegate {
             
             delegate?.onSnareChange(snareV: SnareV)
             
+            if SnareV == 1 {
+                playSound(fileName: "CajoonSnare", fileExtension: "mp3")
+            } else if SnareV == 2 {
+                playSound(fileName: "CajoonKick", fileExtension: "mp3")
+            }
             
+            if Bass1 == 1 {
+                playSound(fileName: "CajoonSnare", fileExtension: "mp3")
+            } else if Bass1 == 2 {
+                playSound(fileName: "CajoonKick", fileExtension: "mp3")
+            }
             
         } else  if characteristic.uuid == hallSensorCharacteristic2 {
             guard let data = characteristic.value else {
@@ -268,6 +266,25 @@ extension BluetoothService: CBPeripheralDelegate {
         }
         
     }
+    
+    func playSound(fileName: String, fileExtension: String) {
+        if let soundURL = Bundle.main.url(forResource: fileName, withExtension: fileExtension) {
+            do {
+                if audioPlayer == nil {
+                    audioPlayer = try AVAudioPlayer(contentsOf: soundURL)
+                    audioPlayer?.volume = 1
+                }
+                if audioPlayer!.isPlaying {
+                    audioPlayer?.pause()
+                }
+                audioPlayer?.currentTime = 0
+                audioPlayer?.play()
+            } catch {
+                print("Error playing sound: \(error.localizedDescription)")
+            }
+        }
+    }
+
     
 }
 

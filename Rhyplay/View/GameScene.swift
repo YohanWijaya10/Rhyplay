@@ -82,7 +82,6 @@ class GameScene: SKScene, GameDelegate {
     var point: Int = 0 {
         didSet {
             // Kode yang akan dijalankan setiap kali nilai point berubah
-            updateLabel()
             star()
         }
     }
@@ -878,16 +877,7 @@ class GameScene: SKScene, GameDelegate {
         // Dismiss the scene
         view?.window?.rootViewController?.dismiss(animated: true, completion: nil)
     }
-    func updateLabel() {
-        // Check if myLabel is not nil before updating its text
-        let miss = "3"
-        if let myLabel = myLabel {
-            myLabel.text = "Perfect Beat : \(self.point) / 128"
-            
-        } else {
-            print("myLabel is nil. Make sure it is properly initialized.")
-        }
-    }
+   
     
     func righthand(){
             

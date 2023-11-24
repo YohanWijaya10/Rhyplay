@@ -34,7 +34,6 @@
 		708B68CA2B03F31F002408CE /* bassnew.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 708B68C82B03F31F002408CE /* bassnew.mp3 */; };
 		708B68CB2B03F31F002408CE /* snarenew.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 708B68C92B03F31F002408CE /* snarenew.mp3 */; };
 		709DA4282B0DE34E004F9AD1 /* BluetoothService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 709DA4272B0DE34E004F9AD1 /* BluetoothService.swift */; };
-		709DA42A2B0F3630004F9AD1 /* FreePlayNew.swift in Sources */ = {isa = PBXBuildFile; fileRef = 709DA4292B0F3630004F9AD1 /* FreePlayNew.swift */; };
 		70A19DA12B0F688100A9F6AC /* GameScenePattern1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70A19DA02B0F688100A9F6AC /* GameScenePattern1.swift */; };
 		70A19DA32B0F689500A9F6AC /* GamePatternView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70A19DA22B0F689500A9F6AC /* GamePatternView.swift */; };
 		743E86292B03558F00FB81CE /* RhyplayApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 743E86282B03558F00FB81CE /* RhyplayApp.swift */; };
@@ -92,7 +91,6 @@
 		708B68C82B03F31F002408CE /* bassnew.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = bassnew.mp3; sourceTree = "<group>"; };
 		708B68C92B03F31F002408CE /* snarenew.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = snarenew.mp3; sourceTree = "<group>"; };
 		709DA4272B0DE34E004F9AD1 /* BluetoothService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluetoothService.swift; sourceTree = "<group>"; };
-		709DA4292B0F3630004F9AD1 /* FreePlayNew.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FreePlayNew.swift; sourceTree = "<group>"; };
 		70A19DA02B0F688100A9F6AC /* GameScenePattern1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScenePattern1.swift; sourceTree = "<group>"; };
 		70A19DA22B0F689500A9F6AC /* GamePatternView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamePatternView.swift; sourceTree = "<group>"; };
 		743E86252B03558F00FB81CE /* Rhyplay.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Rhyplay.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -161,7 +159,6 @@
 				70A19DA02B0F688100A9F6AC /* GameScenePattern1.swift */,
 				709DA4272B0DE34E004F9AD1 /* BluetoothService.swift */,
 				606779402B035C2F009691D6 /* MainPageView.swift */,
-				709DA4292B0F3630004F9AD1 /* FreePlayNew.swift */,
 				6067793F2B035C2F009691D6 /* PatternListView.swift */,
 				7006C6842B03DE610033A04B /* ContentView.swift */,
 				7006C6822B03DE500033A04B /* GameScene.swift */,
@@ -417,7 +414,6 @@
 				606779432B035C2F009691D6 /* ConnectingView.swift in Sources */,
 				70A19DA32B0F689500A9F6AC /* GamePatternView.swift in Sources */,
 				743E86292B03558F00FB81CE /* RhyplayApp.swift in Sources */,
-				709DA42A2B0F3630004F9AD1 /* FreePlayNew.swift in Sources */,
 				606779442B035C2F009691D6 /* PatternListView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
