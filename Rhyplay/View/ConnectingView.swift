@@ -372,6 +372,7 @@ struct ConnectingView: View {
                                     ZStack{
                                         if service.peripheralStatus2 !=  .connected{
                                             Image("Left Hand Icon")
+                                            //ajnyaaa
                                                 .resizable()
                                                 .frame(width: 65, height: 65) //size gambar tangan
                                                 .frame(width: 115, height: 115) // size button lingkaran
