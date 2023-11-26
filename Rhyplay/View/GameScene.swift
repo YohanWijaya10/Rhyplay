@@ -12,14 +12,28 @@ import SwiftUI
 
 
 class GameScene: SKScene, GameDelegate {
+    
     func onBassChange(bass1: Double) {
-        if bass1 == 1.0 {
+        if bass1 == 2.0
+        {
             point1 += 1
-            print("\(bass1)    --> Point \(point1)     --> Timer: \(self.timerValue) ")
+            print("kanan = \(bass1)    --> Point \(point1)     --> Timer: \(self.timerValue) ")
+            
         }
-        
         delayStartTimer()
+        
     }
+    
+    
+    
+    func logput1(){
+        
+        
+        
+    }
+    
+    
+   
     
     
     
@@ -39,6 +53,7 @@ class GameScene: SKScene, GameDelegate {
     
     var timer: Timer?
     var timerValue: Double = 0.0
+    
     
     var myLabel: SKLabelNode!
     var failLabel: SKLabelNode!
@@ -92,11 +107,11 @@ class GameScene: SKScene, GameDelegate {
         }
     }
     func onSnareChange(snareV: Double) {
-            if snareV == 1.0 {
-                point1 += 1
-                print("\(snareV)    --> Point \(point1)     --> Timer: \(self.timerValue) ")
-            }
-            
+//            if snareV == 1.0 {
+//                point1 += 1
+//                print("kiri  = \(snareV)    --> Point \(point1)     --> Timer: \(self.timerValue) ")
+//            }
+//            
         delayStartTimer()
     }
     
@@ -138,9 +153,8 @@ class GameScene: SKScene, GameDelegate {
     var press: SKSpriteNode!
     
     override func didMove(to view: SKView) {
-        
+        logput1()
         bluetoothService.delegate = self
-        
         backgroundColor = .black
         worldNode = SKNode()
         self.addChild(self.worldNode!)
@@ -400,10 +414,7 @@ class GameScene: SKScene, GameDelegate {
                                 let components = textureName.components(separatedBy: "'")
                                 if components.count > 1 {
                                     self.logOutput = components[1]
-                                    if !components[1].contains("kosong") {
-                                        // Increment point only if the texture name does not contain "kosong"
-                                        self.point += 1
-                                    }
+                                  
                                   
                                 }
                             }
@@ -417,7 +428,7 @@ class GameScene: SKScene, GameDelegate {
                         let moveAction = SKAction.move(to: CGPoint(x: 345, y: 100), duration: 1.6)
                         let resetPositionAction = SKAction.move(to: CGPoint(x: xStartPosition, y: yStartPosition), duration: 0)
                         let fadeInAction = SKAction.fadeIn(withDuration: 0)
-                        let opacityAction = SKAction.fadeAlpha(to: 1.0, duration: 0) // Add this line
+                        let opacityAction = SKAction.fadeAlpha(to: 0.0, duration: 0) // Add this line
 
                         let kickRightSequence = SKAction.sequence([waitAction, printAction, fadeInAction, opacityAction, moveAction, resetPositionAction]) // Modify this line
 
