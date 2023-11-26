@@ -31,6 +31,7 @@ let hallSensorCharacteristic2: CBUUID = CBUUID(string: "ab90b28e-c31e-4bbe-b0a8-
 
 protocol GameDelegate {
     func onSnareChange(snareV: Double)
+    func onBassChange(bass1: Double)
 }
 
 
@@ -72,6 +73,9 @@ class BluetoothService: NSObject, ObservableObject {
     var delegate: GameDelegate?
     
     private var audioPlayer: AVAudioPlayer?
+    private var audioPlayer2: AVAudioPlayer?
+    private var audioPlayer3: AVAudioPlayer?
+    private var audioPlayer4: AVAudioPlayer?
     
     
     override init() {
@@ -219,18 +223,27 @@ extension BluetoothService: CBPeripheralDelegate {
             Bass1 = Double(dataValue.Bass) ?? 0
             
             delegate?.onSnareChange(snareV: SnareV)
+            delegate?.onBassChange(bass1: Bass1)
             
             if SnareV == 1 {
                 playSound(fileName: "CajoonSnare", fileExtension: "mp3")
             } else if SnareV == 2 {
-                playSound(fileName: "CajoonKick", fileExtension: "mp3")
+                playSound2(fileName: "CajoonKick", fileExtension: "mp3")
+                print(SnareV)
+                
             }
+            
             
             if Bass1 == 1 {
                 playSound(fileName: "CajoonSnare", fileExtension: "mp3")
+                print(Bass1)
             } else if Bass1 == 2 {
-                playSound(fileName: "CajoonKick", fileExtension: "mp3")
+                playSound2(fileName: "CajoonKick", fileExtension: "mp3")
+                print(SnareV)
+                
             }
+            
+           
             
         } else  if characteristic.uuid == hallSensorCharacteristic2 {
             guard let data = characteristic.value else {
@@ -268,22 +281,47 @@ extension BluetoothService: CBPeripheralDelegate {
     }
     
     func playSound(fileName: String, fileExtension: String) {
-        if let soundURL = Bundle.main.url(forResource: fileName, withExtension: fileExtension) {
-            do {
-                if audioPlayer == nil {
+            if let soundURL = Bundle.main.url(forResource: fileName, withExtension: fileExtension) {
+                do {
                     audioPlayer = try AVAudioPlayer(contentsOf: soundURL)
-                    audioPlayer?.volume = 1
+                    audioPlayer?.play()
+                } catch {
+                    print("Error playing sound: \(error.localizedDescription)")
                 }
-                if audioPlayer!.isPlaying {
-                    audioPlayer?.pause()
-                }
-                audioPlayer?.currentTime = 0
-                audioPlayer?.play()
-            } catch {
-                print("Error playing sound: \(error.localizedDescription)")
             }
         }
-    }
+        func playSound2(fileName: String, fileExtension: String) {
+            if let soundURL = Bundle.main.url(forResource: fileName, withExtension: fileExtension) {
+                do {
+                    audioPlayer2 = try AVAudioPlayer(contentsOf: soundURL)
+                    audioPlayer2?.volume = 1
+                    audioPlayer2?.play()
+                } catch {
+                    print("Error playing sound: \(error.localizedDescription)")
+                }
+            }
+        }
+    func playSound3(fileName: String, fileExtension: String) {
+            if let soundURL = Bundle.main.url(forResource: fileName, withExtension: fileExtension) {
+                do {
+                    audioPlayer3 = try AVAudioPlayer(contentsOf: soundURL)
+                    audioPlayer3?.play()
+                } catch {
+                    print("Error playing sound: \(error.localizedDescription)")
+                }
+            }
+        }
+        func playSound4(fileName: String, fileExtension: String) {
+            if let soundURL = Bundle.main.url(forResource: fileName, withExtension: fileExtension) {
+                do {
+                    audioPlayer4 = try AVAudioPlayer(contentsOf: soundURL)
+                    audioPlayer4?.volume = 1
+                    audioPlayer4?.play()
+                } catch {
+                    print("Error playing sound: \(error.localizedDescription)")
+                }
+            }
+        }
 
     
 }
