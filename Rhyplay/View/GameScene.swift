@@ -13,6 +13,29 @@ import SwiftUI
 
 class GameScene: SKScene, GameDelegate {
     
+    func onBassChange(bass1: Double) {
+        if bass1 == 2.0
+        {
+            point1 += 1
+            print("kanan = \(bass1)    --> Point \(point1)     --> Timer: \(self.timerValue) ")
+            
+        }
+        delayStartTimer()
+        
+    }
+    
+    
+    
+    func logput1(){
+        
+        
+        
+    }
+    
+    
+   
+    
+    
     
     
     
@@ -26,13 +49,11 @@ class GameScene: SKScene, GameDelegate {
         }
     }
     
-    func onSnareChange() {
-        
-    }
     
     
     var timer: Timer?
     var timerValue: Double = 0.0
+    
     
     var myLabel: SKLabelNode!
     var failLabel: SKLabelNode!
@@ -82,18 +103,24 @@ class GameScene: SKScene, GameDelegate {
     var point: Int = 0 {
         didSet {
             // Kode yang akan dijalankan setiap kali nilai point berubah
-            updateLabel()
             star()
         }
     }
     func onSnareChange(snareV: Double) {
-            if snareV == 1.0 {
-                point1 += 1
-                print("\(snareV)    --> Point \(point1)     --> Timer: \(self.timerValue) ")
-            }
-            
-            startTimer()
+//            if snareV == 1.0 {
+//                point1 += 1
+//                print("kiri  = \(snareV)    --> Point \(point1)     --> Timer: \(self.timerValue) ")
+//            }
+//            
+        delayStartTimer()
+    }
+    
+    func delayStartTimer() {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
+            self.startTimer()
         }
+    }
+
 
         func startTimer() {
             if timer == nil {
@@ -126,9 +153,8 @@ class GameScene: SKScene, GameDelegate {
     var press: SKSpriteNode!
     
     override func didMove(to view: SKView) {
-        
+        logput1()
         bluetoothService.delegate = self
-        
         backgroundColor = .black
         worldNode = SKNode()
         self.addChild(self.worldNode!)
@@ -388,10 +414,7 @@ class GameScene: SKScene, GameDelegate {
                                 let components = textureName.components(separatedBy: "'")
                                 if components.count > 1 {
                                     self.logOutput = components[1]
-                                    if !components[1].contains("kosong") {
-                                        // Increment point only if the texture name does not contain "kosong"
-                                        self.point += 1
-                                    }
+                                  
                                   
                                 }
                             }
@@ -878,16 +901,7 @@ class GameScene: SKScene, GameDelegate {
         // Dismiss the scene
         view?.window?.rootViewController?.dismiss(animated: true, completion: nil)
     }
-    func updateLabel() {
-        // Check if myLabel is not nil before updating its text
-        let miss = "3"
-        if let myLabel = myLabel {
-            myLabel.text = "Perfect Beat : \(self.point) / 128"
-            
-        } else {
-            print("myLabel is nil. Make sure it is properly initialized.")
-        }
-    }
+   
     
     func righthand(){
             

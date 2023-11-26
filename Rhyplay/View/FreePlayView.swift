@@ -346,19 +346,13 @@ struct FreePlayView: View {
         }
         .onAppear(){
             bunyi = true
-            print(service.SnareV)
+           
 
         }
         .onReceive(Just(service.SnareV)) { snareVal in
             
             
-            if snareVal == 1.0 {
-                pointku += 1
-                print(pointku)
-            } else if  snareVal == 2.0{
-                pointku1 += 1
-                print(pointku1)
-            }
+          
         }
         
     }

@@ -368,37 +368,23 @@ struct ConnectingView: View {
             }.onAppear(){
                 service.isScanning = true
                 service.isScanning2 = true
-            }
-            .onReceive(Just(service.SnareV)) { snareVal in
                 
-                if bunyi ==  true {
-                    if snareVal == 1{
-                        playSound(fileName: "CajoonSnare", fileExtension: "mp3")
-                    } else if snareVal == 2{
-                        playSound1(fileName: "CajoonKick", fileExtension: "mp3")
-                    } else{
-                        
-                    }
-                }
             }
-            .onReceive(Just(service.Bass1)) { snare in
-                if bunyi == true{
-                    if snare == 1{
-                        playSound2(fileName: "CajoonSnare", fileExtension: "mp3")
-                    } else if snare == 2{
-                        playSound3(fileName: "CajoonKick", fileExtension: "mp3")
-                    } else{
-                        
-                    }
-                }
-            }
+            
         }
     }
     
     func playSound(fileName: String, fileExtension: String) {
         if let soundURL = Bundle.main.url(forResource: fileName, withExtension: fileExtension) {
             do {
-                audioPlayer = try AVAudioPlayer(contentsOf: soundURL)
+                if audioPlayer == nil {
+                    audioPlayer = try AVAudioPlayer(contentsOf: soundURL)
+                    audioPlayer?.volume = 1
+                }
+                if audioPlayer!.isPlaying {
+                    audioPlayer?.pause()
+                }
+                audioPlayer?.currentTime = 0
                 audioPlayer?.play()
             } catch {
                 print("Error playing sound: \(error.localizedDescription)")
@@ -408,7 +394,10 @@ struct ConnectingView: View {
     func playSound1(fileName: String, fileExtension: String) {
         if let soundURL = Bundle.main.url(forResource: fileName, withExtension: fileExtension) {
             do {
-                audioPlayer1 = try AVAudioPlayer(contentsOf: soundURL)
+                if audioPlayer1 == nil {
+                    audioPlayer1 = try AVAudioPlayer(contentsOf: soundURL)
+                }
+
                 audioPlayer1?.volume = 1
                 audioPlayer1?.play()
             } catch {
@@ -419,7 +408,10 @@ struct ConnectingView: View {
     func playSound2(fileName: String, fileExtension: String) {
         if let soundURL = Bundle.main.url(forResource: fileName, withExtension: fileExtension) {
             do {
-                audioPlayer2 = try AVAudioPlayer(contentsOf: soundURL)
+                if audioPlayer2 == nil {
+                    audioPlayer2 = try AVAudioPlayer(contentsOf: soundURL)
+                }
+
                 audioPlayer2?.volume = 1
                 audioPlayer2?.play()
             } catch {
@@ -430,7 +422,10 @@ struct ConnectingView: View {
     func playSound3(fileName: String, fileExtension: String) {
         if let soundURL = Bundle.main.url(forResource: fileName, withExtension: fileExtension) {
             do {
-                audioPlayer3 = try AVAudioPlayer(contentsOf: soundURL)
+                if audioPlayer3 == nil {
+                    audioPlayer3 = try AVAudioPlayer(contentsOf: soundURL)
+                }
+
                 audioPlayer3?.volume = 1
                 audioPlayer3?.play()
             } catch {
