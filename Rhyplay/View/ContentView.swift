@@ -53,7 +53,7 @@ struct ContentView: View {
                   VStack{
                       HStack{
                           Spacer()
-                          //                        Text("X")
+                          //                             Text("X")
                           //                            .font(.title)
                           //                            .fontWeight(.bold)
                           //                            .foregroundColor(Color.white)

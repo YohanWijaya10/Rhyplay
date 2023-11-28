@@ -21,7 +21,7 @@ struct SongListView: View {
     @State var ArtistId: String = ""
     @State var nyoba: String = "coba"
     @EnvironmentObject var service: BluetoothService
-    var Allitems = ["Super Shy","coba"]
+    var Allitems = ["Super Shy"]
     var Pop = [String]()
     let Rock = [String]()
     let HipHop = [String]()
@@ -397,8 +397,9 @@ struct SongListView: View {
                                                 .presentationDetents([.height(800)])
                                         }
                                         
-                                        NavigationLink(destination: ContentView(bunyi: $bunyi).navigationBarBackButtonHidden(true), isActive: $playingGame) {
+                                        NavigationLink(destination: ContentView(bunyi: $bunyi).environmentObject(service).navigationBarBackButtonHidden(true), isActive: $playingGame) {
                                             EmptyView()
+                                            
                                         }
                                     }
                                 }
