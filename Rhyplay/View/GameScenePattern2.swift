@@ -501,13 +501,9 @@ class GameScenePattern2: SKScene {
     func closeGame() {
         isHidden = true
         backgroundMusic?.stop()
-        GameScenePattern2().inputViewController?.dismiss(animated: true)
-        // Add any other logic needed when the game is paused, like showing a pause menu.
-        
-        // Dismiss the scene
+        self.inputViewController?.dismiss(animated: true)
         view?.window?.rootViewController?.dismiss(animated: true, completion: nil)
-        
-        
+        print("test")
     }
    
     
@@ -517,9 +513,11 @@ class GameScenePattern2: SKScene {
         func closeGame() {
             isHidden = true
             backgroundMusic?.stop()
+            
             GameScenePattern2().inputViewController?.dismiss(animated: true)
             // Dismiss the scene
             view?.window?.rootViewController?.dismiss(animated: true, completion: nil)
+            print("test")
         }
         
         func pauseGame() {
@@ -649,18 +647,18 @@ struct GameViewPattern2: UIViewControllerRepresentable {
     typealias UIViewControllerType = UIViewController
     
     class Coordinator: NSObject {
-        var parent: GameViewPattern2
+        var parent2: GameViewPattern2
         var isPresented: Binding<Bool>
         
-        init(parent: GameViewPattern2, isPresented: Binding<Bool>) {
-            self.parent = parent
+        init(parent2: GameViewPattern2, isPresented: Binding<Bool>) {
+            self.parent2 = parent2
             self.isPresented = isPresented
         }
         
         @objc func endGame() {
             // Handle any clean-up or game-ending logic here
             isPresented.wrappedValue = false
-            if let gameScene = parent.scene as? GameScenePattern2 {
+            if let gameScene = parent2.scene as? GameScenePattern2 {
                 gameScene.closeGame()
             }
         }
@@ -690,12 +688,40 @@ struct GameViewPattern2: UIViewControllerRepresentable {
         NSLayoutConstraint.activate([
             endButton.centerXAnchor.constraint(equalTo: viewController.view.centerXAnchor, constant: 149),
             endButton.centerYAnchor.constraint(equalTo: viewController.view.centerYAnchor, constant: -352),
-            endButton.widthAnchor.constraint(equalToConstant: 16), // Adjust the width as needed
-            endButton.heightAnchor.constraint(equalToConstant: 18)
+            endButton.widthAnchor.constraint(equalToConstant: 40), // Adjust the width as needed
+            endButton.heightAnchor.constraint(equalToConstant: 40)
         ])
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 5) { // Adjust the delay duration as needed
             endButton.isHidden = false
+        }
+        DispatchQueue.main.asyncAfter(deadline: .now() + 68) { // Adjust the delay duration as needed
+            endButton.isHidden = true
+        }
+        
+        // Create a button to BacktoSongs
+        let BacktoSongButton = UIButton(type: .custom)
+        BacktoSongButton.setImage(UIImage(named: "BackSongs"), for: .normal)
+        BacktoSongButton.contentMode = .scaleAspectFit
+        BacktoSongButton.tintColor = .pink
+        BacktoSongButton.isHidden = true
+        BacktoSongButton.addTarget(context.coordinator, action: #selector(Coordinator.endGame), for: .touchUpInside)
+        viewController.view.addSubview(BacktoSongButton)
+        
+        // Layout button (you may want to customize this based on your needs)
+        BacktoSongButton.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            BacktoSongButton.centerXAnchor.constraint(equalTo: viewController.view.centerXAnchor, constant: 80),
+            BacktoSongButton.centerYAnchor.constraint(equalTo: viewController.view.centerYAnchor, constant: 353),
+            BacktoSongButton.widthAnchor.constraint(equalToConstant: 163), // Adjust the width as needed
+            BacktoSongButton.heightAnchor.constraint(equalToConstant: 35)
+        ])
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 27) { // Adjust the delay duration as needed
+            UIView.animate(withDuration: 2.0) {
+                BacktoSongButton.isHidden = false
+                BacktoSongButton.alpha = 1.0
+            }
         }
         
         return viewController
@@ -706,7 +732,7 @@ struct GameViewPattern2: UIViewControllerRepresentable {
     }
     
     func makeCoordinator() -> Coordinator {
-        Coordinator(parent: self, isPresented: $isPresented)
+        Coordinator(parent2: self, isPresented: $isPresented)
     }
 }
 

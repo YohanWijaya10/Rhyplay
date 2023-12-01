@@ -19,8 +19,8 @@ class GameScene: SKScene, GameDelegate {
         
         
         delayStartTimer()
-        
-        if self.logOutput ==  "bar2" && bass1 == 1.0 {
+        //logoutput kiri
+        if self.logOutput ==  "bar1" && bass1 == 2.0 {
             point2 += 1
         }
         
@@ -34,7 +34,7 @@ class GameScene: SKScene, GameDelegate {
         //                print("kiri  = \(snareV)    --> Point \(point1)     --> Timer: \(self.timerValue) ")
         //            }
         
-        if logOutput2 == "bar1" && snareV == 2.0 {
+        if logOutput2 == "bar2" && snareV == 1.0 {
             point2 += 1
         }
         
@@ -115,8 +115,6 @@ class GameScene: SKScene, GameDelegate {
     }
     var logOutput2: String = ""
     var point1 : Int = 0
-    
-    
     var copy: String = ""
     
     
@@ -181,44 +179,44 @@ class GameScene: SKScene, GameDelegate {
             let fadeInAction1 = SKAction.fadeIn(withDuration: 2)
             let sequenceActionStar1 = SKAction.sequence([waitAction1, fadeInAction1])
             starwhite1.run(sequenceActionStar1)
-        
-            
-
             
             
             
             
-//            //yellow star
-//            staryellow  = SKSpriteNode(imageNamed: "star yellow")
-//            staryellow.setScale(CGFloat(1))
-//            staryellow.position = CGPoint(x: 150, y: 650)
-//            staryellow.alpha = 0.0
-//            self.addChild(staryellow)
-//            let waitAction3 = SKAction.wait(forDuration: 0)
-//            let fadeInAction3 = SKAction.fadeIn(withDuration: 3)
-//            let sequenceActionStar3 = SKAction.sequence([waitAction3, fadeInAction3])
-//            staryellow.run(sequenceActionStar3)
-//            
-//            staryellow1 = SKSpriteNode(imageNamed: "star yellow")
-//            staryellow1.setScale(CGFloat(1))
-//            staryellow1.position = CGPoint(x: 160, y: 650)
-//            staryellow1.alpha = 0.0
-//            self.addChild(staryellow1)
-//            let waitAction4 = SKAction.wait(forDuration: 0)
-//            let fadeInAction4 = SKAction.fadeIn(withDuration: 4)
-//            let sequenceActionStar4 = SKAction.sequence([waitAction4, fadeInAction4])
-//            starwhite1.run(sequenceActionStar4)
-//
-//            
-//            staryellow2  = SKSpriteNode(imageNamed: "star yellow")
-//            staryellow2.setScale(CGFloat(1))
-//            staryellow2.position = CGPoint(x: 250, y: 650)
-//            staryellow2.alpha = 0.0
-//            self.addChild(staryellow2)
-//            let waitAction5 = SKAction.wait(forDuration: 0)
-//            let fadeInAction5 = SKAction.fadeIn(withDuration: 5)
-//            let sequenceActionStar5 = SKAction.sequence([waitAction5, fadeInAction5])
-//            starwhite2.run(sequenceActionStar5)
+            
+            
+            
+            //            //yellow star
+            //            staryellow  = SKSpriteNode(imageNamed: "star yellow")
+            //            staryellow.setScale(CGFloat(1))
+            //            staryellow.position = CGPoint(x: 150, y: 650)
+            //            staryellow.alpha = 0.0
+            //            self.addChild(staryellow)
+            //            let waitAction3 = SKAction.wait(forDuration: 0)
+            //            let fadeInAction3 = SKAction.fadeIn(withDuration: 3)
+            //            let sequenceActionStar3 = SKAction.sequence([waitAction3, fadeInAction3])
+            //            staryellow.run(sequenceActionStar3)
+            //
+            //            staryellow1 = SKSpriteNode(imageNamed: "star yellow")
+            //            staryellow1.setScale(CGFloat(1))
+            //            staryellow1.position = CGPoint(x: 160, y: 650)
+            //            staryellow1.alpha = 0.0
+            //            self.addChild(staryellow1)
+            //            let waitAction4 = SKAction.wait(forDuration: 0)
+            //            let fadeInAction4 = SKAction.fadeIn(withDuration: 4)
+            //            let sequenceActionStar4 = SKAction.sequence([waitAction4, fadeInAction4])
+            //            starwhite1.run(sequenceActionStar4)
+            //
+            //
+            //            staryellow2  = SKSpriteNode(imageNamed: "star yellow")
+            //            staryellow2.setScale(CGFloat(1))
+            //            staryellow2.position = CGPoint(x: 250, y: 650)
+            //            staryellow2.alpha = 0.0
+            //            self.addChild(staryellow2)
+            //            let waitAction5 = SKAction.wait(forDuration: 0)
+            //            let fadeInAction5 = SKAction.fadeIn(withDuration: 5)
+            //            let sequenceActionStar5 = SKAction.sequence([waitAction5, fadeInAction5])
+            //            starwhite2.run(sequenceActionStar5)
             
         }else{
             
@@ -241,7 +239,7 @@ class GameScene: SKScene, GameDelegate {
             let fadeInAction1 = SKAction.fadeIn(withDuration: 2)
             let sequenceActionStar1 = SKAction.sequence([waitAction1, fadeInAction1])
             starwhite1.run(sequenceActionStar1)
-        
+            
             
             starwhite2  = SKSpriteNode(imageNamed: "star yellow")
             starwhite2.setScale(CGFloat(1))
@@ -252,7 +250,7 @@ class GameScene: SKScene, GameDelegate {
             let fadeInAction2 = SKAction.fadeIn(withDuration: 3)
             let sequenceActionStar2 = SKAction.sequence([waitAction2, fadeInAction2])
             starwhite2.run(sequenceActionStar2)
-
+            
             
         }
     }
@@ -534,7 +532,7 @@ class GameScene: SKScene, GameDelegate {
                             if let textureName = nodeKickRight.texture?.description {
                                 let components = textureName.components(separatedBy: "'")
                                 if components.count > 1 {
-                                    self.logOutput2 = components[1]
+                                    self.logOutput = components[1]
                                     
                                     
                                 }
@@ -718,7 +716,7 @@ class GameScene: SKScene, GameDelegate {
                             if let textureName = nodeSnareLeft.texture?.description {
                                 let components = textureName.components(separatedBy: "'")
                                 if components.count > 1 {
-                                    self.logOutput = components[1]
+                                    self.logOutput2 = components[1]
                                     if !components[1].contains("kosong") {
                                         // Increment point only if the texture name does not contain "kosong"
                                         
@@ -974,9 +972,9 @@ class GameScene: SKScene, GameDelegate {
             let sequenceAction10 = SKAction.sequence([waitAction10, fadeInScore1 , addLabelAction10])
             self.run(sequenceAction10)
             
-           
             
-           
+            
+            
             
             self.logosementara = SKSpriteNode(imageNamed: "LogoSuperShy")
             self.logosementara.setScale(CGFloat(0.6))
@@ -1019,16 +1017,11 @@ class GameScene: SKScene, GameDelegate {
         self.run(gameplay)
     }
     func closeGame() {
+        isHidden = true
+        backgroundMusic?.stop()
+        self.inputViewController?.dismiss(animated: true)
+        view?.window?.rootViewController?.dismiss(animated: true, completion: nil)
         
-        
-        delayStartTimer()
-        
-        if self.timerValue > 3.0 {
-            isHidden = true
-            backgroundMusic?.stop()
-            self.inputViewController?.dismiss(animated: true)
-            view?.window?.rootViewController?.dismiss(animated: true, completion: nil)
-        }
     }
     
     
@@ -1235,7 +1228,6 @@ class GameScene: SKScene, GameDelegate {
             if let resetgameButton1 = resetgameButton1, resetgameButton1.contains(location){
                 restart1()
                 resetgameButton1.removeFromParent()
-                
                 backgroundMusic?.stop()
             }
             
@@ -1283,14 +1275,12 @@ struct GameView: UIViewControllerRepresentable {
     var scene: SKScene
     @Binding var isPresented: Bool
     
+    
+    
     func makeUIViewController(context: Context) -> UIViewController {
         let viewController = UIViewController()
         let skView = SKView()
         viewController.view = skView
-        //        if let gameScene = scene as? GameScene {
-        //            skView.presentScene(gameScene)
-        //            gameScene.closeGame()
-        //        }
         skView.presentScene(scene)
         
         // Create a button to end the game
@@ -1307,12 +1297,39 @@ struct GameView: UIViewControllerRepresentable {
         NSLayoutConstraint.activate([
             endButton.centerXAnchor.constraint(equalTo: viewController.view.centerXAnchor, constant: 149),
             endButton.centerYAnchor.constraint(equalTo: viewController.view.centerYAnchor, constant: -351),
-            endButton.widthAnchor.constraint(equalToConstant: 15), // Adjust the width as needed
-            endButton.heightAnchor.constraint(equalToConstant: 18)
+            endButton.widthAnchor.constraint(equalToConstant: 40), // Adjust the width as needed
+            endButton.heightAnchor.constraint(equalToConstant: 40)
         ])
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 5) { // Adjust the delay duration as needed
             endButton.isHidden = false
+        }
+        DispatchQueue.main.asyncAfter(deadline: .now() + 68) { // Adjust the delay duration as needed
+            endButton.isHidden = true
+        }
+        
+        // Create a button to BacktoSongs
+        let BacktoSongButton = UIButton(type: .custom)
+        BacktoSongButton.setImage(UIImage(named: "BackSongs"), for: .normal)
+        BacktoSongButton.contentMode = .scaleAspectFit
+        BacktoSongButton.tintColor = .pink
+        BacktoSongButton.isHidden = true
+        BacktoSongButton.addTarget(context.coordinator, action: #selector(Coordinator.endGame), for: .touchUpInside)
+        viewController.view.addSubview(BacktoSongButton)
+        
+        BacktoSongButton.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            BacktoSongButton.centerXAnchor.constraint(equalTo: viewController.view.centerXAnchor, constant: 80),
+            BacktoSongButton.centerYAnchor.constraint(equalTo: viewController.view.centerYAnchor, constant: 353),
+            BacktoSongButton.widthAnchor.constraint(equalToConstant: 163),
+            BacktoSongButton.heightAnchor.constraint(equalToConstant: 35)
+        ])
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 69) {
+            UIView.animate(withDuration: 2.0) {
+                BacktoSongButton.isHidden = false
+                BacktoSongButton.alpha = 1.0
+            }
         }
         
         return viewController

@@ -42,7 +42,7 @@ struct MainPageView: View{
                         .frame(height: 20)
                     
                     //MARK: Button ke Pattern
-                    NavigationLink(destination: PatternListView().navigationBarHidden(true)) {
+                    NavigationLink(destination: PatternListView(bunyi: $bunyi).environmentObject(service).navigationBarHidden(true)) {
                         ZStack{
                             Image("PatternButton")
                                 .resizable()

@@ -29,7 +29,14 @@ struct GamePatternView2: View{
 //            .onDisappear(){
 //                dismiss()
 //            }
-        SpriteView(scene: scene).edgesIgnoringSafeArea(.all)
+        //SpriteView(scene: scene).edgesIgnoringSafeArea(.all)
+        
+        if isGameScenePresented == true {
+            GameViewPattern2(scene: scene, isPresented: $isGameScenePresented).edgesIgnoringSafeArea(.all)
+                .onDisappear(){
+                    dismiss()
+                }
+        }
     }
 }
 

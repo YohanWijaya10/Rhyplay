@@ -994,8 +994,9 @@ struct SongListView: View {
                                                 .presentationDetents([.height(800)])
                                         }
                                         
-                                        NavigationLink(destination: ContentView(bunyi: $bunyi).navigationBarBackButtonHidden(true), isActive: $playingGame) {
+                                        NavigationLink(destination: ContentView(bunyi: $bunyi).environmentObject(service).navigationBarBackButtonHidden(true), isActive: $playingGame) {
                                             EmptyView()
+                                            
                                         }
                                     }
                                     else if KPopSong == 1{
@@ -1073,8 +1074,9 @@ struct SongListView: View {
                                                 .presentationDetents([.height(800)])
                                         }
                                         
-                                        NavigationLink(destination: ContentView(bunyi: $bunyi).navigationBarBackButtonHidden(true), isActive: $playingGame) {
+                                        NavigationLink(destination: ContentView(bunyi: $bunyi).environmentObject(service).navigationBarBackButtonHidden(true), isActive: $playingGame) {
                                             EmptyView()
+                                            
                                         }
                                     }
                                 }

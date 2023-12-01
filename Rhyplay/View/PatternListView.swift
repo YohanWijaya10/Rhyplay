@@ -9,7 +9,8 @@ import Foundation
 import SwiftUI
 
 struct PatternListView: View {
-    
+    @Binding var bunyi: Bool // Assuming bunyi is used in MainPageView
+    @EnvironmentObject var service: BluetoothService
     @Environment (\.dismiss) var dismiss
     
     var body: some View {
@@ -57,7 +58,7 @@ struct PatternListView: View {
                             VStack(){
                                 HStack{
                                     ///Button Pattern 1
-                                    NavigationLink(destination: GamePatternView().navigationBarHidden(true)) {
+                                    NavigationLink(destination: GamePatternView(bunyi: .constant(true)).environmentObject(service).navigationBarHidden(true)) {
                                      ZStack{
                                          RoundedRectangle(cornerRadius: 10)
                                              .frame(width: 170, height: 220)
@@ -145,5 +146,5 @@ struct PatternListView: View {
 }
 
 #Preview {
-    PatternListView()
+    PatternListView(bunyi: .constant(false))
 }

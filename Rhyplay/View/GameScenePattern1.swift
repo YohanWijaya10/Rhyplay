@@ -10,55 +10,261 @@ import SpriteKit
 import AVFoundation
 import SwiftUI
 
-class GameScenePattern1: SKScene {
+class GameScenePattern1: SKScene , GameDelegate {
     
+    
+    var logOutput2: String = ""
+
+    func onSnareChange(snareV: Double) {
+        //            if snareV == 1.0 {
+        //                point1 += 1
+        //                print("kiri  = \(snareV)    --> Point \(point1)     --> Timer: \(self.timerValue) ")
+        //            }
+        
+        if logOutput2 == "bar2" && snareV == 1.0 {
+            point2 += 1
+        }
+        
+        delayStartTimer()
+    }
+    
+    
+    var snarev: Double = 0.0{
+        didSet {
+            
+            
+            
+        }
+    }
+    var point2 : Int = 5
+    func onBassChange(bass1: Double) {
+        
+        
+        delayStartTimer()
+        
+        if self.logOutput ==  "bar1" && bass1 == 2.0 {
+            point2 += 1
+        }
+        
+        missPoint = 32 - point2
+        print(" \(self.logOutput)   \(point2) ")
+        
+        
+    }
+    
+    init(bluetoothService: BluetoothService, size: CGSize) {
+        self.bluetoothService = bluetoothService
+        super.init(size: size)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    func delayStartTimer() {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
+            self.startTimer()
+        }
+    }
+    
+    
+    func startTimer() {
+        if timer == nil {
+            timer = Timer.scheduledTimer(timeInterval: 0.02, target: self, selector: #selector(timerAction), userInfo: nil, repeats: true)
+        }
+    }
+    
+    @objc func timerAction() {
+        
+        timerValue += 0.02
+        
+    }
+    
+    
+    var timer: Timer?
+    var timerValue: Double = 0.0
+    var missPoint : Int = 0
+    
+    var myLabel: SKLabelNode!
+    var failLabel: SKLabelNode!
+    
+    var myLabel2: SKLabelNode!
+    var closeButton: SKSpriteNode!
+    var snar = ContentView(bunyi: .constant(true))
+    var closeds: Bool =  false
     var isGamePaused = false
     var pauseButton: SKSpriteNode!
-    var closeButton: SKSpriteNode!
-    var RetryButton: SKSpriteNode!
-    var BacktoSongButton: SKSpriteNode!
-    var backgroundMusic: AVAudioPlayer?
-    var resetgameButton1: SKSpriteNode!
-
-    
+    var btnRetryEnding: SKSpriteNode!
     var logosementara: SKSpriteNode!
+    var backgroundMusic: AVAudioPlayer?
     var resumeButton: SKSpriteNode!
     var menuButton: SKSpriteNode!
+    var BacktoSongButton: SKSpriteNode!
+    
+    
+    
+    var congrats: SKSpriteNode!
+    
+    var starwhite: SKSpriteNode!
+    var starwhite1: SKSpriteNode!
+    var starwhite2: SKSpriteNode!
+    
+    var staryellow: SKSpriteNode!
+    var staryellow1: SKSpriteNode!
+    var staryellow2: SKSpriteNode!
+    
+    
+    
+    
     var isGameResume = false
     var resetgameButton: SKSpriteNode!
+    var resetgameButton1: SKSpriteNode!
     var countresume = false
     var worldNode:SKNode?
     var gameplay: SKAction!
     var pausenode: SKEmitterNode!
-    var myLabel: SKLabelNode!
-    var failLabel: SKLabelNode!
-
+    var pose: SKEmitterNode!
+    var btnclose: SKSpriteNode!
+    var ArrayNodesKickRight: [SKSpriteNode] = []
+    
+    var bluetoothService: BluetoothService
+    var logOutput: String = "" {
+        didSet {
+           
+           
+//            print(self.logOutput)
+        }
+    }
     
     func addLabelToScene() {
         
         
         self.myLabel = SKLabelNode(fontNamed: "Arial")
-        self.myLabel.text = "Perfect Beat :  31 / 33"
+        self.myLabel.text = "Perfect Beat : \(self.point2) / 32"
         self.myLabel.fontSize = 25
         self.myLabel.fontColor = SKColor.white
-        self.myLabel.position = CGPoint(x: self.size.width / 2, y: self.size.height / 2)
+        self.myLabel.position = CGPoint(x: 200, y:  360)
         self.addChild(self.myLabel)
         
         self.failLabel = SKLabelNode(fontNamed: "Arial")
-        self.failLabel.text = "Miss Beat : 2"
+        self.failLabel.text = "Miss : \(self.missPoint)"
         self.failLabel.fontSize = 25
         self.failLabel.fontColor = SKColor.white
-        self.failLabel.position = CGPoint(x: 200, y:  380)
+        self.failLabel.position = CGPoint(x: 200, y:  320)
         self.addChild(self.failLabel)
         
     }
     
-    
+    func starPoint() {
+        
+        
+        
+        congrats  = SKSpriteNode(imageNamed: "Selamat")
+        congrats.setScale(CGFloat(0.5))
+        congrats.position = CGPoint(x: 200, y: 700)
+        self.addChild(congrats)
+        
+        
+        if point2 < 16 {
+            starwhite  = SKSpriteNode(imageNamed: "star yellow")
+            starwhite.setScale(CGFloat(1))
+            starwhite.position = CGPoint(x: 150, y: 650)
+            self.addChild(starwhite)
+            
+        } else if point2 > 16 && point2  <= 24   {
+            starwhite  = SKSpriteNode(imageNamed: "star yellow")
+            starwhite.setScale(CGFloat(1))
+            starwhite.position = CGPoint(x: 150, y: 650)
+            starwhite.alpha = 0.0
+            self.addChild(starwhite)
+            let waitAction = SKAction.wait(forDuration: 0)
+            let fadeInAction = SKAction.fadeIn(withDuration: 1)
+            let sequenceActionStar = SKAction.sequence([waitAction, fadeInAction])
+            starwhite.run(sequenceActionStar)
+            
+            starwhite1  = SKSpriteNode(imageNamed: "star yellow")
+            starwhite1.setScale(CGFloat(1))
+            starwhite1.position = CGPoint(x: 200, y: 650)
+            starwhite1.alpha = 0.0
+            self.addChild(starwhite1)
+            let waitAction1 = SKAction.wait(forDuration: 0)
+            let fadeInAction1 = SKAction.fadeIn(withDuration: 2)
+            let sequenceActionStar1 = SKAction.sequence([waitAction1, fadeInAction1])
+            starwhite1.run(sequenceActionStar1)
+        
+            
+//            //yellow star
+//            staryellow  = SKSpriteNode(imageNamed: "star yellow")
+//            staryellow.setScale(CGFloat(1))
+//            staryellow.position = CGPoint(x: 150, y: 650)
+//            staryellow.alpha = 0.0
+//            self.addChild(staryellow)
+//            let waitAction3 = SKAction.wait(forDuration: 0)
+//            let fadeInAction3 = SKAction.fadeIn(withDuration: 3)
+//            let sequenceActionStar3 = SKAction.sequence([waitAction3, fadeInAction3])
+//            staryellow.run(sequenceActionStar3)
+//
+//            staryellow1 = SKSpriteNode(imageNamed: "star yellow")
+//            staryellow1.setScale(CGFloat(1))
+//            staryellow1.position = CGPoint(x: 160, y: 650)
+//            staryellow1.alpha = 0.0
+//            self.addChild(staryellow1)
+//            let waitAction4 = SKAction.wait(forDuration: 0)
+//            let fadeInAction4 = SKAction.fadeIn(withDuration: 4)
+//            let sequenceActionStar4 = SKAction.sequence([waitAction4, fadeInAction4])
+//            starwhite1.run(sequenceActionStar4)
+//
+//
+//            staryellow2  = SKSpriteNode(imageNamed: "star yellow")
+//            staryellow2.setScale(CGFloat(1))
+//            staryellow2.position = CGPoint(x: 250, y: 650)
+//            staryellow2.alpha = 0.0
+//            self.addChild(staryellow2)
+//            let waitAction5 = SKAction.wait(forDuration: 0)
+//            let fadeInAction5 = SKAction.fadeIn(withDuration: 5)
+//            let sequenceActionStar5 = SKAction.sequence([waitAction5, fadeInAction5])
+//            starwhite2.run(sequenceActionStar5)
+            
+        }else{
+            
+            starwhite  = SKSpriteNode(imageNamed: "star yellow")
+            starwhite.setScale(CGFloat(1))
+            starwhite.position = CGPoint(x: 150, y: 650)
+            starwhite.alpha = 0.0
+            self.addChild(starwhite)
+            let waitAction = SKAction.wait(forDuration: 0)
+            let fadeInAction = SKAction.fadeIn(withDuration: 1)
+            let sequenceActionStar = SKAction.sequence([waitAction, fadeInAction])
+            starwhite.run(sequenceActionStar)
+            
+            starwhite1  = SKSpriteNode(imageNamed: "star yellow")
+            starwhite1.setScale(CGFloat(1))
+            starwhite1.position = CGPoint(x: 200, y: 650)
+            starwhite1.alpha = 0.0
+            self.addChild(starwhite1)
+            let waitAction1 = SKAction.wait(forDuration: 0)
+            let fadeInAction1 = SKAction.fadeIn(withDuration: 2)
+            let sequenceActionStar1 = SKAction.sequence([waitAction1, fadeInAction1])
+            starwhite1.run(sequenceActionStar1)
+        
+            
+            starwhite2  = SKSpriteNode(imageNamed: "star yellow")
+            starwhite2.setScale(CGFloat(1))
+            starwhite2.position = CGPoint(x: 250, y: 650)
+            starwhite2.alpha = 0.0
+            self.addChild(starwhite2)
+            let waitAction2 = SKAction.wait(forDuration: 0)
+            let fadeInAction2 = SKAction.fadeIn(withDuration: 3)
+            let sequenceActionStar2 = SKAction.sequence([waitAction2, fadeInAction2])
+            starwhite2.run(sequenceActionStar2)
+
+            
+        }
+    }
     override func didMove(to view: SKView) {
         
         backgroundColor = .black
         scaleMode = .aspectFill
-        
+        bluetoothService.delegate = self
         worldNode = SKNode()
         self.addChild(self.worldNode!)
         
@@ -173,6 +379,8 @@ class GameScenePattern1: SKScene {
             //MARK: Play
             var ArrayNodesSnareLeft: [SKSpriteNode] = []
             
+            
+            //MARK: Snare Not Visual
             for imageSnareLeft in [
                 "kosong", "kosong", "kosong", "kosong", "kosong", "kosong", "kosong", "kosong",
                 "kosong", "kosong", "kosong", "kosong", "kosong", "kosong", "kosong", "kosong",
@@ -233,8 +441,183 @@ class GameScenePattern1: SKScene {
             self.run(group1)
             
             
+            //MARK: Snare Detect
+            var ArrayNodesSnareLeftVisual: [SKSpriteNode] = []
+            
+            for imageSnareLeftVisual in [
+                "kosong", "kosong", "kosong", "kosong", "kosong", "kosong", "kosong", "kosong",
+                "kosong", "kosong", "kosong", "kosong", "kosong", "kosong", "kosong", "kosong",
+                "kosong", "kosong", "kosong", "kosong", "kosong", "kosong", "kosong", "kosong",
+                "kosong", "kosong", "kosong", "kosong", "kosong", "kosong", "kosong", "kosong",
+                
+                
+                "kosong", "kosong", "kosong", "kosong", "kosong", "kosong", "kosong", "kosong",
+                "kosong", "kosong", "kosong", "kosong", "kosong", "kosong", "kosong", "kosong",
+                "kosong", "kosong", "kosong", "kosong", "kosong", "kosong", "kosong", "kosong",
+               
+               
+                
+                "kosong", "kosong", "kosong", "kosong", "kosong", "kosong", "kosong", "kosong",
+                "kosong", "bar1", "bar2", "bar2", "kosong", "bar2", "bar2", "bar2",
+                "kosong", "bar2", "bar2", "bar2", "kosong", "bar2", "bar2", "bar2",
+                "kosong", "bar2", "bar2", "bar2", "kosong", "bar2", "bar2", "bar2",
+                "kosong", "bar2", "bar2", "bar2", "kosong", "bar2", "bar2", "bar2",
+                "kosong", "kosong", "kosong", "kosong", "kosong", "kosong", "kosong", "kosong",
+
+
+                
+                
+            ] {
+                let nodeSnareLeftVisual = SKSpriteNode(imageNamed: imageSnareLeftVisual)
+                ArrayNodesSnareLeftVisual.append(nodeSnareLeftVisual)
+                self.addChild(nodeSnareLeftVisual)
+                
+            }
+            
+            let SnareLeftSequenceVisual = SKAction.sequence([
+                SKAction.run {
+                    for (index, ArrayNodesSnareLeftVisual) in ArrayNodesSnareLeftVisual.enumerated() {
+                        let waitAction = SKAction.wait(forDuration: 0.365 * Double(index))
+                        
+                        let printAction = SKAction.run {
+                            if let textureName = ArrayNodesSnareLeftVisual.texture?.description {
+                                let components = textureName.components(separatedBy: "'")
+                                if components.count > 1 {
+                                    self.logOutput2 = components[1]
+                                    if !components[1].contains("kosong") {
+                                       
+                                    }
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    
+                                }
+                            }
+                        }
+                        
+                        
+                        // Adjust the initial x and y values as needed
+                        let xStartPosition = 145
+                        let yStartPosition = 890
+                        ArrayNodesSnareLeftVisual.position = CGPoint(x: xStartPosition, y: yStartPosition)
+                        ArrayNodesSnareLeftVisual.setScale(CGFloat(1.1))
+                        
+                        // Create an action to change the x position of the image node to 200 over a duration of 1.6 seconds
+                        let moveAction = SKAction.move(to: CGPoint(x: 145, y: 100), duration: 1.46)
+                        
+                        // Create an action to move the image back to the initial position
+                        let resetPositionAction = SKAction.move(to: CGPoint(x: xStartPosition, y: yStartPosition), duration: 0)
+                        
+                        let fadeInAction = SKAction.fadeIn(withDuration: 0) //
+                        let opacityAction = SKAction.fadeAlpha(to: 0.0, duration: 0)
+                        let SnareLeftSequence = SKAction.sequence([waitAction, printAction, fadeInAction, opacityAction, moveAction, resetPositionAction])
+                        
+                        // Run the sequence action on the image node
+                        ArrayNodesSnareLeftVisual.run(SnareLeftSequence)
+                    }
+                },
+                SKAction.wait(forDuration: 35.1) // Wait for 2 seconds before repeating
+            ])
+            let delay1Visual = SKAction.wait(forDuration: 3.15)
+            let group1Visual = SKAction.sequence([delay1Visual, SnareLeftSequenceVisual])
+            self.run(group1Visual)
+            
+            
+            //
+            
+            //MARK: Kick Not Visual
             var ArrayNodesKickRight: [SKSpriteNode] = []
             for imageKickRight in
+                    [
+                        "kosong", "kosong", "kosong", "kosong", "kosong", "kosong", "kosong", "kosong",
+                        "kosong", "kosong", "kosong", "kosong", "kosong", "kosong", "kosong", "kosong",
+                        "kosong", "kosong", "kosong", "kosong", "kosong", "kosong", "kosong", "kosong",
+                        "kosong", "kosong", "kosong", "kosong", "kosong", "kosong", "kosong", "bar1",
+                        
+                        
+                        "bar1", "bar1", "kosong", "kosong", "bar1", "bar1", "bar1", "bar1",
+                        "bar1", "bar1", "kosong", "kosong", "bar1", "bar1", "bar1", "bar1",
+                        "bar1", "bar1", "kosong", "kosong", "bar1", "bar1", "bar1", "bar1",
+                        "bar1", "bar1", "kosong", "kosong", "bar1", "bar1", "bar1", "bar1",
+                        
+                        "bar1", "bar1", "kosong", "kosong", "bar1", "bar1", "bar1", "bar1",
+                        "bar1", "bar1", "kosong", "kosong", "bar1", "bar1", "bar1", "bar1",
+                        "bar1", "bar1", "kosong", "kosong", "bar1", "bar1", "bar1", "bar1",
+                        "bar1", "bar1", "kosong", "kosong", "bar1", "bar1", "bar1", "bar1",
+                        
+                        
+//                        "kosong", "kosong", "kosong", "kosong", "kosong", "kosong", "kosong", "kosong",
+//                        "kosong", "kosong", "kosong", "kosong", "kosong", "kosong", "kosong", "kosong",
+//                        "kosong", "kosong", "kosong", "kosong", "kosong", "kosong", "kosong", "kosong",
+//                        "kosong", "kosong", "kosong", "kosong", "kosong", "kosong", "kosong", "kosong",
+//                        
+//                        
+//                        "bar1", "kosong", "kosong", "kosong", "bar1", "bar1", "kosong", "kosong",
+//                        "bar1", "kosong", "kosong", "kosong", "bar1", "bar1", "kosong", "kosong",
+//                        "bar1", "kosong", "kosong", "kosong", "bar1", "bar1", "kosong", "kosong",
+//                        "bar1", "kosong", "kosong", "kosong", "bar1", "bar1", "kosong", "kosong",
+//                        
+//                        "bar1", "kosong", "kosong", "kosong", "bar1", "bar1", "kosong", "kosong",
+//                        "bar1", "kosong", "kosong", "kosong", "bar1", "bar1", "kosong", "kosong",
+//                        "bar1", "kosong", "kosong", "kosong", "bar1", "bar1", "kosong", "kosong",
+//                        "bar1", "kosong", "kosong", "kosong", "bar1", "bar1", "kosong", "kosong",
+                        
+                        
+                        
+                        
+                        ] {
+                let nodeKickRight = SKSpriteNode(imageNamed: imageKickRight)
+                ArrayNodesKickRight.append(nodeKickRight)
+                self.addChild(nodeKickRight)
+            }
+            
+            let kickRightSequence = SKAction.sequence([
+                SKAction.run {
+                    for (index, nodeKickRight) in ArrayNodesKickRight.enumerated() {
+                        let waitAction = SKAction.wait(forDuration: 0.365 * Double(index))
+                        
+                        let printAction = SKAction.run {
+                            if let textureName = nodeKickRight.texture?.description {
+                                let components = textureName.components(separatedBy: "'")
+                                if components.count > 1 {
+                                    self.logOutput = components[1]
+                                    if !components[1].contains("kosong") {
+                                        
+                                      
+                                        
+                                    }
+                                    
+                                    
+                                }
+                            }
+                        }
+                        
+                        
+                        let xStartPosition = 345
+                        let yStartPosition = 890
+                        
+                        nodeKickRight.position = CGPoint(x: xStartPosition, y: yStartPosition)
+                        nodeKickRight.setScale(CGFloat(1.1))
+                        let moveAction = SKAction.move(to: CGPoint(x: 345, y: 100), duration: 1.46)
+                        let resetPositionAction = SKAction.move(to: CGPoint(x: xStartPosition, y: yStartPosition), duration: 0)
+                        let fadeInAction = SKAction.fadeIn(withDuration: 0) //
+                        let opacityAction = SKAction.fadeAlpha(to: 0.0, duration: 0)
+                        let kickRightSequence = SKAction.sequence([waitAction, printAction, fadeInAction, opacityAction, moveAction, resetPositionAction])
+                        nodeKickRight.run(kickRightSequence)
+                    }
+                },
+                SKAction.wait(forDuration: 35.1)
+            ])
+            let delay0 = SKAction.wait(forDuration: 3.15)
+            let group0 = SKAction.sequence([delay0, kickRightSequence])
+            self.run(group0)
+            
+            
+            
+            var ArrayNodesKickRightVisual: [SKSpriteNode] = []
+            for imageKickRightVisual in
                     [
                         "kosong", "kosong", "kosong", "kosong", "kosong", "kosong", "kosong", "kosong",
                         "kosong", "kosong", "kosong", "kosong", "kosong", "kosong", "kosong", "kosong",
@@ -253,33 +636,36 @@ class GameScenePattern1: SKScene {
                         "bar1", "bar1", "kosong", "kosong", "bar1", "kosong", "kosong", "kosong",
                         
                         ] {
-                let nodeKickRight = SKSpriteNode(imageNamed: imageKickRight)
-                ArrayNodesKickRight.append(nodeKickRight)
-                self.addChild(nodeKickRight)
+                let nodeKickRightVisual = SKSpriteNode(imageNamed: imageKickRightVisual)
+                ArrayNodesKickRightVisual.append(nodeKickRightVisual)
+                self.addChild(nodeKickRightVisual)
             }
             
-            let kickRightSequence = SKAction.sequence([
+            let kickRightSequenceVisual = SKAction.sequence([
                 SKAction.run {
-                    for (index, nodeKickRight) in ArrayNodesKickRight.enumerated() {
+                    for (index, nodeKickRightVisual) in ArrayNodesKickRightVisual.enumerated() {
+                        
                         let xStartPosition = 345
                         let yStartPosition = 890
                         
-                        nodeKickRight.position = CGPoint(x: xStartPosition, y: yStartPosition)
-                        nodeKickRight.setScale(CGFloat(1.1))
+                        nodeKickRightVisual.position = CGPoint(x: xStartPosition, y: yStartPosition)
+                        nodeKickRightVisual.setScale(CGFloat(1.1))
                         let moveAction = SKAction.move(to: CGPoint(x: 345, y: 100), duration: 1.46)
                         let resetPositionAction = SKAction.move(to: CGPoint(x: xStartPosition, y: yStartPosition), duration: 0)
                         let fadeInAction = SKAction.fadeIn(withDuration: 0)
                         let kickRightSequence = SKAction.sequence([SKAction.wait(forDuration: 0.365 * Double(index)), fadeInAction, moveAction, resetPositionAction])
-                        nodeKickRight.run(kickRightSequence)
+                        nodeKickRightVisual.run(kickRightSequence)
                     }
                 },
                 SKAction.wait(forDuration: 35.1)
             ])
-            let delay0 = SKAction.wait(forDuration: 3.15)
-            let group0 = SKAction.sequence([delay0, kickRightSequence])
-            self.run(group0)
+            let delay0Visual = SKAction.wait(forDuration: 3.15)
+            let group0Visual = SKAction.sequence([delay0Visual, kickRightSequenceVisual])
+            self.run(group0Visual)
             
             
+            
+            //MARK: Kick Visual
             var ArrayNodesSnareLeft1: [SKSpriteNode] = []
             
             for imageSnareLeft1 in [
@@ -436,6 +822,8 @@ class GameScenePattern1: SKScene {
             score.run(seqScore)
             self.addChild(score)
             
+            
+            
             let scoreconfeti = SKSpriteNode(imageNamed: "confetti 1")
             scoreconfeti.scale(to: CGSize(width: self.size.width, height: self.size.height))
             scoreconfeti.position = CGPoint(x: self.size.width / 2, y: self.size.height / 2)
@@ -448,13 +836,12 @@ class GameScenePattern1: SKScene {
             self.addChild(scoreconfeti)
             
             
-            self.logosementara = SKSpriteNode(imageNamed: "winpattern1")
-            self.logosementara.setScale(CGFloat(1))
-            self.logosementara.position =  CGPoint(x: 190, y: 620)
+            self.logosementara = SKSpriteNode(imageNamed: "basicPatternLogo")
+            self.logosementara.setScale(CGFloat(0.6))
+            self.logosementara.position =  CGPoint(x: 200, y: 500)
             self.logosementara.alpha = 0  // Initially hidden
             let delaylogosementara = SKAction.wait(forDuration: 38)
             let fadelogosementara = SKAction.fadeIn(withDuration: 2)
-            
             
             let seqlogosementara = SKAction.sequence([delaylogosementara, fadelogosementara])
             self.logosementara.run(seqlogosementara)
@@ -477,6 +864,7 @@ class GameScenePattern1: SKScene {
             let waitAction10 = SKAction.wait(forDuration: 38)
             let addLabelAction10 = SKAction.run {
                 self.addLabelToScene()
+                self.starPoint()
             }
             
             let sequenceAction10 = SKAction.sequence([waitAction10, fadeInScore1 , addLabelAction10])
@@ -501,10 +889,7 @@ class GameScenePattern1: SKScene {
     func closeGame() {
         isHidden = true
         backgroundMusic?.stop()
-        GameScenePattern1().inputViewController?.dismiss(animated: true)
-        // Add any other logic needed when the game is paused, like showing a pause menu.
-        
-        // Dismiss the scene
+        self.inputViewController?.dismiss(animated: true)
         view?.window?.rootViewController?.dismiss(animated: true, completion: nil)
         
         
@@ -516,7 +901,7 @@ class GameScenePattern1: SKScene {
         func closeGame() {
             isHidden = true
             backgroundMusic?.stop()
-            GameScenePattern1().inputViewController?.dismiss(animated: true)
+            GameScenePattern1(bluetoothService: bluetoothService, size: CGSize(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)).inputViewController?.dismiss(animated: true)
             // Dismiss the scene
             view?.window?.rootViewController?.dismiss(animated: true, completion: nil)
         }
@@ -576,7 +961,7 @@ class GameScenePattern1: SKScene {
         func restart() -> Void
         {
             //let transition = SKTransition.fade(with: .purple, duration: 15)
-            let restartScene = GameScenePattern1()
+            let restartScene = GameScenePattern1(bluetoothService: bluetoothService, size: CGSize(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height))
             restartScene.size = CGSize(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
             restartScene.scaleMode = .fill
             self.view?.presentScene(restartScene)
@@ -638,6 +1023,11 @@ class GameScenePattern1: SKScene {
             }
             
             
+            if let resetgameButton1 = resetgameButton1, resetgameButton1.contains(location) {
+                restart()
+                
+            }
+            
             
         }
     }
@@ -671,7 +1061,7 @@ struct GameViewPattern1: UIViewControllerRepresentable {
     func makeUIViewController(context: Context) -> UIViewController {
         let viewController = UIViewController()
         let skView = SKView()
-//        viewController.view = skView
+        viewController.view = skView
         skView.presentScene(scene)
         
         // Create a button to end the game
@@ -689,12 +1079,40 @@ struct GameViewPattern1: UIViewControllerRepresentable {
         NSLayoutConstraint.activate([
             endButton.centerXAnchor.constraint(equalTo: viewController.view.centerXAnchor, constant: 149),
             endButton.centerYAnchor.constraint(equalTo: viewController.view.centerYAnchor, constant: -352),
-            endButton.widthAnchor.constraint(equalToConstant: 16), // Adjust the width as needed
-            endButton.heightAnchor.constraint(equalToConstant: 18)
+            endButton.widthAnchor.constraint(equalToConstant: 40), // Adjust the width as needed
+            endButton.heightAnchor.constraint(equalToConstant: 40)
         ])
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 5) { // Adjust the delay duration as needed
             endButton.isHidden = false
+        }
+        DispatchQueue.main.asyncAfter(deadline: .now() + 68) { // Adjust the delay duration as needed
+            endButton.isHidden = true
+        }
+        
+        // Create a button to BacktoSongs
+        let BacktoSongButton = UIButton(type: .custom)
+        BacktoSongButton.setImage(UIImage(named: "BackSongs"), for: .normal)
+        BacktoSongButton.contentMode = .scaleAspectFit
+        BacktoSongButton.tintColor = .pink
+        BacktoSongButton.isHidden = true
+        BacktoSongButton.addTarget(context.coordinator, action: #selector(Coordinator.endGame), for: .touchUpInside)
+        viewController.view.addSubview(BacktoSongButton)
+        
+        // Layout button (you may want to customize this based on your needs)
+        BacktoSongButton.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            BacktoSongButton.centerXAnchor.constraint(equalTo: viewController.view.centerXAnchor, constant: 80),
+            BacktoSongButton.centerYAnchor.constraint(equalTo: viewController.view.centerYAnchor, constant: 353),
+            BacktoSongButton.widthAnchor.constraint(equalToConstant: 163), // Adjust the width as needed
+            BacktoSongButton.heightAnchor.constraint(equalToConstant: 35)
+        ])
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 40) { // Adjust the delay duration as needed
+            UIView.animate(withDuration: 2.0) {
+                BacktoSongButton.isHidden = false
+                BacktoSongButton.alpha = 1.0
+            }
         }
         
         return viewController
